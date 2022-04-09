@@ -1,6 +1,6 @@
 #ifndef _CAVION_H
-#include "gbl.h"
 #define _CAVION_H
+#include "gbl.h"
 
 class cAvion {
 public: 

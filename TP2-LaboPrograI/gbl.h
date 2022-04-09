@@ -1,8 +1,13 @@
-#ifndef _GBL_H
-#include "eEstado.h"
-#define _GBL_H
+#ifndef NVUELOS
 
+#define _NVUELOS 4
+
+#endif // NVUELOS
+
+#ifndef _GBL_H
+#define _GBL_H
 #pragma once
+#include "eEstado.h"
 #include <iostream>
 #include <string>
 using namespace std;

@@ -1,14 +1,17 @@
 #ifndef _CPASAJERO_H
-#include "gbl.h"
 #define _CPASAJERO_H
+#include "gbl.h"
 
 class cPasajero {
 public: 
     #pragma region constructor y destructor
     /// <summary>
-    /// Constructor por defecto
+    /// Constructor parametrizado
     /// </summary>
-    cPasajero();
+    /// <param name="_nombre">: Nombre del pasajero</param>
+    /// <param name="_DNI">: DNI del pasajero</param>
+    /// <param name="_numeroDeVuelo">: Numero de vuelo del pasajero</param>
+    cPasajero(string _nombre, unsigned int _DNI, unsigned int _numeroDeVuelo);
     /// <summary>
     /// Destructor por defecto
     /// </summary>

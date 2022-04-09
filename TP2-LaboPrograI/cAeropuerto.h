@@ -1,6 +1,6 @@
 #ifndef _CAEROPUERTO_H
-#include "gbl.h"
 #define _CAEROPUERTO_H
+#include "gbl.h"
 
 class cAeropuerto {
 public: 
