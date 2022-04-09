@@ -32,4 +32,4 @@ private:
     string fecha;
 };
 
-#endif // _CFECHA_H
+#endif //_CFECHA_H
