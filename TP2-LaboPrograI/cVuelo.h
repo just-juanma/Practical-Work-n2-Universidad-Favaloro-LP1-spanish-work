@@ -8,21 +8,25 @@ public:
 	/// <summary>
 	/// Constructor parametrizado
 	/// </summary>
+	/// <param name="_partidaArribo">: (true) partida, (false) arribo</param>
 	/// <param name="_numeroDeVuelo">: Numero reservado para el vuelo</param>
 	/// <param name="_estado">: Estado del vuelo</param>
-	/// <param name="_partidaArribo">: Describe si el vuelo esta en estado de partida (true) o arribo (false)</param>
-	/// <param name="_cantPosiblesDestinos">: #define que contiene la cantidad de destintos</param>
-	cVuelo(unsigned int _numeroDeVuelo = 0, eEstado _estado = sinEstado, bool _partidaArribo = false, 
-		  unsigned int _cantPosiblesDestinos = _NVUELOS);
+	cVuelo(bool _partidaArribo, unsigned int _numeroDeVuelo = 0, eEstado _estado = sinEstado);
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>
 	~cVuelo();
 	#pragma endregion
 
-	#pragma region metodos
-    
-	void establecerDestinos();
+	#pragma region metodos	
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="destinos">Recibe un array de destinos y los asigna a la lista posibleDestino</param>
+	/// <returns></returns>
+	bool setDestinosPosibles(string* destinos);
+
+	//bool setAvion
 
 	//bool validarPasajero();
     
@@ -34,7 +38,6 @@ public:
 	#pragma endregion
 private: 
     unsigned int numeroDeVuelo;
-	unsigned int cantPosiblesDestinos;
     eEstado estado;
     bool partidaArribo;
     static string** posibleDestino;
