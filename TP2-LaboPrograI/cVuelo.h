@@ -2,6 +2,7 @@
 #define _CVUELO_H
 #include "gbl.h"
 
+
 class cVuelo {
 public:
 	#pragma region constructor y destructor
@@ -19,12 +20,8 @@ public:
 	#pragma endregion
 
 	#pragma region metodos	
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="destinos">Recibe un array de destinos y los asigna a la lista posibleDestino</param>
-	/// <returns></returns>
-	bool setDestinosPosibles(string* destinos);
+
+	static void setDestinosPosibles();
 
 	//bool setAvion
 

@@ -2,7 +2,7 @@
 #include "cVuelo.h"
 
 // implementacion cVuelo
-
+string** cVuelo::posibleDestino;
 cVuelo::cVuelo(bool _partidaArribo, unsigned int _numeroDeVuelo, eEstado _estado) {
 	this->partidaArribo = _partidaArribo;
 	this->numeroDeVuelo = _numeroDeVuelo;
@@ -23,20 +23,31 @@ cVuelo::~cVuelo() {
 		delete[] posibleDestino;
 	}
 }
-bool cVuelo::setDestinosPosibles(string* destino) {
+void cVuelo::setDestinosPosibles() {
 	// si existe mi listado de posibleDestino
 	if (posibleDestino != NULL)
-		for (int i = 0; i < MAXDESTINOS; i++) {
-			// si el puntero posibleDestino no contienen basura / otro destino, y ademas se establecio destino en la posicion [i] 
-			if (posibleDestino[i] == NULL && &destino[i] != NULL)
-				*posibleDestino[i] = destino[i];
-			// si el puntero posibleDestino contiene algo, o no se establecio destino en la posicion [i]
-			else return false;
-		}
-	// si no existe la lista posibleDestino, retorno falso
-	else return false;
+		for (int i = 0; i < MAXDESTINOS; i++)
+			if (posibleDestino[i] == NULL) {
+				switch (i) {
+				case 0:
+					*posibleDestino[i] = "Jerusalen";
+					break;
+				case 1:
+					*posibleDestino[i] = "Tel Aviv";
+					break;
+				case 2:
+					*posibleDestino[i] = "Eilat";
+					break;
+				case 3:
+					*posibleDestino[i] = "Beerseva";
+					break;
+				case 4:
+					*posibleDestino[i] = "Haifa";
+					break;
+				}
+			}
+	
 
-	return true;
 }
 //void cVuelo::bool validarPasajero() {
 //
