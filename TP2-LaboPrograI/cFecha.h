@@ -7,10 +7,10 @@ public:
     #pragma region constructor y destructor
 
         /// <summary>
-        /// Constructor parametrizado 
+        /// Constructor por defecto
         /// </summary>
-        /// <param name="_fecha">: recibira una fecha mediante el formato DD/MM/AAAA XX:XX:XX </param>
-        cFecha(string _fecha);
+ 
+        cFecha();
 
         /// <summary>
         /// Destructor por defecto 
@@ -22,14 +22,25 @@ public:
     #pragma region metodos
 
         /// <summary>
-        /// En caso de que algun objeto no pueda cumplir con su horario de partida, debera reprogramar su fecha
+        /// Setea fechas y en caso de que algun objeto no pueda cumplir con su horario de partida, debera reprogramar su fecha
         /// </summary>
-        /// <param name="_fecha">: Fecha a modificar</param>
-        void reprogramarFecha(string _fecha) { this->fecha = _fecha; }
+        /// <param name="_fecha">: Fecha a agregar/modificar</param>
+        void setFecha(string* _fecha) { 
+            if(fecha == NULL)
+                this->fecha = _fecha; 
+        }
+
+        string* getFecha()const {
+            if (fecha != NULL)
+                return fecha;
+            return NULL;
+        }
+
+        
 
     #pragma endregion
 private: 
-    string fecha;
+    string* fecha;
 };
 
 #endif // _CFECHA_H

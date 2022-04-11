@@ -3,9 +3,8 @@
 
 // implementacion cFecha
 
-cFecha::cFecha(string _fecha) {
-	// inicialiacion de los atributos
-	this->fecha = _fecha;
+cFecha::cFecha() {
+	fecha = NULL;
 }
 
 cFecha::~cFecha() { 

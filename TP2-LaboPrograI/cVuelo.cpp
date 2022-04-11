@@ -2,16 +2,19 @@
 #include "cVuelo.h"
 
 // implementacion cVuelo
+unsigned int cVuelo::numeroDeVuelo = 0;
 string** cVuelo::posibleDestino;
-cVuelo::cVuelo(bool _partidaArribo, unsigned int _numeroDeVuelo, eEstado _estado) {
+bool cVuelo::verificarDestino = false;
+cVuelo::cVuelo(bool _partidaArribo, eEstado _estado) {
 	this->partidaArribo = _partidaArribo;
-	this->numeroDeVuelo = _numeroDeVuelo;
 	this->estado = _estado;
-	// pido memoria para un array de punteros posibleDestino de tamanio cantPosiblesDestinos
+	numeroDeVuelo++;
+	this->aeropuertoDestino = NULL;
+	this->partida = NULL;
+	this->arribo = NULL;
 	posibleDestino = new string * [MAXDESTINOS];
-	// apunto los punteros posibleDestino a NULL
-	for (int i = 0; i < MAXDESTINOS; i++)
-		posibleDestino[i] = NULL;
+	for (int i = 0; i < MAXDESTINOS; i++) 
+		posibleDestino[i] = new string[10];
 }
 cVuelo::~cVuelo() {
 	// si se genero posibleDestino correctamente
@@ -22,12 +25,13 @@ cVuelo::~cVuelo() {
 		// elimino el array de posibleDestino
 		delete[] posibleDestino;
 	}
+	numeroDeVuelo--;
 }
 void cVuelo::setDestinosPosibles() {
 	// si existe mi listado de posibleDestino
-	if (posibleDestino != NULL)
+	if (posibleDestino != NULL && !verificarDestino) {
 		for (int i = 0; i < MAXDESTINOS; i++)
-			if (posibleDestino[i] == NULL) {
+			if (posibleDestino[i] != NULL) {
 				switch (i) {
 				case 0:
 					*posibleDestino[i] = "Jerusalen";
@@ -44,11 +48,15 @@ void cVuelo::setDestinosPosibles() {
 				case 4:
 					*posibleDestino[i] = "Haifa";
 					break;
+				// si se llega a modificar el valor de MAXDESTINOS, entrara aca
+				default: verificarDestino = false;
 				}
 			}
-	
-
+		verificarDestino = true;
+	}
+	else verificarDestino = false;
 }
+
 //void cVuelo::bool validarPasajero() {
 //
 //}
