@@ -4,6 +4,6 @@
 /// <summary>
 /// Estado en el que se encuentra el presente avion
 /// </summary>
-enum eEstado { sinEstado, estima, aterrizado };
+enum eEstado { sinEstado, volando, aterrizado };
 
 #endif // _EESTADO_H
