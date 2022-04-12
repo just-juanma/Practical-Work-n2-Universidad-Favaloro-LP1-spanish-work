@@ -11,10 +11,10 @@ public:
 	/// Constructor parametrizado
 	/// </summary>
 	/// <param name="_partidaArribo">: (true) partida, (false) arribo</param>
+	/// <param name="_aeropuertoDestino">: String formato "Aeropuerto de X"</param>
 	/// <param name="_numeroDeVuelo">: Numero reservado para el vuelo</param>
 	/// <param name="_estado">: Estado del vuelo</param>
-	cVuelo(bool _partidaArribo, unsigned int _numeroDeVuelo = 0, eEstado _estado = sinEstado);
-	cVuelo();
+	cVuelo(bool _partidaArribo, eEstado _estado = sinEstado);
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>
@@ -24,6 +24,22 @@ public:
 	#pragma region metodos	
 
 	static void setDestinosPosibles();
+
+	void setHorarios(string* horaPartida, string* horaArribo) {
+		// solo se puede cuando el es una partida, no arribo
+		if (!partidaArribo && partida == NULL && arribo == NULL) {
+			partida->setFecha(horaPartida);
+			arribo->setFecha(horaArribo);
+		}
+	}
+
+	void setDestino(string _posibleDestino) {
+		for (int i = 0; i < MAXDESTINOS; i++)
+			if (*posibleDestino[i] == _posibleDestino)
+				this->aeropuertoDestino = &_posibleDestino;
+	}
+
+
 
 	//bool setAvion
 
