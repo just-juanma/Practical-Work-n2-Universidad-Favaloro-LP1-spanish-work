@@ -2,14 +2,14 @@
 #include "cVuelo.h"
 
 // implementacion cVuelo
-unsigned int cVuelo::numeroDeVuelo = 0;
+unsigned int cVuelo::generadorNumerosDeVuelo = 0;
 string** cVuelo::posibleDestino;
 bool cVuelo::verificarDestino = false;
 
 cVuelo::cVuelo(bool _partidaArribo, eEstado _estado) {
 	this->partidaArribo = _partidaArribo;
 	this->estado = _estado;
-	numeroDeVuelo++;
+	numeroVuelo = generadorNumerosDeVuelo++;
 	this->aeropuertoDestino = NULL;
 	this->partida = NULL;
 	this->arribo = NULL;
@@ -27,7 +27,7 @@ cVuelo::~cVuelo() {
 		// elimino el array de posibleDestino
 		delete[] posibleDestino;
 	}
-	numeroDeVuelo--;
+	generadorNumerosDeVuelo--;
 }
 void cVuelo::setDestinosPosibles() {
 	// si existe mi listado de posibleDestino

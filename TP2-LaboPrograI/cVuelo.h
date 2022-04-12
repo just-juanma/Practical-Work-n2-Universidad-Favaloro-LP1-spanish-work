@@ -13,7 +13,6 @@ public:
 	/// </summary>
 	/// <param name="_partidaArribo">: (true) partida, (false) arribo</param>
 	/// <param name="_aeropuertoDestino">: String formato "Aeropuerto de X"</param>
-	/// <param name="_numeroDeVuelo">: Numero reservado para el vuelo</param>
 	/// <param name="_estado">: Estado del vuelo</param>
 	cVuelo(bool _partidaArribo, eEstado _estado = sinEstado);
 	/// <summary>
@@ -26,21 +25,37 @@ public:
 
 	static void setDestinosPosibles();
 
-	void setHorarios(string* horaPartida, string* horaArribo) {
-		// solo se puede cuando el es una partida, no arribo
+	// TAREA PARA EL JUANMA DEL FUTURO: VERIFICAR QUE LA HORA SEA VALIDA
+	bool setHorarios(string* horaPartida, string* horaArribo) {
+		// * solo se puede cuando el es una partida, no arribo
+		// * verifico que haya lugar para establecer una partida, y un arribo 
 		if (!partidaArribo && partida == NULL && arribo == NULL) {
 			partida->setFecha(horaPartida);
 			arribo->setFecha(horaArribo);
+			return true;
 		}
+		return false;
 	}
-
-	void setDestino(string _posibleDestino) {
+	/// <summary>
+	/// Setea el destino, en caso de encontrarlo en la lista de posibles destinos
+	/// </summary>
+	/// <param name="_posibleDestino">: recibe un aeropuerto en formato "X", siendo X el nombre del destino</param>
+	/// <returns></returns>
+	bool setDestino(string _posibleDestino) {
+		// buscamos dentro de una lista, en este caso en la lista de posibles destinos
 		for (int i = 0; i < MAXDESTINOS; i++)
-			if (*posibleDestino[i] == _posibleDestino)
+			// si encuentra una concidencia
+			if (*posibleDestino[i] == _posibleDestino && aeropuertoDestino == NULL) {
 				this->aeropuertoDestino = &_posibleDestino;
+				return false;
+			}
 	}
 
-
+	unsigned int getNumeroVuelo() {
+		if (numeroVuelo > 0) 
+			return numeroVuelo;
+		return 0;
+	}
 
 	//bool setAvion
 
@@ -54,7 +69,7 @@ public:
 	#pragma endregion
 private: 
 	// global
-    static unsigned int numeroDeVuelo;
+    static unsigned int generadorNumerosDeVuelo;
     static string** posibleDestino;
 	static bool verificarDestino;
 
@@ -68,6 +83,7 @@ private:
 	string* aeropuertoDestino;
 	eEstado estado;
 	bool partidaArribo;
+	unsigned int numeroVuelo;
 
 	
 };
