@@ -1,3 +1,4 @@
+/*
 #include "gbl.h"
 #include "cFecha.h"
 
@@ -10,4 +11,4 @@ cFecha::cFecha(string _fecha) {
 
 cFecha::~cFecha() { 
 	// no tengo nada que eliminar
-}
+}*/

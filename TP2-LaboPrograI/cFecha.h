@@ -1,6 +1,5 @@
 #ifndef _CFECHA_H
 #define _CFECHA_H
-#include "gbl.h"
 
 class cFecha {
 public: 
@@ -9,7 +8,7 @@ public:
         /// <summary>
         /// Constructor parametrizado 
         /// </summary>
-        /// <param name="_fecha">: recibira una fecha mediante el formato DD/MM/AAAA XX:XX:XX </param>
+        cFecha();
         cFecha(string _fecha);
 
         /// <summary>

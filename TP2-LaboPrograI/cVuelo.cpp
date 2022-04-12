@@ -13,6 +13,11 @@ cVuelo::cVuelo(bool _partidaArribo, unsigned int _numeroDeVuelo, eEstado _estado
 	for (int i = 0; i < MAXDESTINOS; i++)
 		posibleDestino[i] = NULL;
 }
+cVuelo::cVuelo(){
+	this->partidaArribo = false;
+	this->numeroDeVuelo = 0;
+	this->estado = aterrizado;
+}
 cVuelo::~cVuelo() {
 	// si se genero posibleDestino correctamente
 	if (posibleDestino != NULL) {

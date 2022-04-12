@@ -110,6 +110,7 @@ public:
          bool chequearCargaMaxima();
 
     #pragma endregion
+#pragma region atributos 
 private: 
     static unsigned int ID;
     unsigned int totalPasajeros;
@@ -118,9 +119,9 @@ private:
     int CantPasajerosEnVuelo;
     cAeropuerto aeropuerto;
     cPasajero* pasajeros; 
-    cFecha fechavuelo;
     cVuelo vuelo;
     eEstado estado;
+#pragma enregion
 };
 
 #endif  

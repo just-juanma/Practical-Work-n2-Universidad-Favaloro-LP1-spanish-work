@@ -14,6 +14,7 @@ public:
 	/// <param name="_numeroDeVuelo">: Numero reservado para el vuelo</param>
 	/// <param name="_estado">: Estado del vuelo</param>
 	cVuelo(bool _partidaArribo, unsigned int _numeroDeVuelo = 0, eEstado _estado = sinEstado);
+	cVuelo();
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>

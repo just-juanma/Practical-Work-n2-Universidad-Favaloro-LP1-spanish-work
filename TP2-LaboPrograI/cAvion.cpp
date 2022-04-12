@@ -2,65 +2,82 @@
 
 unsigned int cAvion::ID;
 cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros){
-	if (_totalPasajeros >= 0 && _pesoMaximo >= 0 && _nPasajeros >= 0) {
-		this->totalPasajeros = _totalPasajeros;
-		this->pesoMaximo = _pesoMaximo;
-		this->nPasajeros = _nPasajeros;
+	try
+	{
+		if (_totalPasajeros >= 0 && _pesoMaximo >= 0 && _nPasajeros >= 0) {
+			this->totalPasajeros = _totalPasajeros;
+			this->pesoMaximo = _pesoMaximo;
+			this->nPasajeros = _nPasajeros;
+		}
+		else {
+			throw exception();
+		}
 	}
-	else {
-		//tirar exepcion
+	catch (const std::exception&)
+	{
+		//hacer el tema de crear una exception para cada caso especifico y hacer el tostring adecuado
 	}
+	
 	
 	this->ID = rand()%200;
 }
-
 void cAvion::despegar() {
 	/// <summary>
 	/// se le solicita permiso al aeropuerto asignado al avion en el vuelo asignado para chequear que los 
-	/// pasajeros a bordo sean los correctos (chequear consigna quiza la  clase vuelo cumple esta funcion
-	/// y la clase avion es mas simple) 
+	/// pasajeros a bordo sean los correctos, luego se chequea el peso y del equipaje y tripalacion no 
+	/// supere el peso que el avion puede soportar
 	/// </summary>
-	this->pedirPermiso();
-	bool carga = this->chequearCargaMaxima();
-	for (int i = 0; this->nPasajeros <= i; i++) { //chequear como recoría el for el bucle 
-		if (this->pasajeros[i].fecha != this->fechavuelo || this->pasajeros[i].vuelo != this->ID) {
-			//tirar excepcion;
-		}
-	}
-	this->estado =this->vuelo.cambiarestado();
-	
+	this->pedirPermiso();	
 }
 
 void cAvion::aterrizar() {
+	/// <summary>
+	/// Se le solicita permiso al aeropuerto asigando que chequee la disposicion en el hangar para poder asi
+	/// realizar el aterrizaje
+	/// </summary>
 	this->pedirPermiso();
 }
 
 void cAvion::pedirPermiso() {
 	/// <summary>
-	/// Luego de que se haya aceptado el ingreso del avion al aeropuerto se le asigna una nueva fecha
+	/// Luego de que se haya aceptado el ingreso del avion al aeropuerto se le asigna una nueva fecha.
+	/// En caso contrario la clase aeropuerto tirara la excepcion correspondiente
 	/// En caso de ser la fecha de despegue, se corrobora y se afirma la misma fecha en caso contrario
-	/// tira exception
+	/// tira exception 
 	/// </summary>
-	if (this->aeropuerto->DarPermiso() == true) {
-		this->fechavuelo = aeropuerto->DarFecha(); 
-	}
-
-	switch (this->estado)
+	try
 	{
-	case volando:
-		this->aterrizar();
-	case aterrizado: 
-		this->despegar();
-	default:
-		//tirar excepcion que no se pudo volar porque el estado del avion esta mal
+		if (this->aeropuerto->DarPermiso() == true) {
+			this->vuelo.cambiarfecha(aeropuerto->DarFecha());
+		}
+		switch (this->estado)
+		{
+		case volando:
+			this->estado = this->vuelo.cambiarestado();
+		case aterrizado:
+			bool carga = this->chequearCargaMaxima();
+			for (int i = 0; this->nPasajeros <= i; i++) { //chequear como recoría el for el bucle 
+				if (this->pasajeros[i].getfecha() != this->vuelo.getfecha() || this->pasajeros[i].vuelo != this->ID) {
+					//tirar excepcion;
+				}
+			}
+			this->estado = this->vuelo.cambiarestado();
+		default:
+			throw exception();
+		}
 	}
+	catch (const std::exception&)
+	{
+		//hacer el tema de crear una exception para cada caso especifico y hacer el tostring adecuado
+	}
+	
 	
 }
 
 bool cAvion::chequearCargaMaxima() {
 
 	/// <summary>
-	/// chequeo que la suma no se exceda 
+	/// chequeo que la suma del peso no se exceda de lo permitido 
 	/// </summary>
 	/// <returns></returns>
 	try
