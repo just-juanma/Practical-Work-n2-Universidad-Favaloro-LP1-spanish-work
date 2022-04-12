@@ -1,4 +1,4 @@
-/*
+
 #include "gbl.h"
 #include "cFecha.h"
 
@@ -10,4 +10,4 @@ cFecha::cFecha() {
 
 cFecha::~cFecha() { 
 	// no tengo nada que eliminar
-}*/
+}

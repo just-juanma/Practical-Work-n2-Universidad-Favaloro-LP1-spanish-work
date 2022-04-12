@@ -1,8 +1,9 @@
 #ifndef _CVUELO_H
 #define _CVUELO_H
 #include "gbl.h"
-#include "cAvion.h"
-#include "cAeropuerto.h"
+#include "cFecha.h"
+//#include "cAvion.h"
+//#include "cAeropuerto.h"
 
 class cVuelo {
 public:
@@ -52,17 +53,22 @@ public:
 	//bool eliminarPasajero();
 	#pragma endregion
 private: 
-    unsigned int numeroDeVuelo;
-    
+	// global
+    static unsigned int numeroDeVuelo;
     static string** posibleDestino;
+	static bool verificarDestino;
 
-	cAvion avion;
+	// clases
 	eEstado estadoVuelo;
-	bool partidaArribo;
-	bool tipo;//1 si vuela, 0 si no.
-	cFecha partida;
-	cFecha arribo;
+	//cAvion avion;
+	cFecha* partida;
+	cFecha* arribo;
 	//cAeropuerto aeropuerto; //si esta volando induca el aeropuerto que llega y si aterriza 
+	
+	string* aeropuertoDestino;
+	eEstado estado;
+	bool partidaArribo;
+
 	
 };
 

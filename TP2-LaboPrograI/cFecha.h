@@ -1,6 +1,6 @@
 #ifndef _CFECHA_H
 #define _CFECHA_H
-
+#include "gbl.h"
 class cFecha {
 public: 
     #pragma region constructor y destructor
@@ -34,8 +34,6 @@ public:
                 return fecha;
             return NULL;
         }
-
-        
 
     #pragma endregion
 private: 

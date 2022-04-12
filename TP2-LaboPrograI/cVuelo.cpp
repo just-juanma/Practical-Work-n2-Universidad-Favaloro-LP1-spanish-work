@@ -5,6 +5,7 @@
 unsigned int cVuelo::numeroDeVuelo = 0;
 string** cVuelo::posibleDestino;
 bool cVuelo::verificarDestino = false;
+
 cVuelo::cVuelo(bool _partidaArribo, eEstado _estado) {
 	this->partidaArribo = _partidaArribo;
 	this->estado = _estado;
@@ -14,13 +15,9 @@ cVuelo::cVuelo(bool _partidaArribo, eEstado _estado) {
 	this->arribo = NULL;
 	posibleDestino = new string * [MAXDESTINOS];
 	for (int i = 0; i < MAXDESTINOS; i++) 
-		posibleDestino[i] = new string[10];
+		posibleDestino[i] = new string;
 }
-cVuelo::cVuelo(){
-	this->partidaArribo = false;
-	this->numeroDeVuelo = 0;
-	this->estado = aterrizado;
-}
+
 cVuelo::~cVuelo() {
 	// si se genero posibleDestino correctamente
 	if (posibleDestino != NULL) {
