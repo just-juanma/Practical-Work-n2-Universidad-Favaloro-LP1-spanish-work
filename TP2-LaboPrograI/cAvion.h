@@ -62,8 +62,9 @@ private:
     unsigned int totalPasajeros;
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
     unsigned int nPasajeros;
-   // cAeropuerto aeropuerto;
-   // cPasajero* pasajeros; 
+    unsigned int pesoMaximo;
+    cAeropuerto aeropuerto;
+    cPasajero* pasajeros; 
     cVuelo vuelo;
     eEstado estado;
 };
