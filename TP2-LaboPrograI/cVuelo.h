@@ -14,7 +14,7 @@ public:
 	/// <param name="_partidaArribo">: (true) partida, (false) arribo</param>
 	/// <param name="_aeropuertoDestino">: String formato "Aeropuerto de X"</param>
 	/// <param name="_estado">: Estado del vuelo</param>
-	cVuelo(bool _partidaArribo, eEstado _estado = sinEstado);
+	cVuelo(bool _partidaArribo = false, eEstado _estado = sinEstado);
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>
