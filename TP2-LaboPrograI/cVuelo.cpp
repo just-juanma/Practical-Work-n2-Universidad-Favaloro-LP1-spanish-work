@@ -9,16 +9,24 @@ bool cVuelo::verificarDestino = false;
 cVuelo::cVuelo(bool _partidaArribo, eEstado _estado) {
 	this->partidaArribo = _partidaArribo;
 	this->estado = _estado;
-	numeroVuelo = generadorNumerosDeVuelo++;
+	generadorNumerosDeVuelo++;
+	numeroVuelo = generadorNumerosDeVuelo;
 	this->aeropuertoDestino = NULL;
 	this->partida = NULL;
 	this->arribo = NULL;
-	posibleDestino = new string * [MAXDESTINOS];
-	for (int i = 0; i < MAXDESTINOS; i++) 
-		posibleDestino[i] = new string;
 }
 
 cVuelo::~cVuelo() {
+	generadorNumerosDeVuelo--;
+}
+
+void cVuelo::crearLista() {
+	posibleDestino = new string * [MAXDESTINOS];
+	for (int i = 0; i < MAXDESTINOS; i++)
+		posibleDestino[i] = new string;
+}
+
+void cVuelo::eliminarLista() {
 	// si se genero posibleDestino correctamente
 	if (posibleDestino != NULL) {
 		// elimino cada puntero posibleDestino
@@ -27,9 +35,9 @@ cVuelo::~cVuelo() {
 		// elimino el array de posibleDestino
 		delete[] posibleDestino;
 	}
-	generadorNumerosDeVuelo--;
 }
 void cVuelo::setDestinosPosibles() {
+	crearLista();
 	// si existe mi listado de posibleDestino
 	if (posibleDestino != NULL && !verificarDestino) {
 		for (int i = 0; i < MAXDESTINOS; i++)

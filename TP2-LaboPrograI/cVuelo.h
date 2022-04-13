@@ -23,6 +23,10 @@ public:
 
 	#pragma region metodos	
 
+	static void crearLista();
+
+	static void eliminarLista();
+
 	static void setDestinosPosibles();
 
 	// TAREA PARA EL JUANMA DEL FUTURO: VERIFICAR QUE LA HORA SEA VALIDA
@@ -46,14 +50,15 @@ public:
 		for (int i = 0; i < MAXDESTINOS; i++)
 			// si encuentra una concidencia
 			if (*posibleDestino[i] == _posibleDestino && aeropuertoDestino == NULL) {
-				this->aeropuertoDestino = &_posibleDestino;
-				return false;
+				aeropuertoDestino = &_posibleDestino;
+				return true;
 			}
+		return false;
+		
 	}
 
-	unsigned int getNumeroVuelo() {
-		if (numeroVuelo > 0) 
-			return numeroVuelo;
+	unsigned int getNumeroVuelo()const {
+			return generadorNumerosDeVuelo;
 		return 0;
 	}
 
