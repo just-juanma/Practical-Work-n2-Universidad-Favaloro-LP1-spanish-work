@@ -3,8 +3,6 @@
 
 // implementacion cPasajero
 
-// inicializo lo estatico
-
 cPasajero::cPasajero(string _nombre, unsigned int _DNI, unsigned int _nAsiento, unsigned int _nVuelo): nombre(_nombre), DNI(_DNI) {
 	this->nAsiento = _nAsiento;
 	this->nVuelo = _nVuelo;
@@ -63,7 +61,7 @@ cValija* cPasajero::retirarEquipaje(unsigned int nEquipaje) {
 	for (int i = nEquipaje; i < nValijas - 1; i++) 
 		for (int j = nEquipaje; j < nValijas - i - 1; j++)
 			swap(listaValija[j], listaValija[j + 1]);
-	// apunto a NULL la posicion
+	// apunto a NULL a la ultima posicion
 	listaValija[nValijas - 1] = NULL;
 	// lo retiro de la lista
 	nValijas--;
@@ -74,6 +72,7 @@ bool cPasajero::eliminarEquipaje(unsigned int nEquipaje) {
 	// si no se puede retirar el equipaje
 	if (NULL == retirarEquipaje(nEquipaje))
 		return false;
-	else listaValija[nValijas]->~cValija();
+	listaValija[nValijas]->~cValija();
+	return true;
 }
 

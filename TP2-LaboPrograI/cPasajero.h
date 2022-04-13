@@ -20,6 +20,16 @@ public:
     
     #pragma region metodos
     /// <summary>
+    /// Funcion que checkea que el numero de vuelo del pasajero coincida con el de algun vuelo
+    /// </summary>
+    /// <returns>True si es valido, false si no es valido</returns>
+    bool isValidNVuelo() {
+        for (int i = 0; i <= vuelo->getNumeroVuelo(); i++)
+            if (nVuelo == i)
+                return true;
+        return false;   
+    }
+    /// <summary>
     /// Trata de agregar una valija a la lista de valijas
     /// </summary>
     /// <param name="posibleValija">: posible valija a agregar</param>
@@ -48,9 +58,8 @@ private:
     cValija** listaValija;
     unsigned int nValijas;
     double pesoTotal;
-    // medio por el cual obtengo el numero de vuelo
+    // medio por el cual comparo el numero de vuelo con el del pasajero
     cVuelo* vuelo;
-
 };
 
 #endif // _CPASAJERO_H

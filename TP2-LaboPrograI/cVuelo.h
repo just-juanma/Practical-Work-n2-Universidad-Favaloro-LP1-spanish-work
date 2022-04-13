@@ -29,13 +29,19 @@ public:
 
 	static void setDestinosPosibles();
 
-	// TAREA PARA EL JUANMA DEL FUTURO: VERIFICAR QUE LA HORA SEA VALIDA
-	bool setHorarios(string* horaPartida, string* horaArribo) {
-		// * solo se puede cuando el es una partida, no arribo
-		// * verifico que haya lugar para establecer una partida, y un arribo 
-		if (!partidaArribo && partida == NULL && arribo == NULL) {
-			partida->setFecha(horaPartida);
-			arribo->setFecha(horaArribo);
+	/// <summary>
+	/// Setea los horarios de un vuelo segun como este el vuelo
+	///	* solo se puede cuando el es una partida, no arribo
+	/// *verifico que haya lugar para establecer una partida, y un arribo
+	///	* previo a setear horarios, debe existir un aeropuerto destino
+	/// </summary>
+	/// <param name="horaPartida">: Hora de partida del vuelo</param>
+	/// <param name="horaArribo">: Hora de arribo del vuelo</param>
+	/// <returns></returns>
+	bool setHorarios(string horaPartida, string horaArribo) {
+		if (!partidaArribo && partida == NULL && arribo == NULL && aeropuertoDestino != NULL) {
+			partida->setFecha(&horaPartida);
+			arribo->setFecha(&horaArribo);
 			return true;
 		}
 		return false;
@@ -47,12 +53,14 @@ public:
 	/// <returns></returns>
 	bool setDestino(string _posibleDestino) {
 		// buscamos dentro de una lista, en este caso en la lista de posibles destinos
-		for (int i = 0; i < MAXDESTINOS; i++)
-			// si encuentra una concidencia
-			if (*posibleDestino[i] == _posibleDestino && aeropuertoDestino == NULL) {
-				aeropuertoDestino = &_posibleDestino;
-				return true;
-			}
+		if (aeropuertoDestino == NULL) {
+			for (int i = 0; i < MAXDESTINOS; i++)
+				// si encuentra una concidencia
+				if (*posibleDestino[i] == _posibleDestino) {
+					aeropuertoDestino = &_posibleDestino;
+					return true;
+				}
+		}
 		return false;
 		
 	}
@@ -88,9 +96,6 @@ private:
 	string* aeropuertoDestino;
 	eEstado estado;
 	bool partidaArribo;
-	unsigned int numeroVuelo;
-
-	
 };
 
 #endif //_CVUELO_H

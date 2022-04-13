@@ -10,7 +10,6 @@ cVuelo::cVuelo(bool _partidaArribo, eEstado _estado) {
 	this->partidaArribo = _partidaArribo;
 	this->estado = _estado;
 	generadorNumerosDeVuelo++;
-	numeroVuelo = generadorNumerosDeVuelo;
 	this->aeropuertoDestino = NULL;
 	this->partida = NULL;
 	this->arribo = NULL;
