@@ -11,7 +11,7 @@ public:
     /// </summary>
     /// <param name="_nombre">: Nombre del pasajero</param>
     /// <param name="_DNI">: DNI del pasajero</param>
-    cPasajero(string _nombre, unsigned int _DNI);
+    cPasajero(string _nombre, unsigned int _DNI, unsigned int _nAsiento, unsigned int _nVuelo);
     /// <summary>
     /// Destructor por defecto
     /// </summary>
@@ -26,21 +26,27 @@ public:
     /// <returns>True en caso de ser posible, false en caso contrario</returns>
     bool agregarEquipaje(cValija* posibleValija);
     /// <summary>
-    /// Permite al pasajero retirar su equipaje
+    /// Retira el equipaje para posteriormente eliminarlo
     /// </summary>
+    /// <param name="nEquipaje">: posicion de valija a quitar</param>
     /// <returns>El equipaje en cuestion</returns>
-    cValija* retirarEquipaje();
+    cValija* retirarEquipaje(unsigned int nEquipaje);
+    /// <summary>
+    /// Elimina el elemento mediante el destructor
+    /// </summary>
+    /// <param name="nEquipaje">: posicion a eliminar</param>
+    /// <returns></returns>
+    bool eliminarEquipaje(unsigned int nEquipaje);
     #pragma endregion
 private: 
     // datos del pasajero
     const string nombre;
     const unsigned int DNI;
-    static unsigned int numeroAsiento;
-    unsigned int numeroVuelo;
+    unsigned int nAsiento;
+    unsigned int nVuelo;
     // equipaje del pasajero
     cValija** listaValija;
     unsigned int nValijas;
-    unsigned int nValijaRetirada;
     double pesoTotal;
     // medio por el cual obtengo el numero de vuelo
     cVuelo* vuelo;

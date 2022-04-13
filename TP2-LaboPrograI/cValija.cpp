@@ -3,7 +3,7 @@
 
 // implementacion cValija
 
-cValija::cValija(float _peso) {
+cValija::cValija(double _peso) {
 	// inicializacion de los atributos
 	this->peso = _peso;
 }
