@@ -3,7 +3,6 @@
 
 // implementacion cPasajero
 
-// inicializo lo estatico
 
 cPasajero::cPasajero(string _nombre, unsigned int _DNI, unsigned int _nAsiento, unsigned int _nVuelo): nombre(_nombre), DNI(_DNI) {
 	this->nAsiento = _nAsiento;

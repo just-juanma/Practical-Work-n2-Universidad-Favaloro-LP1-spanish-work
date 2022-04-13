@@ -1,15 +1,18 @@
 #include "cAeropuerto.h"
 // implementation cAeropuerto 
 
-unsigned int cAeropuerto::numeroAeropuerto = 0;
+
+unsigned int cAeropuerto::numeroAeropuerto = 0; // inicializo lo estatico
 cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, unsigned int _nVuelos, unsigned int _nAviones): ID(_ID) {
 	numeroAeropuerto++;
 	capacidadAeropuerto = _capacidadAeropuerto;
-	nVuelos = _nVuelos;
+	nVuelos = 0;
 	nAviones = 0; 
 
-	listaVuelo = new cVuelo * [nVuelos];
-	for (int i = 0; i < nVuelos; i++)
+	// hago dinamico el puntero doble
+	listaVuelo = new cVuelo * [1];
+	// hago dinamico cada puntero simple
+	for (int i = 0; i < 1; i++)
 		listaVuelo[i] = new cVuelo;
 
 	//listaAvionAeropuerto = new cAvion * [1];   Agregar cuando Adriel complete la clase cAvion
@@ -39,7 +42,14 @@ bool cAeropuerto::agregarAvion(cAvion* Avion) {
 	{
 		if (darPermiso()==true) //ver si es necesario ==true
 		{
-			listaAvionAeropuerto[nAviones] = Avion;
+			// genero una lista auxiliar para redefinir la longitud de mi lista
+			cAvion** nuevaLista = new cAvion * [nAviones];
+			// copio su memoria
+			memcpy(nuevaLista, listaAvionAeropuerto, nAviones * sizeof(nAviones));
+			// conservo sus datos
+			listaAvionAeropuerto = nuevaLista;
+			listaAvionAeropuerto[nAviones - 1] = Avion;
+			return true;
 		}
 		
 	}
@@ -66,6 +76,7 @@ cAvion* cAeropuerto::retirarAvion(unsigned int nAvion) {
 
 
 bool cAeropuerto::darPermiso() {
+	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima
 	if (nAviones < capacidadAeropuerto)
 		return true;
 	else return false;
