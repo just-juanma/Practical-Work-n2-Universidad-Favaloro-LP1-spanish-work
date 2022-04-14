@@ -29,17 +29,19 @@ public:
 
 	static void setDestinosPosibles();
 
+	void setEstado(eEstado estado_) {
+		this->estado = estado_;
+	}
 	/// <summary>
 	/// Setea los horarios de un vuelo segun como este el vuelo
 	///	* solo se puede cuando el es una partida, no arribo
-	/// *verifico que haya lugar para establecer una partida, y un arribo
 	///	* previo a setear horarios, debe existir un aeropuerto destino
 	/// </summary>
 	/// <param name="horaPartida">: Hora de partida del vuelo</param>
 	/// <param name="horaArribo">: Hora de arribo del vuelo</param>
 	/// <returns></returns>
 	bool setHorarios(string horaPartida, string horaArribo) {
-		if (!partidaArribo && partida == NULL && arribo == NULL && aeropuertoDestino != NULL) {
+		if (!partidaArribo && aeropuertoDestino != NULL) {
 			partida->setFecha(&horaPartida);
 			arribo->setFecha(&horaArribo);
 			return true;
