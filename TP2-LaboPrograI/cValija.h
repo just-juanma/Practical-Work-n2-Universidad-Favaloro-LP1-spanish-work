@@ -24,6 +24,11 @@ public:
 	double getPeso()const {
 		return peso;
 	}
+
+
+	string to_string();
+	string imprimir();
+
 	#pragma endregion
 private:
 	double peso;

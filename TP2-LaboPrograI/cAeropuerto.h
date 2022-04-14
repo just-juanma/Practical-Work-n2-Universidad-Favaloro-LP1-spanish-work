@@ -13,7 +13,7 @@ public:
         /// Constructor parametrizado
         /// </summary>
         /// <param name="totalAeropuerto"></param>
-        cAeropuerto(const unsigned int _ID, unsigned int _totalAeropuerto, unsigned int _nVuelos, unsigned int _nAviones);
+        cAeropuerto(const unsigned int _ID, unsigned int _totalAeropuerto, unsigned int _nVuelos, unsigned int _nAviones, const string _nombre);
 
         /// <summary>
         /// Destructor por defecto
@@ -27,11 +27,16 @@ public:
     bool agregarAvion(cAvion* avion);
     cAvion* retirarAvion(unsigned int nAvion);
     bool darPermiso();
+    string getNombre() { return nombre;}
+
+    string to_string();
+    string imprimir();
 
     #pragma endregion
 
 private: 
     const unsigned int ID;
+    const string nombre;
     unsigned int capacidadAeropuerto;
     unsigned int nAviones;
     static unsigned int numeroAeropuerto;

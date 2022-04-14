@@ -35,6 +35,13 @@ public:
             return NULL;
         }
 
+
+        string to_string();
+        string imprimir()
+        {
+            cout << fecha;
+        }
+
     #pragma endregion
 private: 
     string* fecha;

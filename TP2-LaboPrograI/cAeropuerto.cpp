@@ -3,7 +3,7 @@
 
 
 unsigned int cAeropuerto::numeroAeropuerto = 0; // inicializo lo estatico
-cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, unsigned int _nVuelos, unsigned int _nAviones): ID(_ID) {
+cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, unsigned int _nVuelos, unsigned int _nAviones, const string _nombre): ID(_ID), nombre(_nombre) {
 	numeroAeropuerto++;
 	capacidadAeropuerto = _capacidadAeropuerto;
 	nVuelos = 0;
@@ -80,4 +80,20 @@ bool cAeropuerto::darPermiso() {
 	if (nAviones < capacidadAeropuerto)
 		return true;
 	else return false;
+}
+
+string cAeropuerto::to_string() {
+	stringstream stc;
+	stc << "ID:" << ID;
+	stc << "Nombre:" << nombre;
+	stc << "Capacidad:" << capacidadAeropuerto;
+	stc << "Numero de aviones:" << nAviones;
+	stc << "Vuelos disponibles:" << nVuelos;
+	stc << endl;
+	return stc.str();
+}
+
+string cAeropuerto::imprimir()
+{
+	cout << to_string();
 }

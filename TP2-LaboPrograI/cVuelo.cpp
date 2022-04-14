@@ -81,3 +81,19 @@ void cVuelo::setDestinosPosibles() {
 //void cVuelo::bool eliminarPasajero() {
 //
 //}
+
+string cVuelo::to_string() {
+	stringstream stc;
+	stc << "Numero de vuelo:" << generadorNumerosDeVuelo;
+	stc << "Estado:" << to_string(estado);
+	stc << "Partida:" << partida;
+	stc << "Arribo:" << arribo;
+	stc << "Destino:" << aeropuertoDestino;
+	stc << endl;
+	return stc.str();
+}
+
+string cVuelo::imprimir()
+{
+	cout << to_string();
+}

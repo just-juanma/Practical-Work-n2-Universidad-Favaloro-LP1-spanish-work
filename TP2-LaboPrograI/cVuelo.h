@@ -19,6 +19,10 @@ public:
 	/// Destructor por defecto
 	/// </summary>
 	~cVuelo();
+
+	string to_string();
+	string imprimir();
+
 	#pragma endregion
 
 	#pragma region metodos	
@@ -89,7 +93,6 @@ private:
 	static bool verificarDestino;
 
 	// clases
-	eEstado estadoVuelo;
 	//cAvion avion;
 	cFecha* partida;
 	cFecha* arribo;

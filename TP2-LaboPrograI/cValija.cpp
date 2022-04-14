@@ -11,3 +11,14 @@ cValija::~cValija() {
 	// no tengo nada que eliminar
 }
 
+string cValija::to_string() {
+	stringstream stc;
+	stc << "Peso:" << peso;
+	stc << endl;
+	return stc.str();
+}
+
+string cValija::imprimir()
+{
+	cout << to_string();
+}
