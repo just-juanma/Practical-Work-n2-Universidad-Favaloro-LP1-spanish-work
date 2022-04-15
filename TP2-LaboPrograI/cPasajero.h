@@ -53,6 +53,11 @@ public:
     /// <param name="nEquipaje">: posicion a eliminar</param>
     /// <returns></returns>
     bool eliminarEquipaje(unsigned int nEquipaje);
+
+
+    string to_string();
+    string imprimir();
+
     #pragma endregion
 private: 
     // datos del pasajero

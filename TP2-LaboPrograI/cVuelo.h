@@ -20,6 +20,10 @@ public:
 	/// Destructor por defecto
 	/// </summary>
 	~cVuelo();
+
+	string to_string();
+	string imprimir();
+
 	#pragma endregion
 
 	#pragma region metodos	

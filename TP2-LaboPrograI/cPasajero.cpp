@@ -77,3 +77,19 @@ bool cPasajero::eliminarEquipaje(unsigned int nEquipaje) {
 	return true;
 }
 
+string cPasajero::to_string() {
+	stringstream stc;
+	stc << "Nombre:" << nombre;
+	stc << "DNI:" << DNI;
+	stc << "Numero de asiento:" << nAsiento;
+	stc << "Numero de vuelo:" << nVuelo;
+	stc << "Numero de valijas:" << nValijas;
+	stc << "Peso total:" << pesoTotal;
+	stc << endl;
+	return stc.str();
+}
+
+string cPasajero::imprimir()
+{
+	cout << to_string();
+}

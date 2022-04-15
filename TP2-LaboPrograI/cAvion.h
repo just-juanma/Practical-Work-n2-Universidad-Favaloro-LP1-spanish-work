@@ -55,6 +55,10 @@ public:
         /// <///summary>
          bool chequearCargaMaxima();
 
+
+         string to_string();
+         string imprimir();
+
     #pragma endregion
 
 private: 
