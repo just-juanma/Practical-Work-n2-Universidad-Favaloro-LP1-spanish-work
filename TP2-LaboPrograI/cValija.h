@@ -8,8 +8,8 @@ public:
 	/// <summary>
 	/// Constructor parametrizado
 	/// </summary>
-	/// <param name="_peso">Recibira un peso (en kilogramos). El peso promedio de una valija es de 2.5 kilogramos </param>
-	cValija(double _peso = 2.5);
+	/// <param name="_peso">Recibira un peso (en kilogramos) </param>
+	cValija(double _peso = 0);
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>

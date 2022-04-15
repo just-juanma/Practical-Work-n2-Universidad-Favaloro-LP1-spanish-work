@@ -11,7 +11,7 @@ public:
     /// </summary>
     /// <param name="_nombre">: Nombre del pasajero</param>
     /// <param name="_DNI">: DNI del pasajero</param>
-    cPasajero(string _nombre, unsigned int _DNI, unsigned int _nAsiento, unsigned int _nVuelo);
+    cPasajero(string _nombre = "", unsigned int _DNI = 0, unsigned int _nAsiento = 0, unsigned int _nVuelo = 0);
     /// <summary>
     /// Destructor por defecto
     /// </summary>
@@ -19,6 +19,12 @@ public:
     #pragma endregion 
     
     #pragma region metodos
+    unsigned int getDNI()const {
+        return DNI;
+    }
+    double getPesoEquipaje(unsigned int pos)const {
+        return listaValija[pos]->getPeso();
+    }
     /// <summary>
     /// Funcion que checkea que el numero de vuelo del pasajero coincida con el de algun vuelo
     /// </summary>
