@@ -89,7 +89,7 @@ string cPasajero::to_string() {
 	return stc.str();
 }
 
-string cPasajero::imprimir()
+void cPasajero::imprimir()
 {
 	cout << to_string();
 }

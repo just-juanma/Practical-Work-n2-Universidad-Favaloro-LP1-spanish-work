@@ -18,7 +18,7 @@ string cValija::to_string() {
 	return stc.str();
 }
 
-string cValija::imprimir()
+void cValija::imprimir()
 {
 	cout << to_string();
 }

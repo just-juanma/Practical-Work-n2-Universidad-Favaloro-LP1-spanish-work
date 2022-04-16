@@ -93,7 +93,7 @@ string cAeropuerto::to_string() {
 	return stc.str();
 }
 
-string cAeropuerto::imprimir()
+void cAeropuerto::imprimir()
 {
 	cout << to_string();
 }

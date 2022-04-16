@@ -56,7 +56,7 @@ public:
 
 
     string to_string();
-    string imprimir();
+    void imprimir();
 
     #pragma endregion
 private: 

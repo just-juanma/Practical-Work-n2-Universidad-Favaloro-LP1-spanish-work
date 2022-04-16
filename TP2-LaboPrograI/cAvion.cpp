@@ -135,7 +135,7 @@ string cAvion::to_string() {
 	return stc.str();
 }
 
-string cAvion::imprimir()
+void cAvion::imprimir()
 {
 	cout << to_string();
 }
