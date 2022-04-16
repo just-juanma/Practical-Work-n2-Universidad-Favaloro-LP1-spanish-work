@@ -53,7 +53,7 @@ public:
         ///      
         /// <///summary>
          bool chequearCargaMaxima();
-         void setPasajeros(cPasajero* pasajeros);
+         void setPasajeros(cPasajero** pasajeros);
          void setAeropuerto(cAeropuerto* aeropuerto);
          string to_string();
          string imprimir();
@@ -67,7 +67,7 @@ private:
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
     cAeropuerto* aeropuerto;
-    cPasajero* pasajeros; 
+    cPasajero** pasajeros; 
     cVuelo vuelo;
     eEstado estado;
 };

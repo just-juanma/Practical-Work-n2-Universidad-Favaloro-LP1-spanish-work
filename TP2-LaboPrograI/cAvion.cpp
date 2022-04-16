@@ -13,7 +13,8 @@ cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned 
 	}
 	catch (const std::exception&)
 	{
-		//hacer el tema de crear una exception para cada caso especifico y hacer el tostring adecuado
+		throw std::invalid_argument("Error en el constructor");
+		//hacer el tema de crear una clase exception para cada caso especifico y hacer el tostring adecuado
 	}
 	
 	
@@ -22,6 +23,9 @@ cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned 
 
 cAvion::~cAvion() {
 	if (pasajeros != NULL) {
+		for (int i = 0; i < nPasajeros; i++) {
+			delete[] pasajeros[i];
+		}
 		delete[] pasajeros;
 	}
 
@@ -79,6 +83,7 @@ void cAvion::pedirPermiso() {
 	//}
 	//catch (const std::exception&)
 	//{
+	//  throw std::invalid_argument("Error en pedirPermiso()");
 	//	//hacer el tema de crear una exception para cada caso especifico y hacer el tostring adecuado
 	//}
 	//
@@ -93,9 +98,10 @@ bool cAvion::chequearCargaMaxima() {
 	/// <returns></returns>
 	try
 	{
-		int sumatotal = this->nPasajeros * 75 + 4 * 75;
+		int sumatotal = this->nPasajeros * 75 +(4 * 75);
 		for (int i = 0; this->nPasajeros <= i; i++) { //chequear como recoría el for el bucle 
-			sumatotal += this->pasajeros[i].getPesoEquipaje(i);
+			sumatotal += this->pasajeros[0][i].getPesoEquipaje(i);
+			
 		}
 		if (sumatotal > this->pesoMaximo) {
 			throw exception();
@@ -106,13 +112,14 @@ bool cAvion::chequearCargaMaxima() {
 	}
 	catch (const std::exception&)
 	{
+		throw std::invalid_argument("Error en chequearCargaMaxima()");
 		//hacer el tema de crear una exception para cada caso especifico y hacer el tostring adecuado
 	}
 	
 }
 
 
-void cAvion::setPasajeros(cPasajero* _pasajeros) { this->pasajeros = _pasajeros; }
+void cAvion::setPasajeros(cPasajero** _pasajeros) { this->pasajeros = _pasajeros; }
 void cAvion::setAeropuerto(cAeropuerto* _aeropuerto) { this->aeropuerto = _aeropuerto; }
 
 string cAvion::to_string() {
