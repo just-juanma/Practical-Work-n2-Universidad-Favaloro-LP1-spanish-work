@@ -14,9 +14,8 @@ public:
         /// <param name="_totalPasajeros">: Capacidad maxima que permite el avion<///param>
         /// <param name="_pesoMaximo">: Peso maximo que permite el avion<///param>
         /// <param name="_nPasajeros">: Cantidad actual de pasajeros<///param>
-        cAvion(unsigned int _totalPasajeros, 
-               // unsigned int _pesoMaximo, el peso nos lo da la clase cValija, y el peso debe ser flotante
-               unsigned int _nPasajeros);
+        cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros = 0);
+        // unsigned int _pesoMaximo, el peso nos lo da la clase cValija, y el peso debe ser flotante
         /// <summary>
         /// Destructor por defecto
         /// <///summary>
@@ -54,8 +53,8 @@ public:
         ///      
         /// <///summary>
          bool chequearCargaMaxima();
-
-
+         void setPasajeros(cPasajero* pasajeros);
+         void setAeropuerto(cAeropuerto* aeropuerto);
          string to_string();
          string imprimir();
 
@@ -67,7 +66,7 @@ private:
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
-    cAeropuerto aeropuerto;
+    cAeropuerto* aeropuerto;
     cPasajero* pasajeros; 
     cVuelo vuelo;
     eEstado estado;
