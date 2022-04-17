@@ -20,13 +20,9 @@ public:
 	/// Destructor por defecto
 	/// </summary>
 	~cVuelo();
-	// hacer bato
-	//string to_string();
-	//string imprimir();
-
 	#pragma endregion
 
-	#pragma region metodos	
+	#pragma region metodos globales
 	/// <summary>
 	/// Crea la lista global con los posibles destinos
 	/// </summary>
@@ -39,13 +35,19 @@ public:
 	/// Setea los destinos posibles en la lista global
 	/// </summary>
 	static void setDestinosPosibles();
+	#pragma endregion
+
+	#pragma region geters y setters
+	/// <summary>
+	/// Permite obtener la cantidad total de numeros de vuelo
+	/// </summary>
+	/// <returns>Cantidad obtenida</returns>
+	unsigned int getNumeroVuelo()const { return generadorNumerosDeVuelo; }
 	/// <summary>
 	/// Permite cambiar el estado del vuelo
 	/// </summary>
 	/// <param name="estado_">: Nuevo estado del vuelo</param>
-	void setEstado(eEstado estado_) {
-		this->estado = estado_;
-	}
+	void setEstado(eEstado estado_) { this->estado = estado_; }
 	/// <summary>
 	/// Setea los horarios de un vuelo segun como este el vuelo
 	/// </summary>
@@ -70,7 +72,7 @@ public:
 	bool setDestino(string _posibleDestino) {
 		// buscamos dentro de la lista de posibles destinos
 		if (aeropuertoDestino == NULL) {
-			for (int i = 0; i < MAXDESTINOS; i++)
+			for (unsigned short i = 0; i < MAXDESTINOS; i++)
 				// si encuentra una concidencia
 				if (*posibleDestino[i] == _posibleDestino) {
 					// guardamos el aeropuerto destino
@@ -79,24 +81,31 @@ public:
 				}
 		}
 		return false;
-		
+
 	}
+	#pragma endregion
+
+	#pragma region metodos
 	/// <summary>
-	/// Permite obtener la cantidad total de numeros de vuelo
+	/// Verifica que el numero de vuelo del pasajero [pos] coincida con algun numero de vuelo de los generados
 	/// </summary>
-	/// <returns>Cantidad obtenida</returns>
-	unsigned int getNumeroVuelo()const {
-			return generadorNumerosDeVuelo;
+	/// <param name="pos">Posicion del pasajero en la lista</param>
+	/// <returns>True en caso de encontrar una coincidencia, false en caso contrario</returns>
+	bool isValidNVuelo(unsigned short pos) {
+		for (unsigned short i = 0; i < generadorNumerosDeVuelo; i++) 
+			if (listaPasajero[pos]->getNVuelo() == i)
+				return true;
+		return false;
 	}
 	/// <summary>
 	/// Mediante un DNI, guarda el peso del equipaje del pasajero
 	/// </summary>
 	/// <param name="_DNI">DNI a buscar</param>
 	/// <returns>True en caso de que el peso de el equipaje sea > 0, false en caso contrario</returns>
-	bool datosPasajero(unsigned int _DNI) {
+	bool datosPasajero(unsigned short _DNI) {
 		// si existe la lista de pasajeros
 		if (listaPasajero != NULL) {
-			for (int i = 0; i < nPasajero; i++) {
+			for (unsigned short i = 0; i < nPasajero; i++) {
 				// si se encuentra una coincidencia entre el DNI parametro y el pasajero
 				if (_DNI == listaPasajero[i]->getDNI()) {
 					// guardo el peso
@@ -121,24 +130,27 @@ public:
 	/// <param name="pos">: Posicion a cambiar</param>
 	/// <param name="nuevoPasajero">: Datos del pasajero nuevo</param>
 	/// <returns>True en caso de poder cambiarlo, false en caso contrario</returns>
-	bool cambiarPasajero(unsigned int pos, cPasajero* nuevoPasajero);
+	bool cambiarPasajero(unsigned short pos, cPasajero* nuevoPasajero);
 	/// <summary>
 	/// Quitar pasajero de la lista
 	/// </summary>
 	/// <param name="pos">: Posicion a quitar</param>
 	/// <returns>Pasajero quitado, NULL si no se quita nada</returns>
-	cPasajero* quitarPasajero(unsigned int pos);
+	cPasajero* quitarPasajero(unsigned short pos);
 	/// <summary>
 	/// Eliminar al pasajero de la lista
 	/// </summary>
 	/// <param name="pos">: Posicion a eliminar</param>
 	/// <returns>True en caso de eliminarlo, false en caso contrario</returns>
-	bool eliminarPasajero(unsigned int pos);
+	bool eliminarPasajero(unsigned short pos);
+	// hacer bato
+	//string to_string();
+	//string imprimir();
 	#pragma endregion
 private: 
 
 	// global
-    static unsigned int generadorNumerosDeVuelo;
+    static unsigned short generadorNumerosDeVuelo;
     static string** posibleDestino;
 	static bool verificarDestino;
 
@@ -151,7 +163,7 @@ private:
 	cPasajero** listaPasajero;
 	
 	// locales
-	unsigned int nPasajero;
+	unsigned short nPasajero;
 	double pesoObtenido;
 	string* aeropuertoDestino;
 	bool partidaArribo;

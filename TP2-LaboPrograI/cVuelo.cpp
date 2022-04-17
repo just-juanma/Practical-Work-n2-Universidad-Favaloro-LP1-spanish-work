@@ -5,7 +5,7 @@
 // implementacion cVuelo
 
 // inicializacion de atributos estaticos
-unsigned int cVuelo::generadorNumerosDeVuelo = 0;
+unsigned short cVuelo::generadorNumerosDeVuelo = 0;
 string** cVuelo::posibleDestino;
 bool cVuelo::verificarDestino = false;
 
@@ -13,15 +13,15 @@ cVuelo::cVuelo(bool _partidaArribo, eEstado _estado) {
 	this->partidaArribo = _partidaArribo;
 	this->estado = _estado;
 	this->pesoObtenido = 0;
+	this->aeropuertoDestino = NULL;
 	this->nPasajero = 0;
 	generadorNumerosDeVuelo++;
-	this->aeropuertoDestino = NULL;
 	this->partida = NULL;
 	this->arribo = NULL;
 	// hago dinamico el puntero doble
 	listaPasajero = new cPasajero * [1];
 	// hago dinamico cada puntero simple
-	for (int i = 0; i < 1; i++)
+	for (unsigned short i = 0; i < 1; i++)
 		listaPasajero[i] = new cPasajero;
 }
 
@@ -30,7 +30,7 @@ cVuelo::~cVuelo() {
 	generadorNumerosDeVuelo--;
 	// si existe la lista
 	if (listaPasajero != NULL) {
-		for (int i = 0; i < nPasajero + 1; i++)
+		for (unsigned short i = 0; i < nPasajero + 1; i++)
 			delete listaPasajero[i];
 		// elimino el puntero doble
 		delete[] listaPasajero;
@@ -39,7 +39,7 @@ cVuelo::~cVuelo() {
 
 void cVuelo::crearLista() {
 	posibleDestino = new string * [MAXDESTINOS];
-	for (int i = 0; i < MAXDESTINOS; i++)
+	for (unsigned short i = 0; i < MAXDESTINOS; i++)
 		posibleDestino[i] = new string;
 }
 
@@ -47,7 +47,7 @@ void cVuelo::eliminarLista() {
 	// si se genero posibleDestino correctamente
 	if (posibleDestino != NULL) {
 		// elimino cada puntero posibleDestino
-		for (int i = 0; i < MAXDESTINOS; i++)
+		for (unsigned short i = 0; i < MAXDESTINOS; i++)
 			if (posibleDestino[i] != NULL) delete posibleDestino[i];
 		// elimino el array de posibleDestino
 		delete[] posibleDestino;
@@ -57,7 +57,7 @@ void cVuelo::setDestinosPosibles() {
 	crearLista();
 	// si existe mi listado de posibleDestino
 	if (posibleDestino != NULL && !verificarDestino) {
-		for (int i = 0; i < MAXDESTINOS; i++)
+		for (unsigned short i = 0; i < MAXDESTINOS; i++)
 			if (posibleDestino[i] != NULL) {
 				switch (i) {
 				case 0:
@@ -87,7 +87,7 @@ void cVuelo::setDestinosPosibles() {
 bool cVuelo::agregarPasajero(cPasajero* posiblePasajero) {
 	// si existe la lista
 	if (listaPasajero != NULL) {
-		for (int i = 0; i < nPasajero + 1; i++) {
+		for (unsigned short i = 0; i < nPasajero + 1; i++) {
 			// si existe el puntero simple
 			if (listaPasajero[i] != NULL) {
 				nPasajero++;
@@ -105,7 +105,7 @@ bool cVuelo::agregarPasajero(cPasajero* posiblePasajero) {
 	return false;
 }
 
-bool cVuelo::cambiarPasajero(unsigned int pos, cPasajero* nuevoPasajero) {
+bool cVuelo::cambiarPasajero(unsigned short pos, cPasajero* nuevoPasajero) {
 	if (listaPasajero != NULL && listaPasajero[pos] != NULL) {
 		listaPasajero[pos] = nuevoPasajero;
 		return true;
@@ -113,7 +113,7 @@ bool cVuelo::cambiarPasajero(unsigned int pos, cPasajero* nuevoPasajero) {
 	return false;
 }
 
-cPasajero* cVuelo::quitarPasajero(unsigned int pos) {
+cPasajero* cVuelo::quitarPasajero(unsigned short pos) {
 	cPasajero* aux;
 	// verifico que no sea un posicion incorrecta
 	if (pos >= nPasajero)
@@ -121,8 +121,8 @@ cPasajero* cVuelo::quitarPasajero(unsigned int pos) {
 	// guardo el valor para retornarlo
 	aux = listaPasajero[pos];
 	// desde la posicion en adelante, subo los lugares ocupados
-	for (int i = nPasajero; i < nPasajero - 1; i++)
-		for (int j = nPasajero; j < nPasajero - i - 1; j++)
+	for (unsigned short i = nPasajero; i < nPasajero - 1; i++)
+		for (unsigned short j = nPasajero; j < nPasajero - i - 1; j++)
 			swap(listaPasajero[j], listaPasajero[j + 1]);
 	// apunto a NULL a la ultima posicion
 	listaPasajero[nPasajero - 1] = NULL;
@@ -131,7 +131,7 @@ cPasajero* cVuelo::quitarPasajero(unsigned int pos) {
 	return aux;
 }
 
-bool cVuelo::eliminarPasajero(unsigned int pos) {
+bool cVuelo::eliminarPasajero(unsigned short pos) {
 	// si no se puede retirar el equipaje
 	if (NULL == quitarPasajero(pos))
 		return false;

@@ -4,7 +4,7 @@
 // implementacion cPasajero
 
 
-cPasajero::cPasajero(string _nombre, unsigned int _DNI, unsigned int _nAsiento, unsigned int _nVuelo): nombre(_nombre), DNI(_DNI) {
+cPasajero::cPasajero(string _nombre, unsigned short _DNI, unsigned short _nAsiento, unsigned short _nVuelo): nombre(_nombre), DNI(_DNI) {
 	this->nAsiento = _nAsiento;
 	this->nVuelo = _nVuelo;
 	this->pesoTotal = 0;
@@ -12,7 +12,7 @@ cPasajero::cPasajero(string _nombre, unsigned int _DNI, unsigned int _nAsiento, 
 	// hago dinamico el puntero doble
 	listaValija = new cValija * [1];
 	// hago dinamico cada puntero simple
-	for (int i = 0; i < 1; i++)
+	for (unsigned short i = 0; i < 1; i++)
 		listaValija[i] = new cValija;
 	
 }
@@ -20,7 +20,7 @@ cPasajero::cPasajero(string _nombre, unsigned int _DNI, unsigned int _nAsiento, 
 cPasajero::~cPasajero() {
 	// si existe la lista
 	if (listaValija != NULL) {
-		for (int i = 0; i < nValijas + 1; i++)
+		for (unsigned short i = 0; i < nValijas + 1; i++)
 				delete listaValija[i];
 		// elimino el puntero doble
 		delete[] listaValija;
@@ -30,7 +30,7 @@ cPasajero::~cPasajero() {
 bool cPasajero::agregarEquipaje(cValija* posibleValija) {
 	// si existe la lista
 	if (listaValija != NULL) {
-		for (int i = 0; i < nValijas + 1; i++) {
+		for (unsigned short i = 0; i < nValijas + 1; i++) {
 			pesoTotal += posibleValija->getPeso();
 			// si existe el puntero simple, y el peso total es menor a 25
 			if (listaValija[i] != NULL && pesoTotal < 25) {
@@ -51,7 +51,7 @@ bool cPasajero::agregarEquipaje(cValija* posibleValija) {
 	return false;
 }
 
-cValija* cPasajero::retirarEquipaje(unsigned int nEquipaje) {
+cValija* cPasajero::retirarEquipaje(unsigned short nEquipaje) {
 	cValija* aux;
 	// verifico que no sea un posicion incorrecta
 	if (nEquipaje >= nValijas) 
@@ -59,8 +59,8 @@ cValija* cPasajero::retirarEquipaje(unsigned int nEquipaje) {
 	// guardo el valor para retornarlo
 	aux = listaValija[nEquipaje];
 	// desde la posicion en adelante, subo los lugares ocupados
-	for (int i = nEquipaje; i < nValijas - 1; i++) 
-		for (int j = nEquipaje; j < nValijas - i - 1; j++)
+	for (unsigned short i = nEquipaje; i < nValijas - 1; i++)
+		for (unsigned short j = nEquipaje; j < nValijas - i - 1; j++)
 			swap(listaValija[j], listaValija[j + 1]);
 	// apunto a NULL a la ultima posicion
 	listaValija[nValijas - 1] = NULL;
@@ -69,7 +69,7 @@ cValija* cPasajero::retirarEquipaje(unsigned int nEquipaje) {
 	return aux;
 }
 
-bool cPasajero::eliminarEquipaje(unsigned int nEquipaje) {
+bool cPasajero::eliminarEquipaje(unsigned short nEquipaje) {
 	// si no se puede retirar el equipaje
 	if (NULL == retirarEquipaje(nEquipaje))
 		return false;
