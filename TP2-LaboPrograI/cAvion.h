@@ -1,7 +1,7 @@
 #ifndef _CAVION_H
 #define _CAVION_H
 #include "gbl.h"
-#include "cAeropuerto.h"
+//#include "cAeropuerto.h"
 #include "cPasajero.h"
 #include "cVuelo.h"
 class cAvion {
@@ -54,7 +54,7 @@ public:
         /// <///summary>
          bool chequearCargaMaxima();
          void setPasajeros(cPasajero** pasajeros);
-         void setAeropuerto(cAeropuerto* aeropuerto);
+         //void setAeropuerto(cAeropuerto* aeropuerto);
          string to_string();
          void imprimir();
 
@@ -66,7 +66,7 @@ private:
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
-    cAeropuerto* aeropuerto;
+    //cAeropuerto* aeropuerto;
     cPasajero** pasajeros; 
     cVuelo vuelo;
     eEstado estado;

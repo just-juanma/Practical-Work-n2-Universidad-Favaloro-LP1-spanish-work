@@ -29,9 +29,9 @@ cAvion::~cAvion() {
 		delete[] pasajeros;
 	}
 
-	if (aeropuerto != NULL) {
-		delete[] aeropuerto;
-	}
+	//if (aeropuerto != NULL) {
+	//	delete[] aeropuerto;
+	//}
 }
 
 void cAvion::despegar() {
@@ -120,7 +120,7 @@ bool cAvion::chequearCargaMaxima() {
 
 
 void cAvion::setPasajeros(cPasajero** _pasajeros) { this->pasajeros = _pasajeros; }
-void cAvion::setAeropuerto(cAeropuerto* _aeropuerto) { this->aeropuerto = _aeropuerto; }
+//void cAvion::setAeropuerto(cAeropuerto* _aeropuerto) { this->aeropuerto = _aeropuerto; }
 
 string cAvion::to_string() {
 	stringstream stc;
@@ -128,7 +128,7 @@ string cAvion::to_string() {
 	stc << "Total pasajeros:" << totalPasajeros;
 	stc << "Numero de pasajeros:" << nPasajeros;
 	stc << "Peso maximo:" << pesoMaximo;
-	stc << "Ubicacion actual:" << this->aeropuerto[0].getNombre();
+	/*stc << "Ubicacion actual:" << this->aeropuerto[0].getNombre();*/
 	stc << "Vuelo actual:" << this->vuelo.getNumeroVuelo();
 	stc << "Estado actual:" << this->estado;
 	stc << endl;
