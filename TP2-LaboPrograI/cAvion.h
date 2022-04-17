@@ -34,7 +34,7 @@ public:
         ///       - Chequear si el peso de los pasajeros con su equipaje, mas 4 tripulantes no es el maximo
         ///       - 
         /// <///summary>
-        void despegar();
+        void despegar(bool _valor, string* _fecha);
 
 
 
@@ -43,21 +43,24 @@ public:
         ///       1. Debe cambiar el estado del vuelo
         ///      
         /// <///summary>
-        void aterrizar();
+        void aterrizar(bool _valor, string* _fecha);
 
-         void pedirPermiso();
+        
          /// <summary>
         /// chequearCargaMaxima:
         ///       1. Debe chequear que la carga en el avion no sea superior
         ///       2. Devuele 1 si esta todo biem, sino tirara una excepcion(con try y catch) y devolvera 0; 
         ///      
         /// <///summary>
+         string getfecha()const {
+             return this->fecha;
+         }
          bool chequearCargaMaxima();
          void setPasajeros(cPasajero** pasajeros);
          //void setAeropuerto(cAeropuerto* aeropuerto);
          string to_string();
          void imprimir();
-
+         
     #pragma endregion
 
 private: 
@@ -66,10 +69,12 @@ private:
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
+    string fecha;
     //cAeropuerto* aeropuerto;
     cPasajero** pasajeros; 
     cVuelo vuelo;
     eEstado estado;
+    void pedirPermiso(bool _valor, string* _fecha);
 };
 
 #endif  
