@@ -32,8 +32,8 @@ int main() {
 	cPasajero* pasajero1= new cPasajero("juan", 44789699, 3, 1);
 	cPasajero* pasajero2 = new cPasajero("juan", 44789699, 3, 1);
 	cAvion* avion1 = new cAvion(15,175);
-	cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
-	avion1->setAeropuerto(EZEIZA);
+	//cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
+	//avion1->setAeropuerto(EZEIZA);
 
 	return 0;
 }

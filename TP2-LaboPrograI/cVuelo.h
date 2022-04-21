@@ -87,17 +87,6 @@ public:
 
 	#pragma region metodos
 	/// <summary>
-	/// Verifica que el numero de vuelo del pasajero [pos] coincida con algun numero de vuelo de los generados
-	/// </summary>
-	/// <param name="pos">Posicion del pasajero en la lista</param>
-	/// <returns>True en caso de encontrar una coincidencia, false en caso contrario</returns>
-	bool isValidNVuelo(unsigned short pos) {
-		for (unsigned short i = 0; i < generadorNumerosDeVuelo; i++) 
-			if (listaPasajero[pos]->getNVuelo() == i)
-				return true;
-		return false;
-	}
-	/// <summary>
 	/// Mediante un DNI, guarda el peso del equipaje del pasajero
 	/// </summary>
 	/// <param name="_DNI">DNI a buscar</param>
@@ -146,6 +135,17 @@ public:
 	/// <param name="pos">: Posicion a eliminar</param>
 	/// <returns>True en caso de eliminarlo, false en caso contrario</returns>
 	bool eliminarPasajero(unsigned short pos);
+	/// <summary>
+	/// Verifica que el numero de vuelo del pasajero [pos] coincida con algun numero de vuelo de los generados
+	/// </summary>
+	/// <param name="pos">Posicion del pasajero en la lista</param>
+	/// <returns>True en caso de encontrar una coincidencia, false en caso contrario</returns>
+	bool isValidNVuelo(unsigned short pos) {
+		for (unsigned short i = 0; i < generadorNumerosDeVuelo; i++) 
+			if (listaPasajero[pos]->getNVuelo() == i)
+				return true;
+		return false;
+	}
 	// metodos pedidos por el Trabajo Practico
 	string to_string();
 	void imprimir();
