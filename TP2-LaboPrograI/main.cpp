@@ -3,8 +3,10 @@
 #include "cPasajero.h"
 #include "cAvion.h"
 int main() {
+
 	/* PRUEBA VUELO */
 
+	// setear los destinos incluye crear la lista
 	cVuelo::setDestinosPosibles();
 
 
@@ -24,7 +26,7 @@ int main() {
    delete valija1;
    delete valija2;
    delete pasajero1;*/
-
+	
 
    /*PRUEBA AVION*/
 	cPasajero* pasajero1= new cPasajero("juan", 44789699, 3, 1);

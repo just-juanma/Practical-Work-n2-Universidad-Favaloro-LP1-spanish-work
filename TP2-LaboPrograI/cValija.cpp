@@ -13,8 +13,7 @@ cValija::~cValija() {
 
 string cValija::to_string() {
 	stringstream stc;
-	stc << "Peso:" << peso;
-	stc << endl;
+	stc << "Peso: " << peso << endl;
 	return stc.str();
 }
 

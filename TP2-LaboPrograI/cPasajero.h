@@ -17,16 +17,29 @@ public:
     ~cPasajero();
     #pragma endregion 
     
-    #pragma region metodos
-    unsigned short getDNI()const {
-        return DNI;
-    }
-    unsigned short getNVuelo()const {
-        return nVuelo;
-    }
-    double getPesoEquipaje(unsigned short pos)const {
-        return listaValija[pos]->getPeso();
-    }
+    #pragma region getters y setters
+    /// <summary>
+    /// Obtiene la cantidad de valijas del pasajero
+    /// </summary>
+    /// <returns>: Cantidad de valijas del pasajero</returns>
+    unsigned short getNValijas()const { return nValijas; }
+    /// <summary>
+    /// Obtiene el DNI del pasajero
+    /// </summary>
+    /// <returns>: DNI del pasajero</returns>
+    unsigned short getDNI()const { return DNI; }
+    /// <summary>
+    /// Obtiene el numero de vuelo del pasajero
+    /// </summary>
+    /// <returns>: Vuelo del pasajero</returns>
+    unsigned short getNVuelo()const { return nVuelo; }
+    /// <summary>
+    /// Obtiene el peso de determinado equipaje
+    /// </summary>
+    /// <param name="pos">: Posicion del equipaja a obtener su peso</param>
+    /// <returns>Peso del equipaje</returns>
+    double getPesoEquipaje(unsigned short pos)const { return listaValija[pos]->getPeso(); }
+    #pragma endregion
     /// <summary>
     /// Trata de agregar una valija a la lista de valijas
     /// </summary>
@@ -45,8 +58,7 @@ public:
     /// <param name="nEquipaje">: posicion a eliminar</param>
     /// <returns></returns>
     bool eliminarEquipaje(unsigned short nEquipaje);
-
-
+    // metodos pedidos por el Trabajo Practico
     string to_string();
     void imprimir();
 
@@ -57,6 +69,7 @@ private:
     const unsigned short DNI;
     unsigned short nAsiento;
     unsigned short nVuelo;
+
     // equipaje del pasajero
     cValija** listaValija;
     unsigned short nValijas;
