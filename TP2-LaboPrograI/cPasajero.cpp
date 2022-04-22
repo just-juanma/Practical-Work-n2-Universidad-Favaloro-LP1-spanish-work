@@ -14,7 +14,6 @@ cPasajero::cPasajero(string _nombre, unsigned short _DNI, unsigned short _nAsien
 	// hago dinamico cada puntero simple
 	for (unsigned short i = 0; i < 1; i++)
 		listaValija[i] = new cValija;
-	
 }
 
 cPasajero::~cPasajero() {

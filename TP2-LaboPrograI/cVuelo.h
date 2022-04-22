@@ -52,7 +52,7 @@ public:
 	/// </summary>
 	/// <param name="horaPartida">: Hora de partida del vuelo</param>
 	/// <param name="horaArribo">: Hora de arribo del vuelo</param>
-	/// <returns></returns>
+	/// <returns>True en caso de que se haya podido setear la hora, false en caso contrario</returns>
 	bool setHorarios(string horaPartida, string horaArribo) {
 		// si es partida, y se tiene el aeropuerto
 		if (partidaArribo && aeropuertoDestino != NULL) {
@@ -67,7 +67,7 @@ public:
 	/// Setea el destino, en caso de encontrarlo en la lista de posibles destinos
 	/// </summary>
 	/// <param name="_posibleDestino">: recibe un aeropuerto en formato "X", siendo X el nombre del destino</param>
-	/// <returns></returns>
+	/// <returns>True en caso de poder setear el destino, false en caso contrario</returns>
 	bool setDestino(string _posibleDestino) {
 		// si aun no existe el aeropuerto
 		if (aeropuertoDestino == NULL) {
@@ -103,9 +103,8 @@ public:
 					// si es un peso valido
 					if (pesoObtenido > 0) 
 						return true;
+					return false;
 				} 
-				// si no se encuentra el DNI
-				else return false;
 			}
 		}
 		return false;

@@ -106,6 +106,9 @@ bool cVuelo::agregarPasajero(cPasajero* posiblePasajero) {
 }
 
 bool cVuelo::cambiarPasajero(unsigned short pos, cPasajero* nuevoPasajero) {
+	// verifico que no sea una posicion incorrecta
+	if (pos >= nPasajero)
+		return NULL;
 	// si existe una lista de pasajeros, y existe el pasajero a intercambiar
 	if (listaPasajero != NULL && listaPasajero[pos] != NULL) {
 		// realizo el cambio
@@ -117,12 +120,13 @@ bool cVuelo::cambiarPasajero(unsigned short pos, cPasajero* nuevoPasajero) {
 
 cPasajero* cVuelo::quitarPasajero(unsigned short pos) {
 	cPasajero* aux;
-	// verifico que no sea un posicion incorrecta
+	// verifico que no sea una posicion incorrecta
 	if (pos >= nPasajero)
 		return NULL;
 	// guardo el valor para retornarlo
 	aux = listaPasajero[pos];
 	// desde la posicion en adelante, subo los lugares ocupados
+	// deberia ser i = pos, no npasajero (ver) ?
 	for (unsigned short i = nPasajero; i < nPasajero - 1; i++)
 		for (unsigned short j = nPasajero; j < nPasajero - i - 1; j++)
 			swap(listaPasajero[j], listaPasajero[j + 1]);
@@ -134,7 +138,6 @@ cPasajero* cVuelo::quitarPasajero(unsigned short pos) {
 }
 
 bool cVuelo::eliminarPasajero(unsigned short pos) {
-	// si no se puede retirar el equipaje
 	if (NULL == quitarPasajero(pos))
 		return false;
 	listaPasajero[pos]->~cPasajero();
