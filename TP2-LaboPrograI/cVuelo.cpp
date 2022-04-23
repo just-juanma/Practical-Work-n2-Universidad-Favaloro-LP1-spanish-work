@@ -106,7 +106,12 @@ bool cVuelo::agregarPasajero(cPasajero* posiblePasajero) {
 }
 
 bool cVuelo::cambiarPasajero(unsigned short pos, cPasajero* nuevoPasajero) {
+	// verifico que no sea una posicion incorrecta
+	if (pos >= nPasajero)
+		return NULL;
+	// si existe una lista de pasajeros, y existe el pasajero a intercambiar
 	if (listaPasajero != NULL && listaPasajero[pos] != NULL) {
+		// realizo el cambio
 		listaPasajero[pos] = nuevoPasajero;
 		return true;
 	}
@@ -115,12 +120,13 @@ bool cVuelo::cambiarPasajero(unsigned short pos, cPasajero* nuevoPasajero) {
 
 cPasajero* cVuelo::quitarPasajero(unsigned short pos) {
 	cPasajero* aux;
-	// verifico que no sea un posicion incorrecta
+	// verifico que no sea una posicion incorrecta
 	if (pos >= nPasajero)
 		return NULL;
 	// guardo el valor para retornarlo
 	aux = listaPasajero[pos];
 	// desde la posicion en adelante, subo los lugares ocupados
+	// deberia ser i = pos, no npasajero (ver) ?
 	for (unsigned short i = nPasajero; i < nPasajero - 1; i++)
 		for (unsigned short j = nPasajero; j < nPasajero - i - 1; j++)
 			swap(listaPasajero[j], listaPasajero[j + 1]);
@@ -132,9 +138,25 @@ cPasajero* cVuelo::quitarPasajero(unsigned short pos) {
 }
 
 bool cVuelo::eliminarPasajero(unsigned short pos) {
-	// si no se puede retirar el equipaje
 	if (NULL == quitarPasajero(pos))
 		return false;
 	listaPasajero[pos]->~cPasajero();
 	return true;
+}
+string cVuelo::to_string() {
+	stringstream stc;
+	stc << "Cantidad de vuelos: " << generadorNumerosDeVuelo << endl;
+	stc << "Estado del vuelo (0) sinEstado, (1) volando, (2) aterrizando: " << estado << endl;
+	stc << "Hora de partida: " << &partida << endl;
+	stc << "Hora de arribo: " << &arribo << endl;
+	stc << "Cantidad de pasajeros del vuelo: " << nPasajero << endl;
+	stc << "Peso del equipaje del pasajero filtrado por DNI: " << pesoObtenido << endl;
+	stc << "Aeropuerto destino del vuelo: " << &aeropuertoDestino << endl;
+	stc << "Partida (true) o arribo (false): " << partidaArribo << endl;
+	return stc.str();
+}
+
+void cVuelo::imprimir()
+{
+	cout << to_string();
 }

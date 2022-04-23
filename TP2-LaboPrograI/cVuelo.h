@@ -13,7 +13,6 @@ public:
 	/// Constructor parametrizado
 	/// </summary>
 	/// <param name="_partidaArribo">: (true) partida, (false) arribo</param>
-	/// <param name="_aeropuertoDestino">: String formato "Aeropuerto de X"</param>
 	/// <param name="_estado">: Estado del vuelo</param>
 	cVuelo(bool _partidaArribo = false, eEstado _estado = sinEstado);
 	/// <summary>
@@ -37,12 +36,12 @@ public:
 	static void setDestinosPosibles();
 	#pragma endregion
 
-	#pragma region geters y setters
+	#pragma region getters y setters
 	/// <summary>
 	/// Permite obtener la cantidad total de numeros de vuelo
 	/// </summary>
 	/// <returns>Cantidad obtenida</returns>
-	unsigned int getNumeroVuelo()const { return generadorNumerosDeVuelo; }
+	unsigned short getNumeroVuelo()const { return generadorNumerosDeVuelo; }
 	/// <summary>
 	/// Permite cambiar el estado del vuelo
 	/// </summary>
@@ -53,7 +52,7 @@ public:
 	/// </summary>
 	/// <param name="horaPartida">: Hora de partida del vuelo</param>
 	/// <param name="horaArribo">: Hora de arribo del vuelo</param>
-	/// <returns></returns>
+	/// <returns>True en caso de que se haya podido setear la hora, false en caso contrario</returns>
 	bool setHorarios(string horaPartida, string horaArribo) {
 		// si es partida, y se tiene el aeropuerto
 		if (partidaArribo && aeropuertoDestino != NULL) {
@@ -68,10 +67,11 @@ public:
 	/// Setea el destino, en caso de encontrarlo en la lista de posibles destinos
 	/// </summary>
 	/// <param name="_posibleDestino">: recibe un aeropuerto en formato "X", siendo X el nombre del destino</param>
-	/// <returns></returns>
+	/// <returns>True en caso de poder setear el destino, false en caso contrario</returns>
 	bool setDestino(string _posibleDestino) {
-		// buscamos dentro de la lista de posibles destinos
+		// si aun no existe el aeropuerto
 		if (aeropuertoDestino == NULL) {
+			// buscamos dentro de la lista de posibles destinos
 			for (unsigned short i = 0; i < MAXDESTINOS; i++)
 				// si encuentra una concidencia
 				if (*posibleDestino[i] == _posibleDestino) {
@@ -95,14 +95,16 @@ public:
 		// si existe la lista de pasajeros
 		if (listaPasajero != NULL) {
 			for (unsigned short i = 0; i < nPasajero; i++) {
-				// si se encuentra una coincidencia entre el DNI parametro y el pasajero
+				// si se encuentra una coincidencia entre el DNI parametro y algun pasajero
 				if (_DNI == listaPasajero[i]->getDNI()) {
-					// guardo el peso
-					this->pesoObtenido = listaPasajero[i]->getPesoEquipaje(i);
+					// recorro todas sus valijas y las voy sumando
+					for (unsigned short j = 0; j < listaPasajero[i]->getNValijas(); j++) 
+						this->pesoObtenido = listaPasajero[i]->getPesoEquipaje(j);
+					// si es un peso valido
 					if (pesoObtenido > 0) 
 						return true;
+					return false;
 				} 
-				else return false;
 			}
 		}
 		return false;
@@ -132,9 +134,6 @@ public:
 	/// <param name="pos">: Posicion a eliminar</param>
 	/// <returns>True en caso de eliminarlo, false en caso contrario</returns>
 	bool eliminarPasajero(unsigned short pos);
-	// hacer bato
-	//string to_string();
-	//string imprimir();
 	/// <summary>
 	/// Verifica que el numero de vuelo del pasajero [pos] coincida con algun numero de vuelo de los generados
 	/// </summary>
@@ -146,6 +145,9 @@ public:
 				return true;
 		return false;
 	}
+	// metodos pedidos por el Trabajo Practico
+	string to_string();
+	void imprimir();
 	#pragma endregion
 private: 
 

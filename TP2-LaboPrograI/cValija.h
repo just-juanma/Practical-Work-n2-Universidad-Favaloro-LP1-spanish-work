@@ -16,7 +16,7 @@ public:
 	~cValija();
 	#pragma endregion
 
-	#pragma region metodos
+	#pragma region getters y setters
 	/// <summary>
 	/// Retorna el peso de la valija
 	/// </summary>
@@ -25,12 +25,15 @@ public:
 		return peso;
 	}
 
-
+	#pragma enderegion
+	
+	#pragma region metodos
+	// metodos pedidos por el Trabajo Practico
 	string to_string();
 	void imprimir();
-
 	#pragma endregion
 private:
+	// local
 	double peso;
 };
 

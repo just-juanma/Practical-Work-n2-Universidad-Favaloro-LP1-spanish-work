@@ -14,7 +14,6 @@ cPasajero::cPasajero(string _nombre, unsigned short _DNI, unsigned short _nAsien
 	// hago dinamico cada puntero simple
 	for (unsigned short i = 0; i < 1; i++)
 		listaValija[i] = new cValija;
-	
 }
 
 cPasajero::~cPasajero() {
@@ -79,13 +78,12 @@ bool cPasajero::eliminarEquipaje(unsigned short nEquipaje) {
 
 string cPasajero::to_string() {
 	stringstream stc;
-	stc << "Nombre:" << nombre;
-	stc << "DNI:" << DNI;
-	stc << "Numero de asiento:" << nAsiento;
-	stc << "Numero de vuelo:" << nVuelo;
-	stc << "Numero de valijas:" << nValijas;
-	stc << "Peso total:" << pesoTotal;
-	stc << endl;
+	stc << "Nombre: " << nombre << endl;
+	stc << "DNI: " << DNI << endl;
+	stc << "Numero de asiento: " << nAsiento << endl;
+	stc << "Numero de vuelo: " << nVuelo << endl;
+	stc << "Numero de valijas: " << nValijas << endl;
+	stc << "Peso total: " << pesoTotal << endl;
 	return stc.str();
 }
 
