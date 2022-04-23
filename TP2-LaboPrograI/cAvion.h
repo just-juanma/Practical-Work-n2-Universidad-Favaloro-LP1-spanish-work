@@ -4,6 +4,7 @@
 //#include "cAeropuerto.h"
 #include "cPasajero.h"
 #include "cVuelo.h"
+#include <random>
 class cAvion {
 public: 
     #pragma region constructor y destructor 
@@ -20,41 +21,34 @@ public:
         /// Destructor por defecto
         /// <///summary>
         ~cAvion();
-
     #pragma endregion 
-
     #pragma region metodos
-
         /// <summary>
         /// Depegue del avion. Esto implica que
         ///         En cuanto al pasajero:
+		///       - Chequear que los pasajeros a vordo sean los correctos
         ///       - La fecha y el numero de vuelo del pasajero deja de ser valida
         ///         En cuanto al vuelo:
         ///       - Debe cambiar el estado del vuelo
         ///       - Chequear si el peso de los pasajeros con su equipaje, mas 4 tripulantes no es el maximo
-        ///       - 
+        ///       -
         /// <///summary>
-        void despegar(bool _valor, string* _fecha);
-
-
-
-        /// <summary>
-        /// Aterrizaje del avion. Esto implica que:
-        ///       1. Debe cambiar el estado del vuelo
-        ///      
-        /// <///summary>
+		void despegar(bool _valor, string* _fecha);
+		/// <summary>
+		/// Se le solicita permiso al aeropuerto asigando que chequee la disposicion en el hangar para poder asi
+		/// realizar el aterrizaje
+		/// </summary>
+		/// <///summary>	
         void aterrizar(bool _valor, string* _fecha);
-
-        
-         /// <summary>
-        /// chequearCargaMaxima:
-        ///       1. Debe chequear que la carga en el avion no sea superior
-        ///       2. Devuele 1 si esta todo biem, sino tirara una excepcion(con try y catch) y devolvera 0; 
-        ///      
-        /// <///summary>
-         string getfecha()const {
+        string getfecha()const {
              return this->fecha;
          }
+		 /// <summary>
+		 /// chequearCargaMaxima:
+		 ///       1. Debe chequear que la carga en el avion no sea superior
+		 ///       2. Devuele 1 si esta todo biem, sino tirara una excepcion(con try y catch) y devolvera 0; 
+		 ///      
+		 /// <///summary>
          bool chequearCargaMaxima();
          void setPasajeros(cPasajero** pasajeros);
          //void setAeropuerto(cAeropuerto* aeropuerto);
@@ -74,6 +68,7 @@ private:
     cPasajero** pasajeros; 
     cVuelo vuelo;
     eEstado estado;
+
     void pedirPermiso(bool _valor, string* _fecha);
 };
 

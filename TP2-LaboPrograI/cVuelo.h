@@ -135,7 +135,6 @@ public:
 	// hacer bato
 	//string to_string();
 	//string imprimir();
-	
 	/// <summary>
 	/// Verifica que el numero de vuelo del pasajero [pos] coincida con algun numero de vuelo de los generados
 	/// </summary>
@@ -157,10 +156,8 @@ private:
 
 	// clases
 	eEstado estado;
-	//cAvion avion;
 	cFecha* partida;
 	cFecha* arribo;
-	//cAeropuerto aeropuerto; //si esta volando induca el aeropuerto que llega y si aterriza 
 	cPasajero** listaPasajero;
 	
 	// locales

@@ -14,7 +14,8 @@ cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned 
 	}
 	
 	
-	this->ID = rand()%200;
+	this->ID = %200;
+	//ID no lo utilizo para nada, 
 }
 
 cAvion::~cAvion() {
@@ -31,29 +32,13 @@ cAvion::~cAvion() {
 }
 
 void cAvion::despegar(bool _valor, string* _fecha) {
-	/// <summary>
-	/// se le solicita permiso al aeropuerto asignado al avion en el vuelo asignado para chequear que los 
-	/// pasajeros a bordo sean los correctos, luego se chequea el peso y del equipaje y tripalacion no 
-	/// supere el peso que el avion puede soportar
-	/// </summary>
 	this->pedirPermiso(_valor, _fecha);
 }
 
 void cAvion::aterrizar(bool _valor, string* _fecha) {
-	/// <summary>
-	/// Se le solicita permiso al aeropuerto asigando que chequee la disposicion en el hangar para poder asi
-	/// realizar el aterrizaje
-	/// </summary>
 	this->pedirPermiso(_valor, _fecha);
 }
 
-
-
-/// <summary>
-/// Mediante un DNI, guarda el peso del equipaje del pasajero
-/// </summary>
-/// <param name="_DNI">DNI a buscar</param>
-/// <returns>True en caso de que el peso de el equipaje sea > 0, false en caso contrario</returns>
 void cAvion::pedirPermiso(bool _valor,string* _fecha) {
 
 	try
@@ -85,12 +70,7 @@ void cAvion::pedirPermiso(bool _valor,string* _fecha) {
 	
 }
 
-bool cAvion::chequearCargaMaxima() {
-
-	/// <summary>
-	/// chequeo que la suma del peso no se exceda de lo permitido 
-	/// </summary>
-	/// <returns></returns>
+bool cAvion::chequearCargaMaxima(){
 	try
 	{
 		int sumatotal = this->nPasajeros * 75 +(4 * 75);
