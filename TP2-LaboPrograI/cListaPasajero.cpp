@@ -2,7 +2,7 @@
 
 // implementacion cListaPasajero
 
-cListaPasajero::cListaPasajero(ush size, bool _checkEliminar) {
+cListaPasajero::cListaPasajero(sh size, bool _checkEliminar) {
 	this->checkEliminar = _checkEliminar;
 	this->listaPasajero = new cPasajero * [size];
 	cPasajero::cantTotal = size;
@@ -26,7 +26,7 @@ bool cListaPasajero::agregar(cPasajero* pasajero) {
 	return true;
 }
 
-bool cListaPasajero::modificar(short pos, cPasajero* nuevoPasajero) {
+bool cListaPasajero::modificar(sh pos, cPasajero* nuevoPasajero) {
 	for (ush i = 0; i < cPasajero::cantActual; i++) {
 		if (pos >= 0 && this->listaPasajero[pos]) {
 			cPasajero* aux = this->listaPasajero[pos];
@@ -38,7 +38,7 @@ bool cListaPasajero::modificar(short pos, cPasajero* nuevoPasajero) {
 	return false;
 }
 
-bool cListaPasajero::eliminar(short pos) {
+bool cListaPasajero::eliminar(sh pos) {
 	if (pos >= 0 && this->listaPasajero[pos]) {
 		delete this->listaPasajero[pos];
 		this->listaPasajero[pos] = NULL;

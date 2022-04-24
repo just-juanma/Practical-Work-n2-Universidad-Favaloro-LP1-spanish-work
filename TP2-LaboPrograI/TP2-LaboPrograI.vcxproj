@@ -143,6 +143,7 @@
     <ClCompile Include="cAvion.cpp" />
     <ClCompile Include="cFecha.cpp" />
     <ClCompile Include="cListaPasajero.cpp" />
+    <ClCompile Include="cListaValija.cpp" />
     <ClCompile Include="cPasajero.cpp" />
     <ClCompile Include="cValija.cpp" />
     <ClCompile Include="cVuelo.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="cAvion.h" />
     <ClInclude Include="cFecha.h" />
     <ClInclude Include="cListaPasajero.h" />
+    <ClInclude Include="cListaValija.h" />
     <ClInclude Include="cPasajero.h" />
     <ClInclude Include="cValija.h" />
     <ClInclude Include="cVuelo.h" />

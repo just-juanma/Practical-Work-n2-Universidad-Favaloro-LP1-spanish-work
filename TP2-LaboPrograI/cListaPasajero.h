@@ -5,12 +5,17 @@
 class cListaPasajero
 {
 public:
-	cListaPasajero(ush size = MAX, bool _checkEliminar = false);
+	cListaPasajero(sh size = MAX, bool _checkEliminar = false);
 	~cListaPasajero();
 	bool agregar(cPasajero* pasajero);
-	bool modificar(short pos, cPasajero* nuevoPasajero);
-	bool eliminar(short pos);
+	bool modificar(sh pos, cPasajero* nuevoPasajero);
+	bool eliminar(sh pos);
 	void ordenar();
+	cPasajero* operator[](sh pos) {
+		if (pos >= 0)
+			return listaPasajero[pos];
+		return NULL;
+	}
 	/* PROBAR DESPUES 
 	string to_string();
 	void imprimir(); */
