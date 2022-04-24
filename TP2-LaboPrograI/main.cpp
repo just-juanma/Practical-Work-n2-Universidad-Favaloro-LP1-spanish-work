@@ -6,12 +6,7 @@ int main() {
 
 	/* PRUEBA VUELO */
 
-	// setear los destinos incluye crear la lista
-	cVuelo::setDestinosPosibles();
 
-
-
-	cVuelo::eliminarLista();
 
 
 	//PRUEBA PASAJERO Y VALIJA
@@ -29,9 +24,9 @@ int main() {
 	
 
    /*PRUEBA AVION*/
-	cPasajero* pasajero1= new cPasajero("juan", 44789699, 3, 1);
+	/*cPasajero* pasajero1= new cPasajero("juan", 44789699, 3, 1);
 	cPasajero* pasajero2 = new cPasajero("juan", 44789699, 3, 1);
-	cAvion* avion1 = new cAvion(15,175);
+	cAvion* avion1 = new cAvion(15,175);*/
 	//cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
 	//avion1->setAeropuerto(EZEIZA);
 

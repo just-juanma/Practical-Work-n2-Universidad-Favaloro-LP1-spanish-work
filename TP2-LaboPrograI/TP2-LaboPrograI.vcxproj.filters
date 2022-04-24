@@ -36,6 +36,9 @@
     <ClCompile Include="cVuelo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cListaPasajero.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gbl.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="eEstado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cListaPasajero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

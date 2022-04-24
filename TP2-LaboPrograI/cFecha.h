@@ -2,6 +2,9 @@
 #define _CFECHA_H
 #include "gbl.h"
 class cFecha {
+    friend class cVuelo;
+    friend class cPasajero;
+    friend class cVuelo;
 public: 
     #pragma region constructor y destructor
 
@@ -9,7 +12,7 @@ public:
         /// Constructor por defecto
         /// </summary>
  
-        cFecha();
+        cFecha(sh _dia = 0, sh _mes = 0, sh _anio = 0, sh _hora = 0);
 
         /// <summary>
         /// Destructor por defecto 
@@ -20,31 +23,17 @@ public:
 
     #pragma region metodos
 
-        /// <summary>
-        /// Setea fechas y en caso de que algun objeto no pueda cumplir con su horario de partida, debera reprogramar su fecha
-        /// </summary>
-        /// <param name="_fecha">: Fecha a agregar/modificar</param>
-        void setFecha(string* _fecha) { 
-            if(fecha == NULL)
-                this->fecha = _fecha; 
-        }
-
-        string* getFecha()const {
-            if (fecha != NULL)
-                return fecha;
-            return NULL;
-        }
+  
 
 
-        string to_string();
-        string imprimir()
-        {
-            cout << fecha;
-        }
+    
 
     #pragma endregion
 private: 
-    string* fecha;
+    sh dia;
+    sh mes;
+    sh anio;
+    sh hora;
 };
 
 #endif // _CFECHA_H

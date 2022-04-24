@@ -4,8 +4,11 @@
 
 // implementacion cFecha
 
-cFecha::cFecha() {
-	fecha = NULL;
+cFecha::cFecha(sh _dia, sh _mes, sh _anio, sh _hora) {
+	this->dia = _dia;
+	this->mes = _mes;
+	this->anio = _anio;
+	this->hora = _hora;
 }
 
 cFecha::~cFecha() { 

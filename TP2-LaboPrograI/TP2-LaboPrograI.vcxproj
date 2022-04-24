@@ -142,6 +142,7 @@
     <ClCompile Include="cAeropuerto.cpp" />
     <ClCompile Include="cAvion.cpp" />
     <ClCompile Include="cFecha.cpp" />
+    <ClCompile Include="cListaPasajero.cpp" />
     <ClCompile Include="cPasajero.cpp" />
     <ClCompile Include="cValija.cpp" />
     <ClCompile Include="cVuelo.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="cAeropuerto.h" />
     <ClInclude Include="cAvion.h" />
     <ClInclude Include="cFecha.h" />
+    <ClInclude Include="cListaPasajero.h" />
     <ClInclude Include="cPasajero.h" />
     <ClInclude Include="cValija.h" />
     <ClInclude Include="cVuelo.h" />
