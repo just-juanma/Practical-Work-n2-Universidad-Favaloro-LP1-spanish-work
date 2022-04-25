@@ -26,10 +26,10 @@ void cAvion::pedirPermiso() {
 	switch (this->estado)
 	{
 	case aterrizar: 
-
+		int i = 0;
 	case volando: 
 		this->permiso = 0; 
-		cAeropuerto::darPermiso();
+		
 	default:
 		break;
 	}

@@ -5,6 +5,7 @@
 class cAvion {
 public:
 #pragma region constructor y destructor 
+
     /// <summary>
     /// Constructor parametrizado
     /// <///summary>
@@ -53,7 +54,6 @@ public:
 #pragma endregion
 
 private:
-    friend class cAeropuerto;
     string ID;
     unsigned int totalPasajeros;
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
