@@ -1,20 +1,20 @@
 #include "cAvion.h"
-cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros){
+cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros) {
 	try
 	{
 		this->totalPasajeros = _totalPasajeros;
 		this->pesoMaximo = _pesoMaximo;
 		this->nPasajeros = _nPasajeros;
-		
+
 	}
 	catch (const std::exception&)
 	{
 		throw std::invalid_argument("Error en el constructor");
 		//hacer el tema de crear una clase exception para cada caso especifico y hacer el tostring adecuado
 	}
-	
-	
-	this->ID = %200;
+
+
+	this->ID = rand() % 200;
 	//ID no lo utilizo para nada, 
 }
 
@@ -31,53 +31,62 @@ cAvion::~cAvion() {
 	//}
 }
 
-void cAvion::despegar(bool _valor, string* _fecha) {
-	this->pedirPermiso(_valor, _fecha);
+void cAvion::despegar() {
+	this->estado = volando;
 }
 
-void cAvion::aterrizar(bool _valor, string* _fecha) {
-	this->pedirPermiso(_valor, _fecha);
+void cAvion::aterrizar() {
+	this->estado = aterrizado;
 }
 
-void cAvion::pedirPermiso(bool _valor,string* _fecha) {
+void cAvion::pedirPermiso(string* _fecha,cListaPasajero pasajeros) { //agregar argumento ,clistapasajeros lista){
 
 	try
 	{
-		this->vuelo.setHorarios(this->getfecha(), *_fecha);
-	
+
+
 		switch (this->estado)
 		{
 		case volando:
-			this->vuelo.setEstado(this->estado);
+			this->vuelo.setEstado(aterrizado); //si se 
 		case aterrizado:
-			bool carga = this->chequearCargaMaxima();
-			for (int i = 0; this->nPasajeros <= i; i++) { //chequear como recoría el for el bucle 
-				if(!this->vuelo.isValidNVuelo(i)){
-					//tirar excepcion;
-				}
-			}
-			this->vuelo.setEstado(this->estado);
-		default:
-			throw exception();
+			this->chequearCargaMaxima();
+			//this->setlistapasajeros(lista);
+			this->vuelo.setHorarios(this->getfecha(), *_fecha);
+			this->despegar();
+			this->setPasajeros(pasajeros);
+			//EL PROCESO INFERIOR QUE ES CHEQUEAR QUE LOS PASAJEROS 
+			// SEAN LOS CORRECTOS ESTO LO TIENE QUE HACER EL AEROPUERTO O CLASE VUELO, NO EL AVION
+			//for (int i = 0; this->nPasajeros <= i; i++) { 
+			//	if(!this->vuelo.isValidNVuelo(i)){
+			//		//tirar excepcion;
+			//	}
+			//}
+		case sinEstado:
+
 		}
 	}
 	catch (const std::exception&)
 	{
-	  throw std::invalid_argument("Error en pedirPermiso()");
+		throw std::invalid_argument("Error en pedirPermiso()");
 		//hacer el tema de crear una exception para cada caso especifico y hacer el tostring adecuado
 	}
-	
-	
+
+
 }
 
-bool cAvion::chequearCargaMaxima(){
+bool cAvion::chequearCargaMaxima() {
 	try
 	{
-		int sumatotal = this->nPasajeros * 75 +(4 * 75);
-		for (int i = 0; this->nPasajeros <= i; i++) { //chequear como recoría el for el bucle 
+		int sumatotal = this->nPasajeros * 75 + (4 * 75);
+		for (int i = 0; i < this->nPasajeros; i++) { //chequear como recoría el for el bucle 
 			sumatotal += this->pasajeros[0][i].getPesoEquipaje(i);
-			
+
 		}
+		//if(this->ListaPasajeros.pesoTot() > this.pesoMaximo){
+		// throw exeption("Hay mucho peso para despegar");
+		// }
+		//
 		if (sumatotal > this->pesoMaximo) {
 			throw exception();
 		}
@@ -90,11 +99,11 @@ bool cAvion::chequearCargaMaxima(){
 		throw std::invalid_argument("Error en chequearCargaMaxima()");
 		//hacer el tema de crear una exception para cada caso especifico y hacer el tostring adecuado
 	}
-	
+
 }
 
 
-void cAvion::setPasajeros(cPasajero** _pasajeros) { this->pasajeros = _pasajeros; }
+void cAvion::setPasajeros(cListaPasajero* _pasajeros) { this->pasajeros = _pasajeros; }
 //void cAvion::setAeropuerto(cAeropuerto* _aeropuerto) { this->aeropuerto = _aeropuerto; }
 
 string cAvion::to_string() {
