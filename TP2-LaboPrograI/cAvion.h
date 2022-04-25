@@ -1,9 +1,6 @@
 #ifndef _CAVION_H
 #define _CAVION_H
 #include "gbl.h"
-//#include "cAeropuerto.h"
-#include "cListaPasajero.h"
-#include "cVuelo.h"
 #include <random>
 class cAvion {
 public:
@@ -15,7 +12,7 @@ public:
     /// <param name="_totalPasajeros">: Capacidad maxima que permite el avion<///param>
     /// <param name="_pesoMaximo">: Peso maximo que permite el avion<///param>
     /// <param name="_nPasajeros">: Cantidad actual de pasajeros<///param>
-    cAvion(unsigned int _totalPasajeros = 0, unsigned int _pesoMaximo = 0, unsigned int _nPasajeros = 0);
+    cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros);
     // unsigned int _pesoMaximo, el peso nos lo da la clase cValija, y el peso debe ser flotante
     /// <summary>
     /// Destructor por defecto
@@ -40,9 +37,6 @@ public:
     /// </summary>
     /// <///summary>	
     void aterrizar();
-    string getfecha()const {
-        return this->fecha;
-    }
     /// <summary>
     /// chequearCargaMaxima:
     ///       1. Debe chequear que la carga en el avion no sea superior
@@ -50,14 +44,13 @@ public:
     ///      
     /// <///summary>
     bool chequearCargaMaxima();
-    void setPasajeros(cListaPasajero* pasajeros);
     //void setListaPasajeros(cListaPasajero* pasajeros);
     string to_string();
     void imprimir();
     /// <summary>
     /// 
     /// </summary>
-    void pedirPermiso(bool _valor, string* _fecha);
+    void pedirPermiso();
 #pragma endregion
 
 private:
@@ -66,11 +59,6 @@ private:
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
-    string fecha;
-    //cAeropuerto* aeropuerto;
-    cListaPasajero* pasajeros; //cListaPasajero* pasajeros; 
-    cVuelo vuelo;
-    eEstado estado;
 
 };
 
