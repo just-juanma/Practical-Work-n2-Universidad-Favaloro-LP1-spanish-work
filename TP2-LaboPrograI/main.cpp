@@ -29,8 +29,9 @@ int main() {
 	cPasajero* pasajero2 = new cPasajero("juan", 44789699, 3, 1);
 	cAvion* avion1 = new cAvion(15,175);*/
 	cListaAvion aviones = cListaAvion(3);
-	cAvion* avion = new cAvion();
-	aviones.Agregar();
+	cListaPasajero pasajeros = cListaPasajero(10,true);
+	cAvion* avion1 = new cAvion(3,2000,0,"def");
+	aviones.Agregar(avion1);
 	//cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
 	//avion1->setAeropuerto(EZEIZA);
 

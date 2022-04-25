@@ -1,12 +1,10 @@
 #ifndef _CAVION_H
 #define _CAVION_H
 #include "gbl.h"
-#include <random>
 #include "cListaPasajero.h"
 class cAvion {
 public:
 #pragma region constructor y destructor 
-
     /// <summary>
     /// Constructor parametrizado
     /// <///summary>
@@ -45,7 +43,8 @@ public:
     void setListaPasajero(cListaPasajero* _pasajeros);
     /// <summary>
     ///  Segun lo comprendido se podría hacer que este metodo sea "obtenido" por friend de la clase aeropuerto
-    /// </summary>
+    /// </summary> 
+    /// Al ser desde la clase cAeropuerto no es dar es recibir permiso
     void recibirPermiso();
     void pedirPermiso();
     string getid();
@@ -54,13 +53,15 @@ public:
 #pragma endregion
 
 private:
+    friend class cAeropuerto;
     string ID;
     unsigned int totalPasajeros;
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
     cListaPasajero* Listapasajeros;
-
+    eEstado estado;
+    int permiso;
 };
 
 #endif  
