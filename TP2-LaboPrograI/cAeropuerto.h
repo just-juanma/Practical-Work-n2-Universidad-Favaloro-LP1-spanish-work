@@ -2,7 +2,7 @@
 #define _CAEROPUERTO_H
 #include "gbl.h"
 #include "cVuelo.h"
-#include "cAvion.h"
+#include "cListaAvion.h"
 
 class cAeropuerto {
 public: 
@@ -24,9 +24,7 @@ public:
 
     #pragma region metodos
 
-    bool agregarAvion(cAvion* avion);
-    cAvion* retirarAvion(unsigned int nAvion);
-    bool darPermiso();
+    void darPermiso();
     string getNombre() { return nombre;}
 
     string to_string();
@@ -40,8 +38,8 @@ private:
     unsigned int capacidadAeropuerto;
     unsigned int nAviones;
     static unsigned int numeroAeropuerto;
-    cVuelo** listaVuelo;
-    cAvion** listaAvionAeropuerto;
+    //cListaVuelo listaVuelo;
+    cListaAvion listaAvionAeropuerto;
     unsigned int nVuelos;
 };
 
