@@ -1,6 +1,7 @@
 #include "gbl.h"
 #include "cVuelo.h"
 #include "cPasajero.h"
+#include "cListaAvion.h"
 #include "cAvion.h"
 int main() {
 
@@ -27,6 +28,9 @@ int main() {
 	/*cPasajero* pasajero1= new cPasajero("juan", 44789699, 3, 1);
 	cPasajero* pasajero2 = new cPasajero("juan", 44789699, 3, 1);
 	cAvion* avion1 = new cAvion(15,175);*/
+	cListaAvion aviones = cListaAvion(3);
+	cAvion* avion = new cAvion();
+	aviones.Agregar();
 	//cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
 	//avion1->setAeropuerto(EZEIZA);
 

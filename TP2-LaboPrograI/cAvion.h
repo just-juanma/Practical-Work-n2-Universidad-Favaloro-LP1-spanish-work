@@ -2,6 +2,7 @@
 #define _CAVION_H
 #include "gbl.h"
 #include <random>
+#include "cListaPasajero.h"
 class cAvion {
 public:
 #pragma region constructor y destructor 
@@ -9,11 +10,7 @@ public:
     /// <summary>
     /// Constructor parametrizado
     /// <///summary>
-    /// <param name="_totalPasajeros">: Capacidad maxima que permite el avion<///param>
-    /// <param name="_pesoMaximo">: Peso maximo que permite el avion<///param>
-    /// <param name="_nPasajeros">: Cantidad actual de pasajeros<///param>
-    cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros);
-    // unsigned int _pesoMaximo, el peso nos lo da la clase cValija, y el peso debe ser flotante
+    cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID);
     /// <summary>
     /// Destructor por defecto
     /// <///summary>
@@ -32,8 +29,8 @@ public:
     /// <///summary>
     void despegar();
     /// <summary>
-    /// Se le solicita permiso al aeropuerto asigando que chequee la disposicion en el hangar para poder asi
-    /// realizar el aterrizaje
+    /// Se le solicita permiso al aeropuerto para que chequee la disposicion en el hangar para poder asi
+    /// realizar el aterrizaje (cambiar el esdtado del vuelo)
     /// </summary>
     /// <///summary>	
     void aterrizar();
@@ -44,21 +41,25 @@ public:
     ///      
     /// <///summary>
     bool chequearCargaMaxima();
-    //void setListaPasajeros(cListaPasajero* pasajeros);
+
+    void setListaPasajero(cListaPasajero* _pasajeros);
+    /// <summary>
+    ///  Segun lo comprendido se podría hacer que este metodo sea "obtenido" por friend de la clase aeropuerto
+    /// </summary>
+    void recibirPermiso();
+    void pedirPermiso();
+    string getid();
     string to_string();
     void imprimir();
-    /// <summary>
-    /// 
-    /// </summary>
-    void pedirPermiso();
 #pragma endregion
 
 private:
-    unsigned int ID;
+    string ID;
     unsigned int totalPasajeros;
     // unsigned int pesoMaximo; el peso nos lo da la clase cValija, y el peso debe ser flotante
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
+    cListaPasajero* Listapasajeros;
 
 };
 
