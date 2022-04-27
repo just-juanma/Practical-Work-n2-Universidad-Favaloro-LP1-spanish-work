@@ -8,42 +8,51 @@ class cPasajero {
     friend class cListaPasajero;
     friend class cVuelo;
 public:
-#pragma region constructor y destructor
+
+    #pragma region constructor y destructor
+
     cPasajero(string _nombre = "", string _DNI = "",
         sh _numeroVuelo = 0, sh _asiento = 0);
     /// <summary>
     /// Destructor por defecto
     /// </summary>
     ~cPasajero();
-#pragma endregion 
 
-#pragma region metodos
+    #pragma endregion 
+
+    #pragma region metodos
 
     cValija* operator+(cValija& _equipaje) {
-        if (_equipaje.peso > 0 && this->pesoTotal->peso < 25)
+        if (_equipaje.peso > 0 && this->pesoTotalEquipaje->peso < 25)
             if (equipaje->agregar(&_equipaje)) {
-                this->pesoTotal->peso += _equipaje.peso;
-                return pesoTotal; // retorno el peso total del equipaje del pasajero
+                this->pesoTotalEquipaje->peso += _equipaje.peso;
+                return pesoTotalEquipaje; // retorno el peso total del equipaje del pasajero
             }
             else return NULL;
     }
     cValija* operator-(cValija& _equipaje) {
         if (equipaje->eliminar(&_equipaje)) {
-            this->pesoTotal->peso -= _equipaje.peso;
-            return pesoTotal;
+            this->pesoTotalEquipaje->peso -= _equipaje.peso;
+            return pesoTotalEquipaje;
         }
         else return NULL;
     }
     string to_string();
     void imprimir() { cout << to_string() << endl; }
-#pragma endregion
 
+    #pragma endregion
+
+    #pragma region getters y setters
+
+    cFecha* getFecha()const { return this->fecha; }
+
+    #pragma endregion
 private:
     const string nombre;
     const string DNI;
     static ush cantActual;
     static sh cantTotal;
-    cValija* pesoTotal;
+    cValija* pesoTotalEquipaje;
     cListaValija* equipaje;
     cFecha* fecha;
     sh numeroVuelo;

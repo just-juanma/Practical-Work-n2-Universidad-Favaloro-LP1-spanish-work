@@ -5,6 +5,7 @@ class cValija
 {
 	friend class cListaValija;
 	friend class cPasajero;
+	friend class cVuelo;
 public:
 #pragma region constructor y destructor
 	/// <summary>
