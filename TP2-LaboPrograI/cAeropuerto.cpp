@@ -17,7 +17,7 @@ void cAeropuerto::darPermiso() {
 	{
 		//for(i=0;i<nvuelos;i++)
 		// if vuelo[i].estado == aterrizado -> cont++)
-		//cont < capacidadAerop
+		//cont >= capacidadAerop
 		//lanzar la excepcion
 		if ( = > capacidadAeropuerto)
 			throw NO_HAY_LUGAR;

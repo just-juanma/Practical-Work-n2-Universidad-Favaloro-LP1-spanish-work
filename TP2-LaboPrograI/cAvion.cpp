@@ -33,11 +33,10 @@ void cAvion::pedirPermiso() {
 		this->permiso = 0; 
 		if (cAeropuerto::darPermiso() == true)
 		{
+
 			// buscar vuelo via ID -> obtener la pos del vuelo en la lista
 			// listaVuelo[pos].estado = aterrizado;		cambio el estado en lista de vuelo del vuelo en la posicion del vuelo especifico.
-			//
-			//
-			//
+			// fijarse si hay que agregar el avion al aeropuerto
 
 		}
 	default:
