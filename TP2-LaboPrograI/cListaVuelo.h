@@ -14,6 +14,6 @@ public:
 	void imprimir() { cout << to_string() << endl; }
 private:
 	bool checkEliminar;
-	cListaVuelo** listaVuelo;
+	cVuelo** listaVuelo;
 };
 #endif // _CLISTAPASAJERO_H

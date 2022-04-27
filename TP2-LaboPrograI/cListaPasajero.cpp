@@ -22,24 +22,25 @@ cListaPasajero::~cListaPasajero() {
 bool cListaPasajero::agregar(cPasajero* pasajero) {
 	if (cPasajero::cantActual >= cPasajero::cantTotal)
 		return false;
-	this->listaPasajero[cPasajero::cantActual] = pasajero;
-	return true;
+	if (!listaPasajero[cPasajero::cantActual]) {
+		this->listaPasajero[cPasajero::cantActual] = pasajero;
+		return true;
+	}
+	return false;
 }
 
 bool cListaPasajero::modificar(sh pos, cPasajero* nuevoPasajero) {
-	for (ush i = 0; i < cPasajero::cantActual; i++) {
-		if (pos >= 0 && this->listaPasajero[pos] && pos < cPasajero::cantActual) {
-			cPasajero* aux = this->listaPasajero[pos];
-			this->listaPasajero[i] = nuevoPasajero;
-			delete aux;
-			return true;
-		}
+	if (pos >= 0 && this->listaPasajero[pos] && pos < cPasajero::cantActual) {
+		cPasajero* aux = this->listaPasajero[pos];
+		this->listaPasajero[pos] = nuevoPasajero;
+		delete aux;
+		return true;
 	}
 	return false;
 }
 
 bool cListaPasajero::eliminar(sh pos) {
-	if (pos >= 0 && this->listaPasajero[pos]) {
+	if (pos >= 0 && this->listaPasajero[pos] && pos < cPasajero::cantActual) {
 		delete this->listaPasajero[pos];
 		this->listaPasajero[pos] = NULL;
 		ordenar();
@@ -52,7 +53,7 @@ void cListaPasajero::ordenar() {
 	for (ush i = 0; i < cPasajero::cantActual - 1; i++) {
 		bool checkSwap = false;
 		for (ush j = 0; j < cPasajero::cantActual - i - 1; j++) {
-			swap(listaPasajero[j], listaPasajero[j + 1]);
+			swap(this->listaPasajero[j], this->listaPasajero[j + 1]);
 			checkSwap = true;
 		}
 		if (!checkSwap)
@@ -64,7 +65,8 @@ string cListaPasajero::to_string() {
 	stringstream stc;
 	stc << "Checkeo de eliminar (true / si) (false / no): " << checkEliminar << endl;
 	for (ush i = 0; i < cPasajero::cantActual; i++)
-		stc << "DNI pasajero [" << i << "]: " << listaPasajero[i]->nombre << endl;
+		if(listaPasajero[i])
+			stc << "DNI pasajero [" << i << "]: " << listaPasajero[i]->nombre << endl;
 	return stc.str();
 }
 
