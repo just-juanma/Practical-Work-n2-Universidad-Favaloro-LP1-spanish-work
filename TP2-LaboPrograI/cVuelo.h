@@ -9,7 +9,7 @@
 
 
 class cVuelo {
-	//friend 
+	friend class cListaVuelo;
 public:
 #pragma region constructor y destructor
 	/// <summary>
@@ -17,38 +17,55 @@ public:
 	/// </summary>
 	/// <param name="_PoA">: (true) partida, (false) arribo</param>
 	/// <param name="_estado">: Estado del vuelo</param>
-	cVuelo(bool _PoA = false, eEstado _estado = sinEstado);
+	cVuelo(bool _PoA = false, eEstado _estado = sinEstado, ePosiblesDestinos _ciudad = sinDestino);
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>
 	~cVuelo();
 #pragma endregion
-
-	cPasajero* filtrar(string* _DNI, cListaPasajero* _lista) {
+	bool agregarPasajero(cPasajero* pasajeroAdd) { 
+		if (claselistaPasajero->agregar(pasajeroAdd))
+			return true;
+		return false;
+	}
+	bool modificarPasajero(sh pos, cPasajero* nuevoPasajero) { 
+		if (claselistaPasajero->modificar(pos, nuevoPasajero))
+			return true;
+		return false;
+	}
+	bool eliminarPasajero(sh pos) {
+		if (claselistaPasajero->eliminar(pos))
+			return true;
+		return false;
+	}
+	cPasajero* filtrar(string* _DNI) {
 		if (_DNI) 
 			for (ush i = 0; i < cPasajero::cantActual; i++) 
-				if (*_DNI == _lista->listaPasajero[i]->DNI)
-					return _lista->listaPasajero[i];
+				if (*_DNI == claselistaPasajero->listaPasajero[i]->DNI)
+					return claselistaPasajero->listaPasajero[i];
 	}
-	string to_string();
-	void imprimir() { cout << to_string() << endl; }
+	string to_string() const;
 	void setFecha(cFecha* _vuelo, cFecha* _destino) {
 		vuelo = _vuelo;
 		destino = _destino;
 	}
-	float getPesoTotal();
-	
+	//float getPesoTotal();
+	void setAvion(cAvion* _avion) { this->avion = _avion; }
+	void setAeropuerto(cAeropuerto* _aeropuerto) { this->aeropuerto = _aeropuerto; }
+	void setEstadoVuelo() {	/*estado = avion->getEstado();*/ }
 private:
 	static ush numero;
 	static sh cantTotal;
 	eEstado estado;
+	ePosiblesDestinos ciudad;
 	bool PoA; // Partida O Arribo
 	cFecha* vuelo;
 	cFecha* destino;
-	// cAvion* avion; esperar a que avion este totalmente en funcionamiento
-	// cAeropuerto* aeropuerto;
-
-
+	cAvion* avion; 
+	cAeropuerto* aeropuerto;
+	cListaPasajero* claselistaPasajero;
 };
+
+ostream& operator << (ostream& out, const cVuelo& _vuelo) { out << _vuelo.to_string(); }
 
 #endif //_CVUELO_H

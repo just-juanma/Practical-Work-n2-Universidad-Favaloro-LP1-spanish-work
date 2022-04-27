@@ -4,67 +4,56 @@
 
 cListaVuelo::cListaVuelo(sh size, bool _checkEliminar) {
 	this->checkEliminar = _checkEliminar;
-	this->listaVuelo = new cPasajero * [size];
-	cVuelo::cant = size;
-	for (ush i = 0; i < cPasajero::cantActual; i++)
-		this->listaPasajero[i] = NULL;
+	this->listaVuelo = new cVuelo * [size];
+	cVuelo::cantTotal = size;
+	for (ush i = 0; i < cVuelo::numero; i++)
+		this->listaVuelo[i] = NULL;
 }
 
-cListaPasajero::~cListaPasajero() {
+cListaVuelo::~cListaVuelo() {
 	if (checkEliminar)
-		for (ush i = 0; i < cPasajero::cantTotal; i++)
-			if (this->listaPasajero[i])
-				delete listaPasajero[i];
-	delete[] this->listaPasajero;
-	cPasajero::cantTotal;
+		for (ush i = 0; i < cVuelo::cantTotal; i++)
+			if (this->listaVuelo[i])
+				delete listaVuelo[i];
+	delete[] this->listaVuelo;
+	cVuelo::cantTotal;
 }
 
-bool cListaPasajero::agregar(cPasajero* pasajero) {
-	if (cPasajero::cantActual >= cPasajero::cantTotal)
+bool cListaVuelo::agregar(cVuelo* vuelo) {
+	if (cVuelo::numero >= cVuelo::cantTotal)
 		return false;
-	this->listaPasajero[cPasajero::cantActual] = pasajero;
+	this->listaVuelo[cVuelo::numero] = vuelo;
 	return true;
 }
 
-bool cListaPasajero::modificar(sh pos, cPasajero* nuevoPasajero) {
-	for (ush i = 0; i < cPasajero::cantActual; i++) {
-		if (pos >= 0 && this->listaPasajero[pos] && pos < cPasajero::cantActual) {
-			cPasajero* aux = this->listaPasajero[pos];
-			this->listaPasajero[i] = nuevoPasajero;
-			delete aux;
-			return true;
-		}
-	}
-	return false;
-}
-
-bool cListaPasajero::eliminar(sh pos) {
-	if (pos >= 0 && this->listaPasajero[pos]) {
-		delete this->listaPasajero[pos];
-		this->listaPasajero[pos] = NULL;
+bool cListaVuelo::eliminar(sh pos) {
+	if (pos >= 0 && this->listaVuelo[pos]) {
+		delete this->listaVuelo[pos];
+		this->listaVuelo[pos] = NULL;
 		ordenar();
 		return true;
 	}
 	return false;
 }
 
-void cListaPasajero::ordenar() {
-	for (ush i = 0; i < cPasajero::cantActual - 1; i++) {
+void cListaVuelo::ordenar() {
+	for (ush i = 0; i < cVuelo::numero - 1; i++) {
 		bool checkSwap = false;
-		for (ush j = 0; j < cPasajero::cantActual - i - 1; j++) {
-			swap(listaPasajero[j], listaPasajero[j + 1]);
+		for (ush j = 0; j < cVuelo::numero - i - 1; j++) {
+			swap(this->listaVuelo[j], this->listaVuelo[j + 1]);
 			checkSwap = true;
 		}
 		if (!checkSwap)
 			break;
 	}
 }
-
-string cListaPasajero::to_string() {
+string cListaVuelo::to_string() {
 	stringstream stc;
 	stc << "Checkeo de eliminar (true / si) (false / no): " << checkEliminar << endl;
-	for (ush i = 0; i < cPasajero::cantActual; i++)
-		stc << "DNI pasajero [" << i << "]: " << listaPasajero[i]->nombre << endl;
+	stc << "Referencia de ciudades: (0) sin destino, (1) Jerusalen, (2) Beerseva, (3) Eilat" << endl;
+	for (ush i = 0; i < cVuelo::numero; i++)
+		if(listaVuelo[i])
+			stc << "Ciudad destino del vuelo [" << i << "]: " << listaVuelo[i]->ciudad << endl;
 	return stc.str();
 }
 

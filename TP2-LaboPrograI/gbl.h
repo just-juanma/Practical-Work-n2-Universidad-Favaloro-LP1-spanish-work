@@ -1,10 +1,6 @@
-
-
-#define MAX 4
-
-
 #pragma once
 #include "eEstado.h"
+#include "ePosiblesDestinos.h"
 #include <iostream>
 #include <string>
 #include <sstream>
