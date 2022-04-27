@@ -20,4 +20,5 @@ private:
 	cAvion** Lista;
 	unsigned int ocupados;
 	unsigned int capacidad;
+	friend class cAvion;
 };

@@ -60,7 +60,7 @@ private:
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
     cListaPasajero* Listapasajeros;
-    eEstado estado;
+    eEstado estado; //reemplazar por vuelo
     int permiso;
 };
 

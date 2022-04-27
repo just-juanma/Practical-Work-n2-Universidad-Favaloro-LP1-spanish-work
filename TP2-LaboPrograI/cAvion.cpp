@@ -20,6 +20,8 @@ bool cAvion::chequearCargaMaxima() {
 		return true; 
 	}
 	return false;
+
+	//agregar lo que corresponde a valijas
 }
 
 void cAvion::pedirPermiso() {
@@ -29,12 +31,18 @@ void cAvion::pedirPermiso() {
 		int i = 0;
 	case volando: 
 		this->permiso = 0; 
-		
+		if (cAeropuerto::darPermiso() == true)
+		{
+			// buscar vuelo via ID -> obtener la pos del vuelo en la lista
+			// listaVuelo[pos].estado = aterrizado;		cambio el estado en lista de vuelo del vuelo en la posicion del vuelo especifico.
+			//
+			//
+			//
+
+		}
 	default:
 		break;
 	}
-
-
 }
 
 void cAvion::despegar() {

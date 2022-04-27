@@ -33,6 +33,7 @@ public:
     #pragma endregion
 
 private: 
+    friend class cAvion;
     const unsigned int ID;
     const string nombre;
     unsigned int capacidadAeropuerto;
