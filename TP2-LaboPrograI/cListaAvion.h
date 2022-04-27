@@ -3,7 +3,7 @@
 #include "cAvion.h"
 class cListaAvion
 {
-	
+	friend class cAvion;
 public:
 
 	cListaAvion();

@@ -47,8 +47,8 @@ public:
     ///  Segun lo comprendido se podría hacer que este metodo sea "obtenido" por friend de la clase aeropuerto
     /// </summary> 
     /// Al ser desde la clase cAeropuerto no es dar es recibir permiso
-    void recibirPermiso();
-    void pedirPermiso();
+    void recibirPermiso(cAvion* avion);
+    eEstado pedirPermiso();
     string getid();
     cListaPasajero* getListaPasajero();
     int getcantpasajeros();

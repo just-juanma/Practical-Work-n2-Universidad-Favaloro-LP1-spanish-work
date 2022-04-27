@@ -35,5 +35,18 @@
 //	//cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
 //	//avion1->setAeropuerto(EZEIZA);
 //
+//	/*PRUEBA PERMISOS*/
+//	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
+//	if (estadoActual == volando)
+//	{
+//		bool permiso = aeropuerto1.darPermiso();  //esto solo chequea si entra un avion mas en el hangar
+//		if (permiso == true)
+//			avion1->recibirPermiso();	//esto setea al avion y al vuelo en aterrizado una vez que tiene el ok
+//	}
+//  else
+//  {
+//		aca se maneja el despegue
+//  }
+//	
 //	return 0;
 //}

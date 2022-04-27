@@ -3,8 +3,11 @@
 #include "gbl.h"
 #include "cVuelo.h"
 #include "cListaAvion.h"
+#include "cListaVuelo.h"
+#include "cAvion.h"
 
 class cAeropuerto {
+    friend class cAvion;
 public: 
 
     #pragma region constructor y destructor
@@ -24,25 +27,23 @@ public:
 
     #pragma region metodos
 
-    static bool darPermiso();
-    string getNombre() { return nombre;}
-
+    bool darPermiso();
+    //string getNombre() { return nombre;}
     string to_string();
     void imprimir();
 
     #pragma endregion
 
 private: 
-    //friend class cAvion;
+  
     const unsigned int ID;
     const string nombre;
     unsigned int capacidadAeropuerto;
     unsigned int nAviones;
     static unsigned int numeroAeropuerto;
-    //cListaVuelo listaVuelo;
-    cListaAvion listaAvionAeropuerto;
+    static cListaVuelo *listaVuelos;
+    static cListaAvion *listaAvionAeropuerto;
     unsigned int nVuelos;
 };
-
 
 #endif // _CAEROPUERTO_H

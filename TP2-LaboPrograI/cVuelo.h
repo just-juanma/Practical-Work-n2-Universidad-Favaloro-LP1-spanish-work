@@ -10,6 +10,8 @@
 
 class cVuelo {
 	friend class cListaVuelo;
+	friend class cAeropuerto;
+	friend class cAvion;
 public:
 #pragma region constructor y destructor
 	/// <summary>

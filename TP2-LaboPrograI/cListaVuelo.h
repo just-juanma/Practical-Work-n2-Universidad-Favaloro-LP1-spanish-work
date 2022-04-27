@@ -4,6 +4,7 @@
 #include "cVuelo.h"
 class cListaVuelo
 {
+	friend class cAvion;
 public:
 	cListaVuelo(sh size = MAX, bool _checkEliminar = false);
 	~cListaVuelo();

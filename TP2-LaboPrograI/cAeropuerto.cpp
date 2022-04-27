@@ -11,20 +11,20 @@ cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuer
 cAeropuerto::~cAeropuerto() {
 }
 
-bool cAeropuerto::darPermiso(){
+bool cAeropuerto::darPermiso() {
 	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima, de no ser asi lanzo una excepcion
 	try
 	{
-		//for(i=0;i<nvuelos;i++)
-		// if vuelo[i].estado == aterrizado -> cont++)
-		//cont >= capacidadAerop
-		//lanzar la excepcion
-		/*if ( = > capacidadAeropuerto)
-			throw NO_HAY_LUGAR;*/
+		if (nAviones < capacidadAeropuerto)
+		{
+			return true;
+		}
+		else throw "HANGAR_CAPACIDAD_LLENA";
 	}
-	catch (const std::exception&)
+	catch (const char* msg)
 	{
-
+		cout << msg << endl;
+		return false;
 	}
 	
 }
@@ -34,7 +34,7 @@ string cAeropuerto::to_string() {
 	stc << "ID:" << ID << endl;
 	stc << "Nombre:" << nombre << endl;
 	stc << "Capacidad:" << capacidadAeropuerto << endl;
-	stc << "Numero de aviones:" << listaAvionAeropuerto << endl;
+	//stc << "Numero de aviones:" << listaAvionAeropuerto. << endl;
 	stc << "Vuelos disponibles:" << nVuelos << endl;
 	stc << endl;
 	return stc.str();

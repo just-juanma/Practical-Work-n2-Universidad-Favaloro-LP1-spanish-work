@@ -27,27 +27,31 @@ bool cAvion::chequearCargaMaxima() {
 
 }
 
-void cAvion::pedirPermiso() {
-	switch (this->estado)
-	{
-		case aterrizado: 
-			cAeropuerto::darPermiso();	
-			this->estado = volando;
-		case volando: 
-			this->permiso = 0; 
-			this->recibirPermiso(); //veo que recibo o como
-	default:
-		break;
-	}
+eEstado cAvion::pedirPermiso() {
+	return this->estado;
 }
 
-void cAvion::recibirPermiso() {
-	//if (cAeropuerto::darPermiso() == true){
-	//		//cAeropuerto::numgetVuelo() 
-	//		// buscar vuelo via ID -> obtener la pos del vuelo en la lista
-	//		// listaVuelo[pos].estado = aterrizado;		cambio el estado en lista de vuelo del vuelo en la posicion del vuelo especifico.
-	//		// fijarse si hay que agregar el avion al aeropuerto
-	//} //cambiar esta parte por una funcion recibir permiso
+void cAvion::recibirPermiso(cAvion* avion) {
+	sh i, j;
+	avion->estado = aterrizado;
+	try
+	{
+		for (i = 0; i < cVuelo::numero; i++)
+		{
+			if (cAeropuerto::listaVuelos->listaVuelo[i]->avion->getid() == avion->ID)
+			{
+				cAeropuerto::listaVuelos->listaVuelo[i]->estado = aterrizado; break;
+			}		
+		}
+		if (i == 10); throw "AVION_NO_REGISTRADO";
+	}
+	catch (const char* msg)
+	{
+		cout << msg << endl;
+	}
+	
+	//vuelo.setavion(avion)
+	//vuelo.setestado();
 }
 
 void cAvion::despegar() {
