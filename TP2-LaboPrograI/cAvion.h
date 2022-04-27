@@ -2,6 +2,7 @@
 #define _CAVION_H
 #include "gbl.h"
 #include "cListaPasajero.h"
+//#include "cAeropuerto.h"
 class cAvion {
 public:
 #pragma region constructor y destructor 
@@ -41,7 +42,7 @@ public:
     /// <///summary>
     bool chequearCargaMaxima();
 
-    void setListaPasajero(cListaPasajero* _pasajeros);
+    void setListaPasajero(cListaPasajero* _pasajeros,int n);
     /// <summary>
     ///  Segun lo comprendido se podría hacer que este metodo sea "obtenido" por friend de la clase aeropuerto
     /// </summary> 
@@ -49,6 +50,9 @@ public:
     void recibirPermiso();
     void pedirPermiso();
     string getid();
+    cListaPasajero* getListaPasajero();
+    int getcantpasajeros();
+    eEstado getestado();
     string to_string();
     void imprimir();
 #pragma endregion

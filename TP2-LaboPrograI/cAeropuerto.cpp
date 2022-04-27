@@ -11,7 +11,7 @@ cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuer
 cAeropuerto::~cAeropuerto() {
 }
 
-void cAeropuerto::darPermiso() {
+bool cAeropuerto::darPermiso(){
 	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima, de no ser asi lanzo una excepcion
 	try
 	{
@@ -19,8 +19,8 @@ void cAeropuerto::darPermiso() {
 		// if vuelo[i].estado == aterrizado -> cont++)
 		//cont >= capacidadAerop
 		//lanzar la excepcion
-		if ( = > capacidadAeropuerto)
-			throw NO_HAY_LUGAR;
+		/*if ( = > capacidadAeropuerto)
+			throw NO_HAY_LUGAR;*/
 	}
 	catch (const std::exception&)
 	{

@@ -24,7 +24,7 @@ public:
 
     #pragma region metodos
 
-    void darPermiso();
+    static bool darPermiso();
     string getNombre() { return nombre;}
 
     string to_string();
@@ -33,7 +33,7 @@ public:
     #pragma endregion
 
 private: 
-    friend class cAvion;
+    //friend class cAvion;
     const unsigned int ID;
     const string nombre;
     unsigned int capacidadAeropuerto;
@@ -43,5 +43,6 @@ private:
     cListaAvion listaAvionAeropuerto;
     unsigned int nVuelos;
 };
+
 
 #endif // _CAEROPUERTO_H
