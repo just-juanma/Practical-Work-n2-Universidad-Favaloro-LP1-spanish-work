@@ -3,12 +3,14 @@
 #include "gbl.h"
 #include "cAvion.h"
 #include "cAeropuerto.h"
+#include "cListaPasajero.h"
+#include "cPasajero.h"
 #include "cFecha.h"
 
 
 class cVuelo {
 public:
-	#pragma region constructor y destructor
+#pragma region constructor y destructor
 	/// <summary>
 	/// Constructor parametrizado
 	/// </summary>
@@ -19,23 +21,30 @@ public:
 	/// Destructor por defecto
 	/// </summary>
 	~cVuelo();
-	#pragma endregion
+#pragma endregion
 
 	string to_string();
-	/* void filtrar(string DNI) {
+	void imprimir();
+	void filtrar(string* DNI) {
+		if (DNI) {
+			for (ush i = 0; i < cPasajero::cantActual; i++) {
+				if (*DNI == this->lista->listaPasajero[i]->DNI)
+			}
 
-	}*/
+		}
+	}
 
-private: 
+private:
 	static ush numero;
 	eEstado estado;
 	bool PoA; // Partida O Arribo
 	cFecha* vuelo;
 	cFecha* destino;
+	cListaPasajero* lista;
 	// cAvion* avion; esperar a que avion este totalmente en funcionamiento
 	// cAeropuerto* aeropuerto;
 
-	
+
 };
 
 #endif //_CVUELO_H

@@ -6,19 +6,20 @@
 #include "cFecha.h"
 class cPasajero {
     friend class cListaPasajero;
-public: 
-    #pragma region constructor y destructor
+    friend class cVuelo;
+public:
+#pragma region constructor y destructor
     cPasajero(string _nombre = "", string _DNI = "",
-              sh _numeroVuelo = 0, sh _asiento = 0);
+        sh _numeroVuelo = 0, sh _asiento = 0);
     /// <summary>
     /// Destructor por defecto
     /// </summary>
     ~cPasajero();
-    #pragma endregion 
-    
-    #pragma region metodos
-  
-    cValija* operator+(cValija &_equipaje) {
+#pragma endregion 
+
+#pragma region metodos
+
+    cValija* operator+(cValija& _equipaje) {
         if (_equipaje.peso > 0 && this->pesoTotal->peso < 25)
             if (equipaje->agregar(&_equipaje)) {
                 this->pesoTotal->peso += _equipaje.peso;
@@ -26,20 +27,23 @@ public:
             }
             else return NULL;
     }
-    cValija* operator-(cValija& equipaje) {
-        this->pesoTotal->peso -= equipaje.peso;
-        return pesoTotal;
+    cValija* operator-(cValija& _equipaje) {
+        if (equipaje->eliminar(&_equipaje)) {
+            this->pesoTotal->peso -= _equipaje.peso;
+            return pesoTotal;
+        }
+        else return NULL;
     }
     string to_string();
-    void imprimir() { cout << to_string(); }
-    #pragma endregion
-   
-private: 
+    void imprimir() { cout << to_string() << endl; }
+#pragma endregion
+
+private:
     const string nombre;
     const string DNI;
-    static sh cantActual;
+    static ush cantActual;
     static sh cantTotal;
-    cValija* pesoTotal; 
+    cValija* pesoTotal;
     cListaValija* equipaje;
     cFecha* fecha;
     sh numeroVuelo;

@@ -3,22 +3,24 @@
 
 // implementacion cValija
 
+// inicializacion atributos estaticos
+ush cValija::cantActual = 0;
+sh cValija::cantTotal = 0;
+
 cValija::cValija(float _peso) {
 	// inicializacion de los atributos
+	cantActual++;
 	this->peso = _peso;
 }
 cValija::~cValija() {
-	// no tengo nada que eliminar
+	// por cada obj. destruido, disminuyo su capacidad actual
+	cantActual--;
 }
 
-string cValija::to_string() {
+string cValija::to_string() const {
 	stringstream stc;
-	stc << "Peso:" << peso;
-	stc << endl;
+	stc << "Cantidad total: " << cantTotal << endl;
+	stc << "Cantidad actual: " << cantActual << endl;
+	stc << "Peso: " << peso << endl;
 	return stc.str();
-}
-
-void cValija::imprimir()
-{
-	cout << to_string();
 }

@@ -28,7 +28,7 @@ bool cListaPasajero::agregar(cPasajero* pasajero) {
 
 bool cListaPasajero::modificar(sh pos, cPasajero* nuevoPasajero) {
 	for (ush i = 0; i < cPasajero::cantActual; i++) {
-		if (pos >= 0 && this->listaPasajero[pos]) {
+		if (pos >= 0 && this->listaPasajero[pos] && pos < cPasajero::cantActual) {
 			cPasajero* aux = this->listaPasajero[pos];
 			this->listaPasajero[i] = nuevoPasajero;
 			delete aux;
@@ -60,5 +60,12 @@ void cListaPasajero::ordenar() {
 	}
 }
 
+string cListaPasajero::to_string() {
+	stringstream stc;
+	stc << "Checkeo de eliminar (true / si) (false / no)" << checkEliminar << endl;
+	for (ush i = 0; i < cPasajero::cantActual; i++)
+		stc << "DNI pasajero [" << i << "]: " << listaPasajero[i]->nombre << endl;
+	return stc.str();
+}
 
 

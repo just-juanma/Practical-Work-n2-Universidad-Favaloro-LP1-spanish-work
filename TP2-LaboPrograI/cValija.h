@@ -6,7 +6,7 @@ class cValija
 	friend class cListaValija;
 	friend class cPasajero;
 public:
-	#pragma region constructor y destructor
+#pragma region constructor y destructor
 	/// <summary>
 	/// Constructor parametrizado
 	/// </summary>
@@ -16,17 +16,19 @@ public:
 	/// Destructor por defecto
 	/// </summary>
 	~cValija();
-	#pragma endregion
+#pragma endregion
 
-	
-	#pragma region metodos
-	// metodos pedidos por el Trabajo Practico
-	string to_string();
-	void imprimir();
-	#pragma endregion
+#pragma region metodos
+	// Impresion de datos
+	string to_string() const;
+	void imprimir() const { cout << to_string() << endl; }
+#pragma endregion
+
 private:
-	static sh cantActual;
+	// static
+	static ush cantActual;
 	static sh cantTotal;
+	// interno de la clase
 	float peso;
 };
 

@@ -16,6 +16,5 @@ cVuelo::cVuelo(bool _PoA, eEstado _estado) {
 
 cVuelo::~cVuelo() {
 	numero--;
-
 }
 

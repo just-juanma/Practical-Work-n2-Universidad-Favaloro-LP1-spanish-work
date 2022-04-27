@@ -2,16 +2,18 @@
 #include "cPasajero.h"
 
 // implementacion cPasajero
-
-cPasajero::cPasajero(string _nombre, string _DNI, sh _numeroVuelo, sh _asiento): nombre(_nombre), DNI(_DNI) {
+ush cPasajero::cantActual = 0;
+sh cPasajero::cantTotal = 0;
+cPasajero::cPasajero(string _nombre, string _DNI, sh _numeroVuelo, sh _asiento) : nombre(_nombre), DNI(_DNI) {
+	cantActual++;
 	this->numeroVuelo = _numeroVuelo;
 	this->asiento = _asiento;
 	this->fecha = NULL;
 }
 
-cPasajero::~cPasajero() { }
-
-
+cPasajero::~cPasajero() {
+	cantActual--;
+}
 
 string cPasajero::to_string() {
 	stringstream stc;
@@ -21,6 +23,7 @@ string cPasajero::to_string() {
 	stc << this->fecha->dia << "/";
 	stc << this->fecha->mes << "/";
 	stc << this->fecha->anio << endl;
+	stc << "Hora: " << this->fecha->hora << endl;
 	stc << "Numero de vuelo: " << this->numeroVuelo << endl;
 	stc << "Asiento: " << this->asiento << endl;
 	return stc.str();

@@ -4,6 +4,7 @@
 #include "cPasajero.h"
 class cListaPasajero
 {
+	friend class cVuelo;
 public:
 	cListaPasajero(sh size = MAX, bool _checkEliminar = false);
 	~cListaPasajero();
@@ -12,13 +13,12 @@ public:
 	bool eliminar(sh pos);
 	void ordenar();
 	cPasajero* operator[](sh pos) {
-		if (pos >= 0)
+		if (pos >= 0 && pos < cPasajero::cantActual)
 			return listaPasajero[pos];
 		return NULL;
 	}
-	/* PROBAR DESPUES 
 	string to_string();
-	void imprimir(); */
+	void imprimir() { cout << to_string() << endl; }
 private:
 	bool checkEliminar;
 	cPasajero** listaPasajero;
