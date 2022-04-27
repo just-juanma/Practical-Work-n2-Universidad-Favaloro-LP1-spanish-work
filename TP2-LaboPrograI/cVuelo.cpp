@@ -5,7 +5,7 @@
 // implementacion cVuelo
 
 ush cVuelo::numero = 0;
-
+sh cVuelo::cantTotal = 0;
 cVuelo::cVuelo(bool _PoA, eEstado _estado) {
 	numero++;
 	this->PoA = _PoA;
@@ -17,6 +17,20 @@ cVuelo::cVuelo(bool _PoA, eEstado _estado) {
 cVuelo::~cVuelo() {
 	numero--;
 }
+
+
+float cVuelo::getPesoTotal() {
+	float pesoValijasVuelo = 0;
+	cListaPasajero* listaPasajerosAvion;
+	if (listaPasajerosAvion) {
+		//for (ush i = 0; i < avion->getCantPasajeros(); i++)
+			pesoValijasVuelo += listaPasajerosAvion->listaPasajero[i]->pesoTotalEquipaje->peso;
+		//pesoValijasVuelo += avion->getPesoHumano();
+		//if(pesoValijasVuelo < avion->getPesoMaximo())
+		return pesoValijasVuelo;
+	}
+}
+
 
 string cVuelo::to_string() {
 	stringstream stc;

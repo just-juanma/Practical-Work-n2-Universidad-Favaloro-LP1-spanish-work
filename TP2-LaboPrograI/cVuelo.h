@@ -9,6 +9,7 @@
 
 
 class cVuelo {
+	//friend 
 public:
 #pragma region constructor y destructor
 	/// <summary>
@@ -35,28 +36,11 @@ public:
 		vuelo = _vuelo;
 		destino = _destino;
 	}
-	float pesoTotal(cListaPasajero* _lista) {
-		float pesoValijasVuelo = 0;
-		if (_lista) {
-			for (ush i = 0; i < cPasajero::cantActual; i++) {
-				pesoValijasVuelo += _lista->listaPasajero[i]->pesoTotalEquipaje->peso;
-				/* if(_lista->listaPasajero[i]->numeroVuelo >= numero ||
-					  _lista->listaPasajero[i]->numeroVuelo != avion->getNumeroVuelo() ||
-				      avion->getNumeroVuelo() <= numero ||
-					  pesoValijasVuelo < avion->getPesoHumano()) {
-						pesoValijasVuelo -= _lista->listaPasajero[i]->pesoTotalEquipaje->peso; 
-							if(					  
-					  
-					  }
-
-
-				*/
-			}
-
-		}
-	}
+	float getPesoTotal();
+	
 private:
 	static ush numero;
+	static sh cantTotal;
 	eEstado estado;
 	bool PoA; // Partida O Arribo
 	cFecha* vuelo;

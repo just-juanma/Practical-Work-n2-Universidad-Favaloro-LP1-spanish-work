@@ -37,6 +37,7 @@ public:
         }
         else return NULL;
     }
+    float getPesoTotalEquipaje()const { return pesoTotalEquipaje->peso; }
     string to_string();
     void imprimir() { cout << to_string() << endl; }
 
