@@ -62,7 +62,7 @@ void cListaPasajero::ordenar() {
 
 string cListaPasajero::to_string() {
 	stringstream stc;
-	stc << "Checkeo de eliminar (true / si) (false / no)" << checkEliminar << endl;
+	stc << "Checkeo de eliminar (true / si) (false / no): " << checkEliminar << endl;
 	for (ush i = 0; i < cPasajero::cantActual; i++)
 		stc << "DNI pasajero [" << i << "]: " << listaPasajero[i]->nombre << endl;
 	return stc.str();

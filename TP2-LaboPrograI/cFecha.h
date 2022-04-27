@@ -23,10 +23,8 @@ public:
 
     #pragma region metodos
 
-  
-
-
-    
+    string to_string();
+    void imprimir() { cout << to_string() << endl; }
 
     #pragma endregion
 private: 

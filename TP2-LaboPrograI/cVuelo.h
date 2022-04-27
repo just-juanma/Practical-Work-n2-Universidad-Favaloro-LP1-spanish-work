@@ -23,16 +23,14 @@ public:
 	~cVuelo();
 #pragma endregion
 
-	string to_string();
-	void imprimir();
-	void filtrar(string* DNI) {
-		if (DNI) {
-			for (ush i = 0; i < cPasajero::cantActual; i++) {
-				if (*DNI == this->lista->listaPasajero[i]->DNI)
-			}
-
-		}
+	cPasajero* filtrar(string* DNI, cListaPasajero* lista) {
+		if (DNI) 
+			for (ush i = 0; i < cPasajero::cantActual; i++) 
+				if (*DNI == lista->listaPasajero[i]->DNI)
+					return lista->listaPasajero[i];
 	}
+	string to_string();
+	void imprimir() { cout << to_string() << endl; }
 
 private:
 	static ush numero;
@@ -40,7 +38,6 @@ private:
 	bool PoA; // Partida O Arribo
 	cFecha* vuelo;
 	cFecha* destino;
-	cListaPasajero* lista;
 	// cAvion* avion; esperar a que avion este totalmente en funcionamiento
 	// cAeropuerto* aeropuerto;
 
