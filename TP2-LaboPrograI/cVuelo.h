@@ -101,7 +101,7 @@ public:
 	/// <param name="_destino">: Fecha y horario del destino</param>
 	void setFecha(cFecha* _vuelo, cFecha* _destino) {
 		vuelo = _vuelo;
-		destino = _destino;
+		arribo = _destino;
 	}
 
 	/// <summary>
@@ -116,8 +116,16 @@ public:
 	/// <param name="_aeropuerto">: Aeropuerto a setear</param>
 	void setAeropuerto(cAeropuerto* _aeropuerto) { this->aeropuerto = _aeropuerto; }
 
-	// consultar bato
+	// consultar bato 
 	void setEstadoVuelo() {	/*estado = avion->getEstado();*/ }
+
+	ush cantPasajerosDia() {
+		ush cont = 0;
+		for (ush i = 0; i < cPasajero::cantActual; i++) 
+			if (claselistaPasajero->listaPasajero[i]->fecha->dia == vuelo->dia)
+				cont++;
+		return cont;
+	}
 
 	#pragma endregion
 
@@ -133,7 +141,7 @@ private:
 	eEstado estado;
 	ePosiblesDestinos ciudad;
 	cFecha* vuelo;
-	cFecha* destino;
+	cFecha* arribo;
 	cAvion* avion; 
 	cAeropuerto* aeropuerto;
 	cListaPasajero* claselistaPasajero;

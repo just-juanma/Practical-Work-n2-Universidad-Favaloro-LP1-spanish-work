@@ -16,7 +16,7 @@ cVuelo::cVuelo(bool _PoA, eEstado _estado, ePosiblesDestinos _ciudad) {
 	this->estado = _estado;
 	this->ciudad = _ciudad;
 	this->vuelo = NULL;
-	this->destino = NULL;
+	this->arribo = NULL;
 }
 
 cVuelo::~cVuelo() {
@@ -30,6 +30,6 @@ string cVuelo::to_string()const {
 	stc << "Estado del vuelo: " << this->estado << endl;
 	stc << "Partida (true) o arribo (false): " << this->PoA << endl;
 	stc << "Fecha y hora del vuelo: " << this->vuelo << endl;
-	stc << "Fecha y hora del destino: " << this->destino << endl;
+	stc << "Fecha y hora del destino: " << this->arribo << endl;
 	return stc.str();
 }
