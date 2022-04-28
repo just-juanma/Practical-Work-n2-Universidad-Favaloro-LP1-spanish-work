@@ -7,7 +7,7 @@ class cListaAvion
 public:
 
 	cListaAvion();
-	cListaAvion(int L);
+	cListaAvion(int L=MAX);
 	~cListaAvion();
 	void ordenar();
 	bool Agregar(cAvion* cubo); 	 //retorna true si fue un éxito 

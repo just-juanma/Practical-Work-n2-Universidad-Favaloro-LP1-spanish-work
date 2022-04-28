@@ -39,9 +39,9 @@
 //	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
 //	if (estadoActual == volando)
 //	{
-//		bool permiso = aeropuerto1.darPermiso();  //esto solo chequea si entra un avion mas en el hangar
+//		bool permiso = aeropuerto1.darPermiso();  //aca se da el permiso y se setea el vuelo
 //		if (permiso == true)
-//			avion1->recibirPermiso();	//esto setea al avion y al vuelo en aterrizado una vez que tiene el ok
+//			avion1->recibirPermiso();	//esto setea al avion una vez que tiene el ok
 //										//Aca solo se setea el avion no el vuelo OJOOOO
 // }
 //  else

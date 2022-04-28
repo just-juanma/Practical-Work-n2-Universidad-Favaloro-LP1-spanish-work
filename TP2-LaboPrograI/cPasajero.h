@@ -26,7 +26,7 @@ public:
     /// <param name="_numeroVuelo">: Numero de vuelo del pasajero</param>
     /// <param name="_asiento">: Numero de asiento del pasajero</param>
     cPasajero(string _nombre = "", string _DNI = "",
-        sh _numeroVuelo = 0, sh _asiento = 0);
+              sh _numeroVuelo = 0, sh _asiento = 0);
 
     /// <summary>
     /// Destructor por defecto

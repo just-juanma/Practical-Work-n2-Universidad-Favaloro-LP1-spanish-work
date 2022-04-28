@@ -11,6 +11,7 @@ class cFecha
 
     #pragma region Friend classes
 
+    friend class cAeropuerto;
     friend class cVuelo;
     friend class cPasajero;
     friend class cVuelo;
