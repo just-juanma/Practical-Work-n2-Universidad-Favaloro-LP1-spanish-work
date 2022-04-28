@@ -9,6 +9,7 @@ sh cValija::cantTotal = 0;
 
 cValija::cValija(float _peso) {
 	// inicializacion de los atributos
+	// por cada obj. generado, aumento su capacidad actual
 	cantActual++;
 	this->peso = _peso;
 }
