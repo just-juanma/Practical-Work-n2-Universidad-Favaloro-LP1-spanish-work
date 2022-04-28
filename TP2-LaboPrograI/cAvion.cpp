@@ -31,14 +31,14 @@ eEstado cAvion::pedirPermiso() {
 	return this->estado;
 }
 
-void cAvion::recibirPermiso(cAvion* avion) {
+void cAvion::recibirPermiso(cAvion* avion) { //cambiar los dos 10 por el numero de aviones en aeropuerto
 	sh i, j;
 	avion->estado = aterrizado;
 	try
 	{
 		for (i = 0; i < cVuelo::numero; i++)
 		{
-			if (cAeropuerto::listaVuelos->listaVuelo[i]->avion->getid() == avion->ID)
+			if (cAeropuerto::listaVuelos->listaVuelo[i]->avion->getid() == this->ID)
 			{
 				cAeropuerto::listaVuelos->listaVuelo[i]->estado = aterrizado; break;
 			}		
