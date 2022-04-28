@@ -5,9 +5,10 @@
 
 class cListaVuelo
 {
-
+	
 	#pragma region Friend classes 
 
+	friend class cAeropuerto;
 	friend class cAvion;
 
 	#pragma endregion

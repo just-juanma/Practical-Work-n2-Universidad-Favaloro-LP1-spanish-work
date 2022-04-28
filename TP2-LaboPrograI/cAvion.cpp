@@ -50,23 +50,7 @@ eEstado cAvion::pedirPermiso() {
 }
 
 void cAvion::recibirPermiso(cAvion* avion) { //cambiar los dos 10 por el numero de aviones en aeropuerto
-	sh i, j;
 	avion->estado = aterrizado;
-	try
-	{
-		for (i = 0; i < cVuelo::numero; i++)
-		{
-			if (cAeropuerto::listaVuelos->listaVuelo[i]->avion->getid() == this->ID)
-			{
-				cAeropuerto::listaVuelos->listaVuelo[i]->estado = aterrizado; break;
-			}		
-		}
-		if (i == cVuelo::numero); throw "AVION_NO_REGISTRADO";
-	}catch (const char* msg)
-	{
-		cout << msg << endl;
-	}
-	
 }
 
 void cAvion::despegar() {

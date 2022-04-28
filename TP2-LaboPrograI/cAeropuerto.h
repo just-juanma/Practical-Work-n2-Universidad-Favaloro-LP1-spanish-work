@@ -16,9 +16,7 @@ public:
         /// Constructor parametrizado
         /// </summary>
         /// <param name="totalAeropuerto"></param>
-        cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar);
-
-        cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar);
+        cAeropuerto(const string _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar);
 
         /// <summary>
         /// Destructor por defecto
@@ -38,7 +36,7 @@ public:
 
 private: 
   
-    const ush ID;
+    const string ID;
     const string nombre;
     ush capacidadAeropuerto;
     cListaVuelo *listaVuelos;

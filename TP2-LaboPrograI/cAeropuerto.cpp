@@ -1,6 +1,6 @@
 #include "cAeropuerto.h"
 
-cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar) : ID(_ID), nombre(_nombre) {
+cAeropuerto::cAeropuerto(const string _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar) : ID(_ID), nombre(_nombre) {
 	capacidadAeropuerto = _capacidadAeropuerto;
 	listaVuelos = NULL;
 	hangar = NULL;
@@ -11,10 +11,27 @@ cAeropuerto::~cAeropuerto() {
 
 bool cAeropuerto::darPermiso() {
 	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima, de no ser asi lanzo una excepcion
+	sh i;
 	try
 	{
 		if (cAvion::getnAviones() < capacidadAeropuerto)
 		{
+			try
+			{
+				for ( i = 0; i < cVuelo::numero; i++)
+				{
+					if (this->listaVuelos->listaVuelo[i]->avion->getid() == this->ID)
+					{
+						this->listaVuelos->listaVuelo[i]->estado = aterrizado; break;
+					}
+				}
+				if (i == cVuelo::numero); throw "AVION_NO_REGISTRADO";
+			}
+			catch (const char* msg)
+			{
+				cout << msg << endl;
+			}
+
 			return true;
 		}
 		else throw "ERROR: HANGAR_CAPACIDAD_LLENA";
