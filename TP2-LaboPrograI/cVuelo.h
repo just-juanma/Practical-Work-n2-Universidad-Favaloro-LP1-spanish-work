@@ -4,12 +4,12 @@
 #include "cAvion.h"
 #include "cFecha.h"
 #include "cListaPasajero.h"
-#include "cPasajero.h"
 
 class cVuelo {
 
 	#pragma region Friend classes
 
+	friend ostream& operator << (ostream& out, const cVuelo& _vuelo);
 	friend class cListaVuelo;
 	friend class cAeropuerto;
 	friend class cAvion;

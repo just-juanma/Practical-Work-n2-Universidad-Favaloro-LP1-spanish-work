@@ -3,7 +3,7 @@
 //#include "cPasajero.h"
 //#include "cListaAvion.h"
 //#include "cAvion.h"
-//int main() {
+int main() {
 //
 //	/* PRUEBA VUELO */
 //
@@ -52,4 +52,4 @@
 //  }
 //	
 //	return 0;
-//}
+}

@@ -1,7 +1,6 @@
 #ifndef _CPASAJERO_H
 #define _CPASAJERO_H
 #include "gbl.h"
-#include "cValija.h"
 #include "cListaValija.h"
 #include "cFecha.h"
 
