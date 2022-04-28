@@ -81,6 +81,9 @@ void cAvion::setestado(eEstado _estado) {
 	this->estado = _estado;
 }
 
+void cAvion::setfecha(cFecha* _fecha) {
+	this->partida = _fecha;
+}
 #pragma endregion
 
 #pragma region getters
@@ -99,6 +102,10 @@ eEstado cAvion::getestado() {
 
 string cAvion::getid() {
 	return this->ID;
+}
+
+cFecha* cAvion::getfecha() {
+	return this->partida;
 }
 #pragma endregion
 
