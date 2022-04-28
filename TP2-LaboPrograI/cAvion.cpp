@@ -1,29 +1,45 @@
 #include "cAvion.h"
 #include "cAeropuerto.h"
 
+#pragma region Constructor y destructor + variables estaticas
 cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID) {
 	this->totalPasajeros = _totalPasajeros; 
 	this->pesoMaximo = _pesoMaximo; 
 	this->nPasajeros = _nPasajeros; // remplazar por 0, ya que no hay nadie en el avion caundo se termine de construir este
 	this->permiso = -1;
 	this->ID = _ID; 
+	nAviones++;
 }
 
-void cAvion::setListaPasajero(cListaPasajero* _pasajeros,int _nPasajeros) {
-	//this->nPasajeros = this->Listapasajeros->cantidad; // que me devuelva la cantidad de pasajeros agregados en la lista
-	this->Listapasajeros = _pasajeros;
-	this->nPasajeros = _nPasajeros;
+
+cAvion::~cAvion() {
+	nAviones--;
 }
 
+int cAvion::nAviones = 0;
+#pragma endregion
+
+
+#pragma region funcionalidad propia de la clase
 bool cAvion::chequearCargaMaxima() {
-	float pesotot = (float)this->nPasajeros * 75 +(float)(4 * 75);
-	for (int i = 0; i < this->nPasajeros; i++) {
-		pesotot += this->Listapasajeros[0][i]->getPesoTotalEquipaje();
+	try {
+		float pesotot = (float)this->nPasajeros * 75 + (float)(4 * 75);
+		for (int i = 0; i < this->nPasajeros; i++) {
+			pesotot += this->Listapasajeros[0][i]->getPesoTotalEquipaje();
+		}
+		if (pesotot < this->pesoMaximo) {
+			return true;
+		}
+		else {
+			throw "Peso mayo al debido";
+		}
+		
 	}
-	if (pesotot < this->pesoMaximo) {
-		return true; 
+	catch (const char* msg) {
+		cout << msg << endl;
+
 	}
-	return false;
+	
 
 }
 
@@ -44,8 +60,7 @@ void cAvion::recibirPermiso(cAvion* avion) {
 			}		
 		}
 		if (i == 10); throw "AVION_NO_REGISTRADO";
-	}
-	catch (const char* msg)
+	}catch (const char* msg)
 	{
 		cout << msg << endl;
 	}
@@ -55,14 +70,30 @@ void cAvion::recibirPermiso(cAvion* avion) {
 }
 
 void cAvion::despegar() {
-	this->pedirPermiso();
+	this->pedirPermiso(); //ver finalmente como es el tema de cambiar el estado quiza es reiterativo 
 	this->estado = volando;
 }
 
 void cAvion::aterrizar() {
-	this->estado = aterrizado; 
+	this->estado = aterrizado; //ver si llamo a la funcion pedirPermiso()
 }
 
+#pragma endregion
+
+#pragma region setters
+void cAvion::setListaPasajero(cListaPasajero* _pasajeros, int _nPasajeros) {
+	//this->nPasajeros = this->Listapasajeros->cantidad; // que me devuelva la cantidad de pasajeros agregados en la lista
+	this->Listapasajeros = _pasajeros;
+	this->nPasajeros = _nPasajeros;
+}
+
+void cAvion::setestado(eEstado _estado) {
+	this->estado = _estado;
+}
+
+#pragma endregion
+
+#pragma region getters
 int cAvion::getcantpasajeros() {
 	return this->nPasajeros;
 }
@@ -75,9 +106,11 @@ eEstado cAvion::getestado() {
 	return this->estado;
 }
 
+
 string cAvion::getid() {
 	return this->ID;
 }
+#pragma endregion
 
 string cAvion::to_string() {
 	stringstream stc;
@@ -86,8 +119,13 @@ string cAvion::to_string() {
 	stc << "nPasajeros: " << this->nPasajeros << endl;
 	stc << "estado: " << this->estado << endl;
 	return stc.str();
-	//this->Listapasajeros.imprimir();
+	for (int i = 0; i < this->nPasajeros; i++) {
+		this->Listapasajeros[0][i]->imprimir();
+	}
+	
 }
+
+
 
 void cAvion::imprimir() {
 	cout << to_string();
