@@ -9,7 +9,6 @@ class cVuelo {
 
 	#pragma region Friend classes
 
-	friend ostream& operator << (ostream& out, const cVuelo& _vuelo);
 	friend class cListaVuelo;
 	friend class cAeropuerto;
 	friend class cAvion;
@@ -152,10 +151,7 @@ private:
 /// <param name="out">: Flujo de salida</param>
 /// <param name="_vuelo">: Impresion del vuelo indicado</param>
 /// <returns>Nuevo flujo de salida</returns>
-ostream& operator << (ostream& out, const cVuelo& _vuelo) { 
-	out << _vuelo.to_string(); 
-	return out;
-}
+ostream& operator << (ostream& out, const cVuelo& _vuelo);
 
 #pragma endregion
 

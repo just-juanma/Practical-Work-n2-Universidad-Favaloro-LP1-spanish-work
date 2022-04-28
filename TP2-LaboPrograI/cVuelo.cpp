@@ -33,3 +33,8 @@ string cVuelo::to_string()const {
 	stc << "Fecha y hora del destino: " << this->arribo << endl;
 	return stc.str();
 }
+
+ostream& operator << (ostream& out, cVuelo& _vuelo) {
+	out << _vuelo.to_string();
+	return out;
+}
