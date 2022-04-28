@@ -1,13 +1,10 @@
-/*
-Solamente nos interesa el peso de la valija, y se encuentra en la presente clase
-*/
 #ifndef _CVALIJA_H
 #define _CVALIJA_H
 #include "gbl.h"
 class cValija
 {
 
-	#pragma region friend classes
+	#pragma region Friend classes
 
 	friend class cListaValija;
 	friend class cPasajero;
@@ -17,13 +14,14 @@ class cValija
 
 public:
 
-	#pragma region constructor y destructor
+	#pragma region Constructor y destructor
 
 	/// <summary>
 	/// Constructor parametrizado
 	/// </summary>
 	/// <param name="_peso">Recibira un peso (en kilogramos) </param>
 	cValija(float _peso = 0);
+
 	/// <summary>
 	/// Destructor por defecto
 	/// </summary>
@@ -31,10 +29,10 @@ public:
 
 	#pragma endregion
 
-	#pragma region metodos
+	#pragma region Metodos
 
 	/// <summary>
-	/// Concatena a un solo string los atributos pertinentes a la fecha
+	/// Concatena a un solo string los atributos pertinentes
 	/// </summary>
 	/// <returns></returns>
 	string to_string() const;
@@ -48,12 +46,16 @@ public:
 
 private:
 
+	#pragma region Atributos
+
 	// static
 	static ush cantActual;
 	static sh cantTotal;
 
-	// interno de la clase
+	// interno
 	float peso;
+
+	#pragma endregion
 
 };
 

@@ -3,29 +3,54 @@
 // implementacion cListaPasajero
 
 cListaValija::cListaValija(sh size, bool _checkEliminar) {
+	// inicializacion de los atributos
 	this->checkEliminar = _checkEliminar;
-	// generacion de la lista dinamica
-	this->listaValija = new cValija * [size];
+	try {
+		this->listaValija = new cValija * [size];
+	}
+	catch (bad_alloc&) {
+		cout << "Error: Fallo en la asignacion de memoria dinamica de la lista de valijas. El programa se termina";
+		abort();
+	}
 	cValija::cantTotal = size;
-	// por cada objeto que exista, apunto un nuevo puntero a NULL (para control de posibles errores)
 	for (ush i = 0; i < cValija::cantActual; i++)
 		this->listaValija[i] = NULL;
 }
 
 cListaValija::~cListaValija() {
-	if (checkEliminar)
-		for (ush i = 0; i < cValija::cantTotal; i++)
-			if (this->listaValija[i])
-				delete listaValija[i];
-	delete[] this->listaValija;
-	cValija::cantTotal;
+	try {
+		if (checkEliminar) {
+			for (ush i = 0; i < cValija::cantTotal; i++)
+				if (this->listaValija[i])
+					delete listaValija[i];
+			delete[] this->listaValija;
+			cValija::cantTotal = 0;
+
+		}
+		else
+			throw "Error: No se puede destruir el objeto de la lista de valijas si no se le da el permiso para eliminarlo. El programa se termina";
+	}
+	catch (const char* msg) {
+		cout << msg << endl;
+		abort();
+	}
 }
 
 bool cListaValija::agregar(cValija* valija) {
-	if (cValija::cantActual >= cValija::cantTotal)
+	try {
+		if (cValija::cantActual >= cValija::cantTotal)
+			throw "Error: la cantidad actual de valijas supera a la total permitida";
+		if (!listaValija[cValija::cantActual]) {
+			this->listaValija[cValija::cantActual] = valija;
+			return true;
+		}
+		else
+			throw "Error: Ya existe una valija en la posicion donde se lo esta intentando agregar de la lista";
+	}
+	catch (const char* msg) {
+		cout << msg << endl;
 		return false;
-	this->listaValija[cValija::cantActual] = valija;
-	return true;
+	}
 }
 
 bool cListaValija::eliminar(cValija* valija) {

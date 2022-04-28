@@ -13,7 +13,7 @@ cFecha::cFecha(sh _dia, sh _mes, sh _anio, sh _hora) {
 			this->hora = _hora;
 		}
 		else
-			throw "Se esta especificando una fecha invalida";
+			throw "Error: Se esta especificando una fecha invalida";
 	}
 	catch (const char* msg) {
 		cout << msg << endl;

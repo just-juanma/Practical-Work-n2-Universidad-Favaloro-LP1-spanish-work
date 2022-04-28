@@ -4,9 +4,13 @@
 
 // implementacion cVuelo
 
+// inicializacion atributos estaticos
 ush cVuelo::numero = 0;
 sh cVuelo::cantTotal = 0;
+
 cVuelo::cVuelo(bool _PoA, eEstado _estado, ePosiblesDestinos _ciudad) {
+	// inicializacion de los atributos
+	// por cada obj. generado, aumento su capacidad actual
 	numero++;
 	this->PoA = _PoA;
 	this->estado = _estado;
@@ -16,18 +20,9 @@ cVuelo::cVuelo(bool _PoA, eEstado _estado, ePosiblesDestinos _ciudad) {
 }
 
 cVuelo::~cVuelo() {
+	// por cada obj. destruido, disminuyo su capacidad actual
 	numero--;
 }
-
-//float cVuelo::getPesoTotal(cListaPasajero* _listaPasajerosAvion) {
-//	float pesoValijasVuelo = 0;
-//	if (_listaPasajerosAvion) {
-//		//for (ush i = 0; i < avion->getCantPasajeros(); i++)
-//			//pesoValijasVuelo += _listaPasajerosAvion->listaPasajero[i]->pesoTotalEquipaje->peso;
-//		return pesoValijasVuelo;
-//	}
-//}
-
 
 string cVuelo::to_string()const {
 	stringstream stc;

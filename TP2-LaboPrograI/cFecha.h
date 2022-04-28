@@ -5,10 +5,11 @@ Tiene que ser una fecha del anio 2022 y la hora idealmente sera en formato de 24
 #ifndef _CFECHA_H
 #define _CFECHA_H
 #include "gbl.h"
+
 class cFecha 
 {
 
-    #pragma region friend classes
+    #pragma region Friend classes
 
     friend class cVuelo;
     friend class cPasajero;
@@ -18,11 +19,15 @@ class cFecha
 
 public: 
 
-    #pragma region constructor y destructor
+    #pragma region Constructor y destructor
 
     /// <summary>
-    /// Constructor por defecto
+    /// Constructor parametrizado por defecto
     /// </summary>
+    /// <param name="_dia">: Dia de la fecha</param>
+    /// <param name="_mes">: Mes de la fecha</param>
+    /// <param name="_anio">: Anio de la fecha</param>
+    /// <param name="_hora">: Hora de la fecha</param>
     cFecha(sh _dia = 0, sh _mes = 0, sh _anio = 0, sh _hora = 0);
 
     /// <summary>
@@ -32,10 +37,10 @@ public:
 
     #pragma endregion
 
-    #pragma region metodos
+    #pragma region Metodos
 
     /// <summary>
-    /// Concatena a un solo string los atributos pertinentes a la fecha
+    /// Concatena a un solo string los atributos pertinentes
     /// </summary>
     /// <returns>String concatenado</returns>
     string to_string()const;
@@ -60,7 +65,7 @@ private:
 
    #pragma endregion
 
-    #pragma region atributos
+    #pragma region Atributos
 
     // interno de la clase
     sh dia;

@@ -20,20 +20,37 @@ cListaVuelo::~cListaVuelo() {
 }
 
 bool cListaVuelo::agregar(cVuelo* vuelo) {
-	if (cVuelo::numero >= cVuelo::cantTotal)
+	try {
+		if (cVuelo::numero >= cVuelo::numero)
+			throw "Error: la cantidad actual de vuelos supera a la total permitida";
+		if (!listaVuelo[cVuelo::numero]) {
+			this->listaVuelo[cVuelo::numero] = vuelo;
+			return true;
+		}
+		else
+			throw "Error: Ya existe un vuelo en la posicion donde se lo esta intentando agregar de la lista";
+	}
+	catch (const char* msg) {
+		cout << msg << endl;
 		return false;
-	this->listaVuelo[cVuelo::numero] = vuelo;
-	return true;
+	}
 }
 
 bool cListaVuelo::eliminar(sh pos) {
-	if (pos >= 0 && this->listaVuelo[pos]) {
-		delete this->listaVuelo[pos];
-		this->listaVuelo[pos] = NULL;
-		ordenar();
-		return true;
+	try {
+		if (pos >= 0 && this->listaVuelo[pos] && pos < cVuelo::numero) {
+			delete this->listaVuelo[pos];
+			this->listaVuelo[pos] = NULL;
+			ordenar();
+			return true;
+		}
+		else
+			throw "Error: No se puede eliminar una posicion que no existe en la lista de vuelo";
 	}
-	return false;
+	catch (const char* msg) {
+		cout << msg << endl;
+		return false;
+	}
 }
 
 void cListaVuelo::ordenar() {
@@ -47,7 +64,8 @@ void cListaVuelo::ordenar() {
 			break;
 	}
 }
-string cListaVuelo::to_string() {
+
+string cListaVuelo::to_string()const {
 	stringstream stc;
 	stc << "Checkeo de eliminar (true / si) (false / no): " << checkEliminar << endl;
 	stc << "Referencia de ciudades: (0) sin destino, (1) Jerusalen, (2) Beerseva, (3) Eilat" << endl;
