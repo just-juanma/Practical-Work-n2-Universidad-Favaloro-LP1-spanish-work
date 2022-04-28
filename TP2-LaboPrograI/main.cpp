@@ -36,7 +36,7 @@
 //	//avion1->setAeropuerto(EZEIZA);
 //
 //	/*SISTEMA DE PERMISOS*/
-//	eEstado estadoActual = avion1->getestado(); //esto solo devuelve el estado actual del avion
+//	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
 //	if (estadoActual == volando)
 //	{
 //		bool permiso = aeropuerto1.darPermiso();  //esto solo chequea si entra un avion mas en el hangar
