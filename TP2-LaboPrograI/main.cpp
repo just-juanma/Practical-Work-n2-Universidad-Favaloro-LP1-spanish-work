@@ -48,7 +48,7 @@
 //  {
 //		avion1->recibirPermiso(cFecha partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
 //								               // pesoMaximo no fue superado, entonces despega
-//		aca se maneja el despegue
+//		aca se maneja el despegue 
 //  }
 //	
 //	return 0;

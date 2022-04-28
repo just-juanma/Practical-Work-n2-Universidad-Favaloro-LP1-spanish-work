@@ -59,6 +59,7 @@ public:
     cListaPasajero* getListaPasajero();
     int getcantpasajeros();
     eEstado getestado();
+    cFecha* getfecha();
     string to_string();
     void imprimir();
 #pragma endregion
