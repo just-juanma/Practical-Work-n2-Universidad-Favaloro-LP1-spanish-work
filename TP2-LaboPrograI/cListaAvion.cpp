@@ -6,7 +6,13 @@ cListaAvion::cListaAvion(int L)
 	this->capacidad = L;
 	this->ocupados = 0; 
 	cAvion** Listalocal;
-	Listalocal = new cAvion * [capacidad];
+	try {
+		Listalocal = new cAvion * [capacidad];
+	}
+	catch (bad_alloc&) {
+		cout << "Error: Fallo en la asignacion de memoria dinamica. El programa se termina";
+			abort();
+	}
 	for(int i = 0; i < this->capacidad; i++) {
 		Listalocal[i] = NULL;
 	}

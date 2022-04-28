@@ -3,6 +3,7 @@
 #include "gbl.h"
 #include "cListaPasajero.h"
 class cAvion {
+
 public:
 #pragma region constructor y destructor 
 
@@ -47,6 +48,7 @@ public:
     /// </summary> 
     /// Al ser desde la clase cAeropuerto no es dar es recibir permiso
     void setestado(eEstado _estado);
+    static ush getnAviones();
     void recibirPermiso(cAvion* avion);
     eEstado pedirPermiso();
     string getid();
@@ -63,7 +65,7 @@ private:
     unsigned int nPasajeros;
     unsigned int pesoMaximo;
     cListaPasajero* Listapasajeros;
-    eEstado estado; //reemplazar por vuelo
+    eEstado estado; 
     int permiso;
     static int nAviones;
 };

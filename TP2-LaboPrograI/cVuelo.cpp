@@ -15,7 +15,7 @@ cVuelo::cVuelo(bool _PoA, eEstado _estado, ePosiblesDestinos _ciudad) {
 	this->PoA = _PoA;
 	this->estado = _estado;
 	this->ciudad = _ciudad;
-	this->vuelo = NULL;
+	this->vuelo = NULL; 
 	this->destino = NULL;
 }
 
