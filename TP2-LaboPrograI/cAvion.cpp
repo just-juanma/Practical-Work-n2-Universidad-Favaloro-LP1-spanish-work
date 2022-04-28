@@ -1,5 +1,4 @@
 #include "cAvion.h"
-#include "cAeropuerto.h"
 int cAvion::nAviones = 0;
 
 #pragma region Constructor y destructor + variables estaticas
@@ -15,6 +14,7 @@ cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned 
 
 
 cAvion::~cAvion() {
+
 	nAviones--;
 }
 

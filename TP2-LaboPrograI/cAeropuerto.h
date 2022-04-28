@@ -16,7 +16,7 @@ public:
         /// Constructor parametrizado
         /// </summary>
         /// <param name="totalAeropuerto"></param>
-        cAeropuerto(string _ID="", unsigned int _capacidadAeropuerto=0, string _nombre="");
+        cAeropuerto(string _ID=" ", unsigned int _capacidadAeropuerto=0, string _nombre="");
 
         /// <summary>
         /// Destructor por defecto
@@ -32,7 +32,7 @@ public:
     void imprimir();
     ush cantAterrizados(cFecha* fecha);
     ush cantDespegados(cFecha* fecha);
-    float porcentajeHorarioPartida();
+   // float porcentajeHorarioPartida();
 
     #pragma endregion
 
