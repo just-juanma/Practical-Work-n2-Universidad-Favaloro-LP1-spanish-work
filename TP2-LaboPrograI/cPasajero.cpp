@@ -8,6 +8,8 @@ cPasajero::cPasajero(string _nombre, string _DNI, sh _numeroVuelo, sh _asiento) 
 	cantActual++;
 	this->numeroVuelo = _numeroVuelo;
 	this->asiento = _asiento;
+	this->pesoTotalEquipaje = NULL;
+	this->equipaje = NULL;
 	this->fecha = NULL;
 }
 
@@ -15,7 +17,7 @@ cPasajero::~cPasajero() {
 	cantActual--;
 }
 
-string cPasajero::to_string() {
+string cPasajero::to_string()const {
 	stringstream stc;
 	stc << "Nombre: " << this->nombre << endl;
 	stc << "DNI: " << this->DNI << endl;
