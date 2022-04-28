@@ -36,15 +36,18 @@
 //	//avion1->setAeropuerto(EZEIZA);
 //
 //	/*SISTEMA DE PERMISOS*/
-//	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
+//	eEstado estadoActual = avion1->getestado(); //esto solo devuelve el estado actual del avion
 //	if (estadoActual == volando)
 //	{
 //		bool permiso = aeropuerto1.darPermiso();  //esto solo chequea si entra un avion mas en el hangar
 //		if (permiso == true)
 //			avion1->recibirPermiso();	//esto setea al avion y al vuelo en aterrizado una vez que tiene el ok
-//	}
+//										//Aca solo se setea el avion no el vuelo OJOOOO
+// }
 //  else
 //  {
+//		avion1->recibirPermiso(cFecha partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
+//								               // pesoMaximo no fue superado, entonces despega
 //		aca se maneja el despegue
 //  }
 //	

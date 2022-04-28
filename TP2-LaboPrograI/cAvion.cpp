@@ -23,6 +23,14 @@ cAvion::~cAvion() {
 
 
 #pragma region funcionalidad propia de la clase
+
+
+void cAvion::recibirPermiso(cFecha* fecha) { //cambiar los dos 10 por el numero de aviones en aeropuerto
+	this->chequearCargaMaxima();
+	this->setfecha(fecha);
+	this->despegar();
+}
+
 bool cAvion::chequearCargaMaxima() {
 	try {
 		float pesotot = (float)this->nPasajeros * 75 + (float)(4 * 75);
@@ -45,21 +53,19 @@ bool cAvion::chequearCargaMaxima() {
 
 }
 
-eEstado cAvion::pedirPermiso() {
+eEstado cAvion::pedirPermiso() { //Debido a que el "pedir permiso" se ejecuta "automaticamente" en el main 
+								 //
 	return this->estado;
 }
 
-void cAvion::recibirPermiso(cAvion* avion) { //cambiar los dos 10 por el numero de aviones en aeropuerto
-	avion->estado = aterrizado;
-}
 
 void cAvion::despegar() {
-	this->pedirPermiso(); //ver finalmente como es el tema de cambiar el estado quiza es reiterativo 
+	//this->pedirPermiso(); //ver finalmente como es el tema de cambiar el estado quiza es reiterativo 
 	this->estado = volando;
 }
 
 void cAvion::aterrizar() {
-	this->estado = aterrizado; //ver si llamo a la funcion pedirPermiso()
+	this->estado = aterrizado; 
 }
 
 #pragma endregion
