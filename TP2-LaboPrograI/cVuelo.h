@@ -2,7 +2,6 @@
 #define _CVUELO_H
 #include "gbl.h"
 #include "cAvion.h"
-#include "cAeropuerto.h"
 #include "cFecha.h"
 #include "cListaPasajero.h"
 #include "cPasajero.h"
@@ -110,12 +109,6 @@ public:
 	/// <param name="_avion">: Avion a setear</param>
 	void setAvion(cAvion* _avion) { this->avion = _avion; }
 
-	/// <summary>
-	/// Setea el aeropuerto asociado al vuelo
-	/// </summary>
-	/// <param name="_aeropuerto">: Aeropuerto a setear</param>
-	void setAeropuerto(cAeropuerto* _aeropuerto) { this->aeropuerto = _aeropuerto; }
-
 	// consultar bato 
 	void setEstadoVuelo() {	/*estado = avion->getEstado();*/ }
 
@@ -143,7 +136,6 @@ private:
 	cFecha* vuelo;
 	cFecha* arribo;
 	cAvion* avion; 
-	cAeropuerto* aeropuerto;
 	cListaPasajero* claselistaPasajero;
 
 	// interno
@@ -160,7 +152,10 @@ private:
 /// <param name="out">: Flujo de salida</param>
 /// <param name="_vuelo">: Impresion del vuelo indicado</param>
 /// <returns>Nuevo flujo de salida</returns>
-ostream& operator << (ostream& out, const cVuelo& _vuelo) { return out << _vuelo.to_string(); }
+ostream& operator << (ostream& out, const cVuelo& _vuelo) { 
+	out << _vuelo.to_string(); 
+	return out;
+}
 
 #pragma endregion
 

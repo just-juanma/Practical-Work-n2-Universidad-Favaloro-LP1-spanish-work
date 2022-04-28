@@ -1,6 +1,6 @@
 #include "cAeropuerto.h"
 
-cAeropuerto::cAeropuerto(const string _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar) : ID(_ID), nombre(_nombre) {
+cAeropuerto::cAeropuerto(const string _ID, unsigned int _capacidadAeropuerto, const string _nombre) : ID(_ID), nombre(_nombre) {
 	capacidadAeropuerto = _capacidadAeropuerto;
 	listaVuelos = NULL;
 	hangar = NULL;

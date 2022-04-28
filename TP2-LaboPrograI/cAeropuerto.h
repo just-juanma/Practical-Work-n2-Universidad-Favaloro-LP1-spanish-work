@@ -1,10 +1,8 @@
 #ifndef _CAEROPUERTO_H
 #define _CAEROPUERTO_H
 #include "gbl.h"
-#include "cVuelo.h"
 #include "cListaAvion.h"
 #include "cListaVuelo.h"
-#include "cAvion.h"
 
 class cAeropuerto {
     friend class cAvion;
@@ -16,7 +14,7 @@ public:
         /// Constructor parametrizado
         /// </summary>
         /// <param name="totalAeropuerto"></param>
-        cAeropuerto(const string _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar);
+        cAeropuerto(const string _ID, unsigned int _capacidadAeropuerto, const string _nombre);
 
         /// <summary>
         /// Destructor por defecto
