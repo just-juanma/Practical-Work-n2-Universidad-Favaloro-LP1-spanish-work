@@ -23,11 +23,12 @@ public:
 
     #pragma region metodos
 
-    string to_string();
-    void imprimir() { cout << to_string() << endl; }
+    string to_string()const;
+    void imprimir()const { cout << to_string() << endl; }
 
     #pragma endregion
 private: 
+   // bool isValid(sh _dia, sh _mes, sh _anio, sh _hora);
     sh dia;
     sh mes;
     sh anio;

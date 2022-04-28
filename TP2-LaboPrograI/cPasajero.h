@@ -23,23 +23,45 @@ public:
     #pragma region metodos
 
     cValija* operator+(cValija& _equipaje) {
-        if (_equipaje.peso > 0 && this->pesoTotalEquipaje->peso < 25)
-            if (equipaje->agregar(&_equipaje)) {
-                this->pesoTotalEquipaje->peso += _equipaje.peso;
-                return pesoTotalEquipaje; // retorno el peso total del equipaje del pasajero
+        try {
+            if (_equipaje.peso > 0) {
+                if (this->pesoTotalEquipaje->peso < 25) {
+                    if (equipaje->agregar(&_equipaje)) {
+                        this->pesoTotalEquipaje->peso += _equipaje.peso;
+                        return pesoTotalEquipaje; // retorno el peso total del equipaje del pasajero
+                    }
+                    else 
+                        throw "No se pudo agregar el equipaje";
+                }
+                else 
+                    throw "Se alcanzo el equipaje maximo que puede llevar el pasajero";
             }
-            else return NULL;
+            else 
+                throw "El peso no puede ser negativo o cero";
+        }
+        catch (const char* msg) {
+            cout << msg << endl;
+            return NULL;
+        }
     }
     cValija* operator-(cValija& _equipaje) {
-        if (equipaje->eliminar(&_equipaje)) {
-            this->pesoTotalEquipaje->peso -= _equipaje.peso;
-            return pesoTotalEquipaje;
+        try {
+            if (equipaje->eliminar(&_equipaje)) {
+                this->pesoTotalEquipaje->peso -= _equipaje.peso;
+                return pesoTotalEquipaje;
+            }
+            else 
+                throw "No se pudo eliminar el equipaje";
         }
-        else return NULL;
+        catch (const char* msg) {
+            cout << msg << endl;
+            return NULL;
+        }
+     
     }
     float getPesoTotalEquipaje()const { return pesoTotalEquipaje->peso; }
-    string to_string();
-    void imprimir() { cout << to_string() << endl; }
+    string to_string()const;
+    void imprimir()const { cout << to_string() << endl; }
 
     #pragma endregion
 
