@@ -35,7 +35,7 @@
 //	//cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
 //	//avion1->setAeropuerto(EZEIZA);
 //
-//	/*PRUEBA PERMISOS*/
+//	/*SISTEMA DE PERMISOS*/
 //	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
 //	if (estadoActual == volando)
 //	{

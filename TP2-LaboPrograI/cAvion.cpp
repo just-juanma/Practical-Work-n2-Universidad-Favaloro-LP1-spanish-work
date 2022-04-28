@@ -1,5 +1,6 @@
 #include "cAvion.h"
 #include "cAeropuerto.h"
+int cAvion::nAviones = 0;
 
 #pragma region Constructor y destructor + variables estaticas
 cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID) {
@@ -8,6 +9,7 @@ cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned 
 	this->nPasajeros = _nPasajeros; // remplazar por 0, ya que no hay nadie en el avion caundo se termine de construir este
 	this->permiso = -1;
 	this->ID = _ID; 
+	this->Listapasajeros = NULL;
 	nAviones++;
 }
 
@@ -16,7 +18,7 @@ cAvion::~cAvion() {
 	nAviones--;
 }
 
-int cAvion::nAviones = 0;
+
 #pragma endregion
 
 
@@ -47,26 +49,24 @@ eEstado cAvion::pedirPermiso() {
 	return this->estado;
 }
 
-void cAvion::recibirPermiso(cAvion* avion) {
+void cAvion::recibirPermiso(cAvion* avion) { //cambiar los dos 10 por el numero de aviones en aeropuerto
 	sh i, j;
 	avion->estado = aterrizado;
 	try
 	{
 		for (i = 0; i < cVuelo::numero; i++)
 		{
-			if (cAeropuerto::listaVuelos->listaVuelo[i]->avion->getid() == avion->ID)
+			if (cAeropuerto::listaVuelos->listaVuelo[i]->avion->getid() == this->ID)
 			{
 				cAeropuerto::listaVuelos->listaVuelo[i]->estado = aterrizado; break;
 			}		
 		}
-		if (i == 10); throw "AVION_NO_REGISTRADO";
+		if (i == cVuelo::numero); throw "AVION_NO_REGISTRADO";
 	}catch (const char* msg)
 	{
 		cout << msg << endl;
 	}
 	
-	//vuelo.setavion(avion)
-	//vuelo.setestado();
 }
 
 void cAvion::despegar() {
@@ -125,7 +125,10 @@ string cAvion::to_string() {
 	
 }
 
-
+ush cAvion::getnAviones()
+{
+	return nAviones;
+}
 
 void cAvion::imprimir() {
 	cout << to_string();

@@ -1,11 +1,9 @@
 #include "cAeropuerto.h"
-// implementation cAeropuerto 
 
-
-unsigned int cAeropuerto::numeroAeropuerto = 0; // inicializo lo estatico
-cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, unsigned int _nVuelos, unsigned int _nAviones, const string _nombre): ID(_ID), nombre(_nombre) {
-	numeroAeropuerto++;
+cAeropuerto::cAeropuerto(const unsigned int _ID, unsigned int _capacidadAeropuerto, const string _nombre, cListaVuelo* listaVuelos, cListaAvion* hangar) : ID(_ID), nombre(_nombre) {
 	capacidadAeropuerto = _capacidadAeropuerto;
+	listaVuelos = NULL;
+	hangar = NULL;
 }
 
 cAeropuerto::~cAeropuerto() {
@@ -15,11 +13,11 @@ bool cAeropuerto::darPermiso() {
 	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima, de no ser asi lanzo una excepcion
 	try
 	{
-		if (nAviones < capacidadAeropuerto)
+		if (cAvion::getnAviones() < capacidadAeropuerto)
 		{
 			return true;
 		}
-		else throw "HANGAR_CAPACIDAD_LLENA";
+		else throw "ERROR: HANGAR_CAPACIDAD_LLENA";
 	}
 	catch (const char* msg)
 	{
@@ -34,8 +32,8 @@ string cAeropuerto::to_string() {
 	stc << "ID:" << ID << endl;
 	stc << "Nombre:" << nombre << endl;
 	stc << "Capacidad:" << capacidadAeropuerto << endl;
-	//stc << "Numero de aviones:" << listaAvionAeropuerto. << endl;
-	stc << "Vuelos disponibles:" << nVuelos << endl;
+	stc << "Numero de aviones:" <<  cAvion::getnAviones << endl;
+	stc << "Vuelos disponibles:" << cVuelo::numero << endl;
 	stc << endl;
 	return stc.str();
 }
