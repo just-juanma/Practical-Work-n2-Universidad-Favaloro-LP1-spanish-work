@@ -160,7 +160,7 @@ private:
 /// <param name="out">: Flujo de salida</param>
 /// <param name="_vuelo">: Impresion del vuelo indicado</param>
 /// <returns>Nuevo flujo de salida</returns>
-ostream& operator << (ostream& out, const cVuelo& _vuelo) { out << _vuelo.to_string(); }
+ostream& operator << (ostream& out, const cVuelo& _vuelo) { return out << _vuelo.to_string(); }
 
 #pragma endregion
 
