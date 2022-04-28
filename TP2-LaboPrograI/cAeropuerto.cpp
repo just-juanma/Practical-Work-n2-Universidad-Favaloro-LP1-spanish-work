@@ -1,15 +1,15 @@
 #include "cAeropuerto.h"
 
-cAeropuerto::cAeropuerto(const string _ID, unsigned int _capacidadAeropuerto, const string _nombre) : ID(_ID), nombre(_nombre) {
-	capacidadAeropuerto = _capacidadAeropuerto;
-	listaVuelos = NULL;
-	hangar = NULL;
+cAeropuerto::cAeropuerto(string _ID, unsigned int _capacidadAeropuerto, string _nombre) : ID(_ID), nombre(_nombre) {
+	this->capacidadAeropuerto = _capacidadAeropuerto;
+	this->listaVuelos = NULL;
+	this->hangar = NULL;
 }
 
 cAeropuerto::~cAeropuerto() {
 }
 
-bool cAeropuerto::darPermiso() {
+bool cAeropuerto::darPermiso(cAvion* avion) {
 	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima, de no ser asi lanzo una excepcion
 	sh i;
 	try
@@ -20,7 +20,7 @@ bool cAeropuerto::darPermiso() {
 			{
 				for ( i = 0; i < cVuelo::numero; i++)
 				{
-					if (this->listaVuelos->listaVuelo[i]->avion->getid() == this->ID)
+					if (this->listaVuelos->listaVuelo[i]->avion->getid() == avion->getid())
 					{
 						this->listaVuelos->listaVuelo[i]->estado = aterrizado; break;
 					}
@@ -44,6 +44,38 @@ bool cAeropuerto::darPermiso() {
 	
 }
 
+ush cAeropuerto::cantAterrizados(cFecha* fecha)
+{
+	ush cont = 0;
+	for (ush i = 0; i < cVuelo::numero  ; i++)
+	{
+		if (listaVuelos->listaVuelo[i]->estado == eEstado::aterrizado &&
+			listaVuelos->listaVuelo[i]->arribo->dia == fecha->dia &&
+			listaVuelos->listaVuelo[i]->arribo->mes == fecha->mes)
+			cont++;
+	}
+	return cont;
+}
+
+ush cAeropuerto::cantDespegados(cFecha* fecha)
+{
+	ush cont = 0;
+	for (ush i = 0; i < cVuelo::numero; i++)
+	{
+		if (listaVuelos->listaVuelo[i]->estado == eEstado::volando &&
+			listaVuelos->listaVuelo[i]->arribo->dia == fecha->dia &&
+			listaVuelos->listaVuelo[i]->arribo->mes == fecha->mes)
+			cont++;
+	}
+	return cont;
+}
+
+//float porcentajeHorarioPartida()
+//{
+//	ush cont = 0;
+//	for(ush i=0; i < cVuelo::numero; i++)
+//}
+
 string cAeropuerto::to_string() {
 	stringstream stc;
 	stc << "ID:" << ID << endl;
@@ -59,3 +91,4 @@ void cAeropuerto::imprimir()
 {
 	cout << to_string();
 }
+
