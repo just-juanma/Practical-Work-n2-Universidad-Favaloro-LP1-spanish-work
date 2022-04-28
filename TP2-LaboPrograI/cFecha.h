@@ -14,7 +14,6 @@ class cFecha
     friend class cAeropuerto;
     friend class cVuelo;
     friend class cPasajero;
-    friend class cVuelo;
 
     #pragma endregion
 

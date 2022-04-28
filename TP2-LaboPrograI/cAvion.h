@@ -12,7 +12,7 @@ public:
     /// <summary>
     /// Constructor parametrizado
     /// <///summary>
-    cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID);
+    cAvion(unsigned int _totalPasajeros = 20, unsigned int _pesoMaximo = 1200, unsigned int _nPasajeros = 20,string _ID = "none");
     /// <summary>
     /// Destructor por defecto
     /// <///summary>

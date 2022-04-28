@@ -70,11 +70,11 @@ ush cAeropuerto::cantDespegados(cFecha* fecha)
 	return cont;
 }
 
-float porcentajeHorarioPartida()
-{
-	ush cont = 0;
-	for(ush i=0; i < cVuelo::numero; i++)
-}
+//float porcentajeHorarioPartida()
+//{
+//	ush cont = 0;
+//	for(ush i=0; i < cVuelo::numero; i++)
+//}
 
 string cAeropuerto::to_string() {
 	stringstream stc;
