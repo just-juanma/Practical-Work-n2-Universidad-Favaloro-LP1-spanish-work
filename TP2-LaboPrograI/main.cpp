@@ -53,7 +53,8 @@ int main() {
 	cListaVuelo* Vuelos = new cListaVuelo(aeropuerto1->getcapacidadAeropuerto(), true);
 	Vuelos->agregar(vuelo1);
 	aeropuerto1->setListaVuelos(Vuelos);
-
+	aeropuerto1->setHangar(aviones);
+	
 
 	
 	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
@@ -87,7 +88,6 @@ void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si e
 void setearvuelos(cListaVuelo* vuelos,cAeropuerto* aeropuerto1) {
 	aeropuerto1->setListaVuelos(vuelos);
 }
-
 
 void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones,ush nvuelos) {
 	

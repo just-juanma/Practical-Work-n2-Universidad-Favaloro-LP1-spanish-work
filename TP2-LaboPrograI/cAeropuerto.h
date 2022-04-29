@@ -42,6 +42,7 @@ public:
     ush getcapacidadAeropuerto() { return this->capacidadAeropuerto; };
     void setcapacidadAeropuerto(int _capacidad) { this->capacidadAeropuerto = _capacidad; }
     void setListaVuelos(cListaVuelo* Lista) { this->listaVuelos = Lista; }
+    void setHangar(cListaAvion* Lista) { this->hangar = Lista; }
    // float porcentajeHorarioPartida();
 
     #pragma endregion
