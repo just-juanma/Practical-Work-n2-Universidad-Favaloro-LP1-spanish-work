@@ -30,6 +30,9 @@ public:
     void imprimir();
     ush cantAterrizados(cFecha* fecha);
     ush cantDespegados(cFecha* fecha);
+    ush getcapacidadAeropuerto() { return this->capacidadAeropuerto; };
+    void setcapacidadAeropuerto(int _capacidad) { this->capacidadAeropuerto = _capacidad; }
+    void setListaVuelos(cListaVuelo* Lista) { this->listaVuelos = Lista; }
    // float porcentajeHorarioPartida();
 
     #pragma endregion
