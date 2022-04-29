@@ -6,7 +6,7 @@ cAeropuerto::cAeropuerto(string _ID, ush _capacidadAeropuerto, string _nombre) :
 	// inicializacion de los atributos
 	this->capacidadAeropuerto = _capacidadAeropuerto;
 	this->listaVuelos = NULL;
-	this->hangar = NULL;
+	this->listaAvionesAeropuerto = NULL;
 }
 
 cAeropuerto::~cAeropuerto() {
@@ -15,21 +15,24 @@ cAeropuerto::~cAeropuerto() {
 
 bool cAeropuerto::darPermiso(cAvion* avion) {
 	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima, de no ser asi lanzo una excepcion
-	sh i;
+	sh i=0;
 	try
 	{
-		if (cAvion::getnAviones() < capacidadAeropuerto)
+		if (this->CantAvionesAeropuerto() < capacidadAeropuerto)
 		{
 			try
 			{
-				for ( i = 0; i < cVuelo::numero; i++)
+				for ( i = 0; i< cVuelo::numero;i++)
 				{
-					if (this->listaVuelos->listaVuelo[i]->avion->getid() == avion->getid())
+					string intento = this->listaVuelos->listaVuelo[i]->avion->getid();
+					if ( intento == avion->getid())
 					{
-						this->listaVuelos->listaVuelo[i]->estado = aterrizado; break;
+						this->listaVuelos->listaVuelo[i]->estado = aterrizado; 
+						this->listaAvionesAeropuerto->Agregar(avion);
+						break;
 					}
 				}
-				if (i == cVuelo::numero); throw "AVION_NO_REGISTRADO";
+				if (i > cVuelo::numero) throw "AVION_NO_REGISTRADO";
 			}
 			catch (const char* msg)
 			{
@@ -48,7 +51,17 @@ bool cAeropuerto::darPermiso(cAvion* avion) {
 	
 }
 
-ush cAeropuerto::cantAterrizados(cFecha* fecha)
+ush cAeropuerto::CantAvionesAeropuerto() {
+	ush cont = 0;
+	for (ush i = 0; i < cAvion::getnAviones(); i++)
+	{
+		if (listaAvionesAeropuerto[0][i]->getestado() == eEstado::aterrizado)
+			cont++;
+	}
+	return cont;
+}
+
+ush cAeropuerto::cantAterrizadosDia(cFecha* fecha)
 {
 	ush cont = 0;
 	for (ush i = 0; i < cVuelo::numero  ; i++)

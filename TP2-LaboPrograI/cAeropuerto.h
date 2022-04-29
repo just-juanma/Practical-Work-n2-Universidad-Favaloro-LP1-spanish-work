@@ -9,6 +9,7 @@ class cAeropuerto {
     #pragma region Friend classes
 
     friend class cAvion;
+    friend class main;
 
     #pragma endregion
 
@@ -37,12 +38,13 @@ public:
     bool darPermiso(cAvion* avion);
     string to_string();
     void imprimir();
-    ush cantAterrizados(cFecha* fecha);
+    ush cantAterrizadosDia(cFecha* fecha);
     ush cantDespegados(cFecha* fecha);
     ush getcapacidadAeropuerto() { return this->capacidadAeropuerto; };
     void setcapacidadAeropuerto(int _capacidad) { this->capacidadAeropuerto = _capacidad; }
     void setListaVuelos(cListaVuelo* Lista) { this->listaVuelos = Lista; }
-    void setHangar(cListaAvion* Lista) { this->hangar = Lista; }
+    void setHangar(cListaAvion* Lista) { this->listaAvionesAeropuerto = Lista; }
+    ush CantAvionesAeropuerto();
    // float porcentajeHorarioPartida();
 
     #pragma endregion
@@ -53,7 +55,7 @@ private:
 
     // interno de la clase
     cListaVuelo* listaVuelos;
-    cListaAvion* hangar;
+    cListaAvion* listaAvionesAeropuerto;
     
     // interno
     const string ID;

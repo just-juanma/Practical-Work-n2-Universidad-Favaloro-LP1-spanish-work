@@ -19,7 +19,7 @@ public:
 	void Listar();			//imprime la lista en pantalla
 
 private:
-	cAvion** Lista;
+	cAvion** ListaAviones;
 	unsigned int ocupados;
 	unsigned int capacidad;
 };

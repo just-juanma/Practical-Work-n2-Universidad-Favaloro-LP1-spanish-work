@@ -16,7 +16,7 @@ cListaAvion::cListaAvion(int L)
 	for(int i = 0; i < this->capacidad; i++) {
 		Listalocal[i] = NULL;
 	}
-	this->Lista = Listalocal;
+	this->ListaAviones = Listalocal;
 
 }
 
@@ -24,25 +24,25 @@ cListaAvion::cListaAvion()
 {
 	this->capacidad = MAX;
 	this->ocupados = 0;
-	this->Lista;
+	this->ListaAviones;
 	cAvion** Listalocal;
 	Listalocal = new cAvion * [capacidad];
 	for (int i = 0; i < this->capacidad; i++) {
 		Listalocal[i] = NULL;
 
 	}
-	this->Lista = Listalocal;
+	this->ListaAviones = Listalocal;
 }
 
 cListaAvion::~cListaAvion()
 {
-	if (this->Lista != NULL) {
+	if (this->ListaAviones != NULL) {
 		for (int i = 0; i < ocupados; i++)
 		{
-			if (Lista[i] != NULL)
-				delete Lista[i]; //libera memoria de objetos Tipodato
+			if (ListaAviones[i] != NULL)
+				delete ListaAviones[i]; //libera memoria de objetos Tipodato
 			}
-			delete[]Lista; //libera memoria del array de punteros Tipodato**
+			delete[]ListaAviones; //libera memoria del array de punteros Tipodato**
 		}
 
 	
@@ -50,15 +50,17 @@ cListaAvion::~cListaAvion()
 bool cListaAvion::Agregar(cAvion* _avion) {
 	if (cListaAvion::ocupados >= cListaAvion::capacidad)
 		return false;
-	this->Lista[cListaAvion::ocupados] = _avion;
+	this->ListaAviones[cListaAvion::ocupados] = _avion;
+	cListaAvion::ocupados++;
 	return true;
 }
 
 cAvion* cListaAvion::Quitar(sh posición) {
 	cAvion* aux = NULL; 
 	if (posición < this->ocupados) {
-		aux = this->Lista[posición];
+		aux = this->ListaAviones[posición];
 		this->Eliminar(posición);
+		cListaAvion::ocupados--;
 		this->ordenar();
 		return aux;
 	}return NULL;
@@ -67,9 +69,9 @@ cAvion* cListaAvion::Quitar(sh posición) {
 
 
 bool cListaAvion::Eliminar(sh posición) {
-	if (posición >= 0 && this->Lista[posición]) {
-		delete this->Lista[posición];
-		this->Lista[posición] = NULL;
+	if (posición >= 0 && this->ListaAviones[posición]) {
+		delete this->ListaAviones[posición];
+		this->ListaAviones[posición] = NULL;
 		ordenar();
 		return true;
 	}
@@ -78,7 +80,7 @@ bool cListaAvion::Eliminar(sh posición) {
 int cListaAvion::Buscar(string _id) {
 	for (int i = 0; i < this->ocupados; i++) {
 		string aux; 
-		aux = this->Lista[i]->getid();
+		aux = this->ListaAviones[i]->getid();
 		if (aux==_id) {
 			return i;
 		}
@@ -92,7 +94,7 @@ void cListaAvion::ordenar() {
 	for (ush i = 0; i < this->ocupados - 1; i++) {
 		bool checkSwap = false;
 		for (ush j = 0; j < this->ocupados - i - 1; j++) {
-			swap(this->Lista[j], this->Lista[j + 1]);
+			swap(this->ListaAviones[j], this->ListaAviones[j + 1]);
 			checkSwap = true;
 		}
 		if (!checkSwap)
@@ -102,14 +104,14 @@ void cListaAvion::ordenar() {
 
 void cListaAvion::Listar() {
 	for (sh i = 0; i < this->ocupados; i++) {
-		this->Lista[i]->imprimir();
+		this->ListaAviones[i]->imprimir();
 	}
 }
 
 
 cAvion* cListaAvion::operator[](int posic_i) {
 	if (posic_i >= 0) {
-		return this->Lista[posic_i];
+		return this->ListaAviones[posic_i];
 	}return NULL;
 
 }

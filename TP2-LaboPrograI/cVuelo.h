@@ -125,7 +125,7 @@ public:
 
 	void setID(string _ID) { this->ID = _ID; }
 	
-	ush getCantActual() { return numero; }
+	ush getCantActual()const { return this->numero; }
 
 	#pragma endregion
 

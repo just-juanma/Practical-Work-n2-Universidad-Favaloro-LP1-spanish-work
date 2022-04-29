@@ -38,10 +38,13 @@ int main() {
 	cAvion* avion2 = new cAvion(3,2000,0,"def");
 	cAvion* avion1 = new cAvion(10, 2000, 0, "wrandom");
 	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
+	vuelo1->setAvion(avion2);
 	vuelo1->setID("def");
 	cFecha* fecha1 = new cFecha(1, 1, 2022, 1); 
 	cFecha* fecha2 = new cFecha(1, 1, 2022, 2);
 	vuelo1->setFecha(fecha1,fecha2);
+	avion1->setestado(aterrizado);
+	avion2->setestado(volando);
 	//pasajero1+(objvalija)
 	/*Seteo fecha vuelo*/
 
@@ -58,11 +61,13 @@ int main() {
 
 	
 	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
-	SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, 1);//remplazar el 1 por el getter de la cantidad de vuelos
+	 SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
 
 	/*SISTEMA DE PERMISOS*/
 
-	sistemaPermisos(avion1, aeropuerto1);
+	sistemaPermisos(avion2, aeropuerto1);
+	aviones->Eliminar(0);
+	system("pause");
 
 	return 0;
 }
@@ -75,13 +80,14 @@ void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si e
 		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
 		if (permiso == true)
 			avion1->recibirPermiso(aux);	//esto setea al avion una vez que tiene el ok
-	}
-	else
-	{
+	}else if (estadoActual == aterrizado){
 		cFecha* partida = new cFecha(19, 11, 2022, 11);
 		avion1->recibirPermiso(partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
 											   // pesoMaximo no fue superado, entonces despega
 
+	}
+	else if (estadoActual == sinEstado){
+	cout << "nuevito" << endl;
 	}
 }
  
@@ -97,7 +103,6 @@ void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion
 				vuelos[0][i]->setAvion(aviones[0][j]);
 			}
 		}
-		
 	}
 
 }
