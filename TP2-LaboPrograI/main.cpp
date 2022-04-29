@@ -1,8 +1,14 @@
-//#include "gbl.h"
-//#include "cVuelo.h"
-//#include "cPasajero.h"
-//#include "cListaAvion.h"
-//#include "cAvion.h"
+#include "gbl.h"
+#include "cListaVuelo.h"
+#include "cListaAvion.h"
+#include "cVuelo.h"
+#include "cAvion.h"
+#include "cPasajero.h"
+#include "cAeropuerto.h"
+
+void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1);
+void setearvuelos(cListaVuelo* vuelos, cAeropuerto* aeropuerto1);
+
 int main() {
 //
 //	/* PRUEBA VUELO */
@@ -25,31 +31,44 @@ int main() {
 //	
 //
 //   /*PRUEBA AVION*/
-//	/*cPasajero* pasajero1= new cPasajero("juan", 44789699, 3, 1);
-//	cPasajero* pasajero2 = new cPasajero("juan", 44789699, 3, 1);
-//	cAvion* avion1 = new cAvion(15,175);*/
-//	cListaAvion aviones = cListaAvion(3);
-//	cListaPasajero pasajeros = cListaPasajero(10,true);
-//	cAvion* avion1 = new cAvion(3,2000,0,"def");
-//	aviones.Agregar(avion1);
-//	//cAeropuerto* EZEIZA = new cAeropuerto(1,2, 0, 0,"ezeiza");
-//	//avion1->setAeropuerto(EZEIZA);
-//
-//	/*SISTEMA DE PERMISOS*/
-//	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
-//	if (estadoActual == volando)
-//	{
-//		bool permiso = aeropuerto1.darPermiso();  //aca se da el permiso y se setea el vuelo
-//		if (permiso == true)
-//			avion1->recibirPermiso();	//esto setea al avion una vez que tiene el ok
-//										//Aca solo se setea el avion no el vuelo OJOOOO
-// }
-//  else
-//  {
-//		avion1->recibirPermiso(cFecha partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
-//								               // pesoMaximo no fue superado, entonces despega
-//		aca se maneja el despegue 
-//  }
-//	
-//	return 0;
+	cPasajero* pasajero1= new cPasajero("juan","43444444",123,12);
+	cPasajero* pasajero2 = new cPasajero("juan", "44789699", 3, 1);
+	cListaAvion* aviones = new cListaAvion(3);
+	cAvion* avion2 = new cAvion(3,2000,0,"def");
+	cAvion* avion1 = new cAvion(10, 2000, 0, "wrandom");
+	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
+	
+	/*INICIALIZACION DE AEROPARQUE*/
+	cAeropuerto* aeropuerto1 = new cAeropuerto("11",10,"aeroparque");
+	aeropuerto1->setcapacidadAeropuerto(2);
+	cListaVuelo* Vuelos = new cListaVuelo(aeropuerto1->getcapacidadAeropuerto(), true);
+	
+	aeropuerto1->setListaVuelos(Vuelos);
+	/*SISTEMA DE PERMISOS*/
+
+	sistemaPermisos(avion1, aeropuerto1);
+
+	return 0;
+}
+
+void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {
+	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
+	if (estadoActual == volando) {
+
+		cFecha* aux = new cFecha(19, 11, 2001, 11);
+		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
+		if (permiso == true)
+			avion1->recibirPermiso(aux);	//esto setea al avion una vez que tiene el ok
+	}
+	else
+	{
+		cFecha* partida = new cFecha(19, 11, 2001, 11);
+		avion1->recibirPermiso(partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
+											   // pesoMaximo no fue superado, entonces despega
+
+	}
+}
+ 
+void setearvuelos(cListaVuelo* vuelos,cAeropuerto* aeropuerto1) {
+	aeropuerto1->setListaVuelos(vuelos);
 }
