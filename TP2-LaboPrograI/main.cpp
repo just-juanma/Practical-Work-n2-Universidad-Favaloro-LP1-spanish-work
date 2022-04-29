@@ -38,14 +38,21 @@ int main() {
 	cAvion* avion2 = new cAvion(3,2000,0,"def");
 	cAvion* avion1 = new cAvion(10, 2000, 0, "wrandom");
 	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
-	
+	vuelo1.setid("def")
+	//pasajero1+(objvalija)
+	/*Seteo fecha vuelo*/
+
 	/*INICIALIZACION DE AEROPARQUE*/
+	aviones->Agregar(avion1); 
+	aviones->Agregar(avion2);
 	cAeropuerto* aeropuerto1 = new cAeropuerto("11",10,"aeroparque");
 	aeropuerto1->setcapacidadAeropuerto(2);
 	cListaVuelo* Vuelos = new cListaVuelo(aeropuerto1->getcapacidadAeropuerto(), true);
-	
+	Vuelos->agregar(vuelo1);
 	aeropuerto1->setListaVuelos(Vuelos);
 
+
+	
 	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
 	SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, 1);//remplazar el 1 por el getter de la cantidad de vuelos
 
@@ -84,7 +91,7 @@ void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion
 	for (int i = 0; i < nvuelos;i++) {
 		for (int j = 0; j < cAvion::getnAviones(); j++) {
 			if (vuelos[0][i]->getid() == aviones[0][i]->getid()) {
-				vuelos[0][i]->setAvion(aviones[0][i]);
+				vuelos[0][i]->setAvion(aviones[0][j]);
 			}
 		}
 		

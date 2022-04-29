@@ -108,7 +108,7 @@ void cListaAvion::Listar() {
 
 
 cAvion* cListaAvion::operator[](int posic_i) {
-	if (posic_i >= 0 && posic_i < this->ocupados) {
+	if (posic_i >= 0) {
 		return this->Lista[posic_i];
 	}return NULL;
 
