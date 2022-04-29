@@ -39,6 +39,9 @@ int main() {
 	cAvion* avion1 = new cAvion(10, 2000, 0, "wrandom");
 	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
 	vuelo1->setID("def");
+	cFecha* fecha1 = new cFecha(1, 1, 2022, 1); 
+	cFecha* fecha2 = new cFecha(1, 1, 2022, 2);
+	vuelo1->setFecha(fecha1,fecha2);
 	//pasajero1+(objvalija)
 	/*Seteo fecha vuelo*/
 
@@ -67,14 +70,14 @@ void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si e
 	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
 	if (estadoActual == volando) {
 
-		cFecha* aux = new cFecha(19, 11, 2001, 11); //remplazar por una funcion que retorna el tiempo del proximo vuelo
+		cFecha* aux = new cFecha(19, 11, 2022, 11); //remplazar por una funcion que retorna el tiempo del proximo vuelo
 		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
 		if (permiso == true)
 			avion1->recibirPermiso(aux);	//esto setea al avion una vez que tiene el ok
 	}
 	else
 	{
-		cFecha* partida = new cFecha(19, 11, 2001, 11);
+		cFecha* partida = new cFecha(19, 11, 2022, 11);
 		avion1->recibirPermiso(partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
 											   // pesoMaximo no fue superado, entonces despega
 
