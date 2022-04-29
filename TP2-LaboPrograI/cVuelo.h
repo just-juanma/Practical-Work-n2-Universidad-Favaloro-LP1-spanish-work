@@ -12,6 +12,7 @@ class cVuelo {
 	friend class cListaVuelo;
 	friend class cAeropuerto;
 	friend class cAvion;
+	
 
 	#pragma endregion
 

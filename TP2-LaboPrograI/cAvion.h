@@ -22,6 +22,10 @@
 class cAvion {
 
 public:
+    #pragma region Clases friends
+    #pragma endregion
+
+
     #pragma region Constructor y destructor 
 
     /// <summary>

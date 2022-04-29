@@ -63,6 +63,8 @@ public:
 	/// </summary>
 	void imprimir()const { cout << to_string() << endl; }
 
+	cVuelo* operator[](int posic_i);
+
 	#pragma endregion
 
 private:

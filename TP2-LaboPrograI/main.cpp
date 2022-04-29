@@ -8,6 +8,7 @@
 
 void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1);
 void setearvuelos(cListaVuelo* vuelos, cAeropuerto* aeropuerto1);
+void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones, ush nvuelos);
 
 int main() {
 //
@@ -44,6 +45,10 @@ int main() {
 	cListaVuelo* Vuelos = new cListaVuelo(aeropuerto1->getcapacidadAeropuerto(), true);
 	
 	aeropuerto1->setListaVuelos(Vuelos);
+
+	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
+	SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, 1);//remplazar el 1 por el getter de la cantidad de vuelos
+
 	/*SISTEMA DE PERMISOS*/
 
 	sistemaPermisos(avion1, aeropuerto1);
@@ -51,11 +56,11 @@ int main() {
 	return 0;
 }
 
-void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {
+void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si esta sinestado el avion? OJO
 	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
 	if (estadoActual == volando) {
 
-		cFecha* aux = new cFecha(19, 11, 2001, 11);
+		cFecha* aux = new cFecha(19, 11, 2001, 11); //remplazar por una funcion que retorna el tiempo del proximo vuelo
 		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
 		if (permiso == true)
 			avion1->recibirPermiso(aux);	//esto setea al avion una vez que tiene el ok
@@ -71,4 +76,18 @@ void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {
  
 void setearvuelos(cListaVuelo* vuelos,cAeropuerto* aeropuerto1) {
 	aeropuerto1->setListaVuelos(vuelos);
+}
+
+
+void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones,ush nvuelos) {
+	
+	for (int i = 0; i < nvuelos;i++) {
+		for (int j = 0; j < cAvion::getnAviones(); j++) {
+			if (vuelos[0][i]->getid() == aviones[0][i]->getid()) {
+				vuelos[0][i]->setAvion(aviones[0][i]);
+			}
+		}
+		
+	}
+
 }

@@ -75,4 +75,9 @@ string cListaVuelo::to_string()const {
 	return stc.str();
 }
 
+cVuelo* cListaVuelo::operator[](int posic_i) {
+	if (posic_i >= 0) {
+		return this->listaVuelo[posic_i];
+	}return NULL;
 
+}
