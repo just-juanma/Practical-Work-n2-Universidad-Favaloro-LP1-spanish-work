@@ -68,11 +68,11 @@ public:
     /// </summary>
     /// <param name="_equipaje">Equipaje a agregas</param>
     /// <returns></returns>
-    cValija* operator+(cValija& _equipaje) {
+    cValija* operator+(cValija* _equipaje) {
         try {
             if (this->pesoTotalEquipaje->peso < 25) {
-                if (equipaje->agregar(&_equipaje)) {
-                    this->pesoTotalEquipaje->peso += _equipaje.peso;
+                if (equipaje->agregar(_equipaje)) {
+                    this->pesoTotalEquipaje->peso += _equipaje->peso;
                    return pesoTotalEquipaje; // retorno el peso total del equipaje del pasajero
                 }
                 else 

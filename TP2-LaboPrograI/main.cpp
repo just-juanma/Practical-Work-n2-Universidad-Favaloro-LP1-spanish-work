@@ -11,66 +11,56 @@ void setearvuelos(cListaVuelo* vuelos, cAeropuerto* aeropuerto1);
 void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones, ush nvuelos);
 
 int main() {
-//
-//	/* PRUEBA VUELO */
-//
-//
-//
-//
-//	//PRUEBA PASAJERO Y VALIJA
-//   /*cValija* valijaRetirada;
-//   cPasajero* pasajero1 = new cPasajero("juan", 44789699, 3, 1);
-//   cValija* valija1 = new cValija(4.3);
-//   pasajero1->agregarEquipaje(valija1);
-//   cValija* valija2 = new cValija(7.8);
-//   pasajero1->agregarEquipaje(valija2);
-//   pasajero1->eliminarEquipaje(1);
-//   pasajero1->eliminarEquipaje(0);
-//   delete valija1;
-//   delete valija2;
-//   delete pasajero1;*/
-//	
-//
-//   /*PRUEBA AVION*/
-	cPasajero* pasajero1= new cPasajero("juan","43444444",123,12);
-	cPasajero* pasajero2 = new cPasajero("juan", "44789699", 3, 1);
+		/* PRUEBA PASAJERO Y VALIJA */
+	cPasajero* pasajero1 = new cPasajero("Bautista", "448594595", 1, 0);
+	cValija* valija1 = new cValija(2);
+	cValija* valija2 = new cValija(4);
+
+	cPasajero*
+		
+	
+		 /*PRUEBA AVION*/
+	cPasajero* pasajero2 = new cPasajero("juan", "43444444", 123, 12);
+	cPasajero* pasajero3 = new cPasajero("juan", "44789699", 3, 1);
 	cListaAvion* aviones = new cListaAvion(3);
-	cAvion* avion2 = new cAvion(3,2000,0,"def");
+	cAvion* avion2 = new cAvion(3, 2000, 0, "def");
 	cAvion* avion1 = new cAvion(10, 2000, 0, "wrandom");
 	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
 	vuelo1->setAvion(avion2);
 	vuelo1->setID("def");
-	cFecha* fecha1 = new cFecha(1, 1, 2022, 1); 
+	cFecha* fecha1 = new cFecha(1, 1, 2022, 1);
 	cFecha* fecha2 = new cFecha(1, 1, 2022, 2);
-	vuelo1->setFecha(fecha1,fecha2);
+	vuelo1->setFecha(fecha1, fecha2);
 	avion1->setestado(aterrizado);
 	avion2->setestado(volando);
 	//pasajero1+(objvalija)
 	/*Seteo fecha vuelo*/
 
 	/*INICIALIZACION DE AEROPARQUE*/
-	aviones->Agregar(avion1); 
+	aviones->Agregar(avion1);
 	aviones->Agregar(avion2);
-	cAeropuerto* aeropuerto1 = new cAeropuerto("11",10,"aeroparque");
+	cAeropuerto* aeropuerto1 = new cAeropuerto("11", 10, "aeroparque");
 	aeropuerto1->setcapacidadAeropuerto(2);
 	cListaVuelo* Vuelos = new cListaVuelo(aeropuerto1->getcapacidadAeropuerto(), true);
 	Vuelos->agregar(vuelo1);
 	aeropuerto1->setListaVuelos(Vuelos);
 	aeropuerto1->setHangar(aviones);
-	
 
-	
+
+
 	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
-	 SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
+	SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
 
-	/*SISTEMA DE PERMISOS*/
+   /*SISTEMA DE PERMISOS*/
 
 	sistemaPermisos(avion2, aeropuerto1);
 	aviones->Eliminar(0);
+	
 	system("pause");
-
 	return 0;
 }
+
+
 
 void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si esta sinestado el avion? OJO
 	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion

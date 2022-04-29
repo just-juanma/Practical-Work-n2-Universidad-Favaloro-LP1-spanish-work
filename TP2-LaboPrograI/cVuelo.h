@@ -112,6 +112,11 @@ public:
 	// consultar bato 
 	void setEstadoVuelo() {	/*estado = avion->getEstado();*/ }
 
+	/// <summary>
+	/// Obtiene la cantidad de pasajeros de un determinado dia
+	/// </summary>
+	/// <param name="fecha">: Fecha a buscar coinicidencia</param>
+	/// <returns>Cantidad de pasajeros</returns>
 	ush cantPasajerosDia(cFecha* fecha) {
 		ush cont = 0;
 		for (ush i = 0; i < cPasajero::cantActual; i++) 
@@ -121,11 +126,30 @@ public:
 		return cont;
 	}
 
+	/// <summary>
+	/// Retorna la identificacion del vuelo
+	/// </summary>
+	/// <returns>ID del vuelo</returns>
 	string getID()const { return this->ID; }
 
+
+	/// <summary>
+	/// Setea la identificacion del vuelo
+	/// </summary>
+	/// <param name="_ID">ID del vuelo</param>
 	void setID(string _ID) { this->ID = _ID; }
 	
+	/// <summary>
+	/// Obtiene la actual de vuelos
+	/// </summary>
+	/// <returns>Cantidad actual de vuelos</returns>
 	ush getCantActual()const { return this->numero; }
+
+	/// <summary>
+	/// Setea la lista del pasajero
+	/// </summary>
+	/// <param name="lista">: Lista del pasajero a setear</param>
+	void setListaPasajero(cListaPasajero* lista) { this->claselistaPasajero = lista; }
 
 	#pragma endregion
 
