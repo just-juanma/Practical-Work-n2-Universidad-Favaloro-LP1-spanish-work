@@ -19,10 +19,10 @@ public:
         /// <summary>
         /// Constructor por defecto parametrizado
         /// </summary>
-        /// <param name="_ID"></param>
-        /// <param name="_capacidadAeropuerto"></param>
-        /// <param name="_nombre"></param>
-        cAeropuerto(string _ID=" ", unsigned int _capacidadAeropuerto=0, string _nombre="");
+        /// <param name="_ID">: ID del aeropuerto</param>
+        /// <param name="_capacidadAeropuerto">: Capacidad del aeropuerto</param>
+        /// <param name="_nombre">: Nombre del aeropuerto</param>
+        cAeropuerto(string _ID = "", ush _capacidadAeropuerto = 0, string _nombre = "");
 
         /// <summary>
         /// Destructor por defecto
@@ -31,8 +31,9 @@ public:
 
     #pragma endregion
 
-    #pragma region metodos
+    #pragma region Metodos
 
+    // hacer summary de todos los metodos, consultar a juanma como se hace
     bool darPermiso(cAvion* avion);
     string to_string();
     void imprimir();
@@ -43,11 +44,20 @@ public:
     #pragma endregion
 
 private: 
+
+    #pragma region Atributos
+
+    // interno de la clase
+    cListaVuelo* listaVuelos;
+    cListaAvion* hangar;
+    
+    // interno
     const string ID;
     const string nombre;
     ush capacidadAeropuerto;
-    cListaVuelo* listaVuelos;
-    cListaAvion* hangar;
+
+    #pragma endregion
+
 };
 
 #endif // _CAEROPUERTO_H

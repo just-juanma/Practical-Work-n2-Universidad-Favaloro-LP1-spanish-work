@@ -67,7 +67,7 @@ private:
 
     #pragma region Atributos
 
-    // interno de la clase
+    // interno
     sh dia;
     sh mes;
     sh anio;

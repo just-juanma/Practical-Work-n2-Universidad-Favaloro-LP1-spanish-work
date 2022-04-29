@@ -21,7 +21,7 @@ cFecha::cFecha(sh _dia, sh _mes, sh _anio, sh _hora) {
 }
 
 cFecha::~cFecha() {
-	// no tengo nada que eliminar
+	// no tengo algo que eliminar
 }
 
 bool cFecha::isValid(sh _dia, sh _mes, sh _anio, sh _hora) {

@@ -1,12 +1,16 @@
 #include "cAeropuerto.h"
 
-cAeropuerto::cAeropuerto(string _ID, unsigned int _capacidadAeropuerto, string _nombre) : ID(_ID), nombre(_nombre) {
+// implementacion cAeropuerto
+
+cAeropuerto::cAeropuerto(string _ID, ush _capacidadAeropuerto, string _nombre) : ID(_ID), nombre(_nombre) {
+	// inicializacion de los atributos
 	this->capacidadAeropuerto = _capacidadAeropuerto;
 	this->listaVuelos = NULL;
 	this->hangar = NULL;
 }
 
 cAeropuerto::~cAeropuerto() {
+	// no tengo algo que eliminar
 }
 
 bool cAeropuerto::darPermiso(cAvion* avion) {
