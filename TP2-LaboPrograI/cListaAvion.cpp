@@ -50,7 +50,7 @@ cListaAvion::~cListaAvion()
 bool cListaAvion::Agregar(cAvion* _avion) {
 	if (cListaAvion::ocupados >= cListaAvion::capacidad)
 		return false;
-	this->Lista[cListaAvion::ocupados] = _avion;
+	this->Lista[cListaAvion::ocupados - 1] = _avion;
 	return true;
 }
 
