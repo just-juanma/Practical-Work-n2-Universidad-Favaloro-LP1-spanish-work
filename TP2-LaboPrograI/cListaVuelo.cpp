@@ -23,7 +23,7 @@ bool cListaVuelo::agregar(cVuelo* vuelo) {
 	try {
 		if (cVuelo::numero >= cVuelo::cantTotal)
 			throw "Error: la cantidad actual de vuelos supera a la total permitida";
-		if (!listaVuelo[cVuelo::numero]) {
+		if (listaVuelo[cVuelo::numero] == NULL) {
 			this->listaVuelo[cVuelo::numero] = vuelo;
 			return true;
 		}
