@@ -5,15 +5,23 @@
 #include "cListaVuelo.h"
 
 class cAeropuerto {
+
+    #pragma region Friend classes
+
     friend class cAvion;
+
+    #pragma endregion
+
 public: 
 
-    #pragma region constructor y destructor
+    #pragma region Constructor y destructor
 
         /// <summary>
-        /// Constructor parametrizado
+        /// Constructor por defecto parametrizado
         /// </summary>
-        /// <param name="totalAeropuerto"></param>
+        /// <param name="_ID"></param>
+        /// <param name="_capacidadAeropuerto"></param>
+        /// <param name="_nombre"></param>
         cAeropuerto(string _ID=" ", unsigned int _capacidadAeropuerto=0, string _nombre="");
 
         /// <summary>

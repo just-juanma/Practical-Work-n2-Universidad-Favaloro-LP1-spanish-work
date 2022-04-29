@@ -111,10 +111,11 @@ public:
 	// consultar bato 
 	void setEstadoVuelo() {	/*estado = avion->getEstado();*/ }
 
-	ush cantPasajerosDia() {
+	ush cantPasajerosDia(cFecha* fecha) {
 		ush cont = 0;
 		for (ush i = 0; i < cPasajero::cantActual; i++) 
-			if (claselistaPasajero->listaPasajero[i]->fecha->dia == vuelo->dia)
+			if (claselistaPasajero->listaPasajero[i]->fecha->dia == fecha->dia &&
+				claselistaPasajero->listaPasajero[i]->fecha->mes == fecha-> mes)
 				cont++;
 		return cont;
 	}
