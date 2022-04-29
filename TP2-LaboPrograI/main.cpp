@@ -16,10 +16,9 @@ int main() {
 	cValija* valija1 = new cValija(2);
 	cValija* valija2 = new cValija(4);
 
-	cPasajero*
-		
-	
+
 		 /*PRUEBA AVION*/
+
 	cPasajero* pasajero2 = new cPasajero("juan", "43444444", 123, 12);
 	cPasajero* pasajero3 = new cPasajero("juan", "44789699", 3, 1);
 	cListaAvion* aviones = new cListaAvion(3);
@@ -45,8 +44,6 @@ int main() {
 	Vuelos->agregar(vuelo1);
 	aeropuerto1->setListaVuelos(Vuelos);
 	aeropuerto1->setHangar(aviones);
-
-
 
 	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
 	SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
