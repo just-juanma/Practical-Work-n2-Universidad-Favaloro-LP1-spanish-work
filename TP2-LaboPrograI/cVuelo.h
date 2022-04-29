@@ -121,9 +121,9 @@ public:
 		return cont;
 	}
 
-	string getID()const { return ID; }
+	string getID()const { return this->ID; }
 
-	void setID(string _ID) { ID = _ID; }
+	void setID(string _ID) { this->ID = _ID; }
 	
 
 	#pragma endregion
