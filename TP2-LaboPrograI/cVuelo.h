@@ -121,6 +121,11 @@ public:
 		return cont;
 	}
 
+	string getID()const { return ID; }
+
+	void setID(string _ID) { ID = _ID; }
+	
+
 	#pragma endregion
 
 private:
@@ -140,6 +145,7 @@ private:
 	cListaPasajero* claselistaPasajero;
 
 	// interno
+	string ID;
 	bool PoA; // Partida O Arribo
 
 	#pragma endregion

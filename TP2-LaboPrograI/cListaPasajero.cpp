@@ -40,7 +40,7 @@ bool cListaPasajero::agregar(cPasajero* pasajero) {
 		if (cPasajero::cantActual >= cPasajero::cantTotal)
 			throw "Error: la cantidad actual de pasajeros supera a la total permitida";
 		if (!listaPasajero[cPasajero::cantActual]) {
-			this->listaPasajero[cPasajero::cantActual] = pasajero;
+			this->listaPasajero[cPasajero::cantActual - 1] = pasajero;
 			return true;
 		}
 		else

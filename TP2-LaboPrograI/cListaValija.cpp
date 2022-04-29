@@ -40,7 +40,7 @@ bool cListaValija::agregar(cValija* valija) {
 	try {
 		if (cValija::cantActual >= cValija::cantTotal)
 			throw "Error: la cantidad actual de valijas supera a la total permitida";
-		if (!listaValija[cValija::cantActual]) {
+		if (!listaValija[cValija::cantActual - 1]) {
 			this->listaValija[cValija::cantActual] = valija;
 			return true;
 		}
