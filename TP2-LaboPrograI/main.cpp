@@ -95,7 +95,7 @@ int main() {
 
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
-	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto);
+	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto,llegada,salida);
 	aviones->Listar();
 
 	delete salida; delete llegada;
@@ -111,7 +111,7 @@ int main() {
 
 
 
-void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si esta sinestado el avion? OJO
+void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1,cFecha* llegada, cFecha* partida) {//que sucede si esta sinestado el avion? OJO
 	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
 	if (estadoActual == volando) {
 		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
