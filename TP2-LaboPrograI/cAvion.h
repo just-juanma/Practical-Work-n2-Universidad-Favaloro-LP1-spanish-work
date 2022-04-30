@@ -68,41 +68,66 @@ public:
     /// </summary>
     bool chequearCargaMaxima();
 
-
+    /// <summary>
+    /// setea la lista de pasajeros
+    /// </summary>
+    /// <param name="_pasajeros">El puntero de la lista</param>
+    /// <param name="n">La cantidad de elementos que esta lista contiene</param>
     void setListaPasajero(cListaPasajero* _pasajeros,int n);
 
     /// <summary>
-    ///  Segun lo comprendido se podría hacer que este metodo sea "obtenido" por friend de la clase aeropuerto
+    /// se lo debe llamar cuando el aeropuerto decida otorgarle permiso al avion
     /// </summary> 
     /// Al ser desde la clase cAeropuerto no es dar es recibir permiso
     /// 
     void recibirPermiso(cFecha* fecha);
 
-   
+    /// <summary>
+    /// setea el estado del avion, meciando un enum
+    /// </summary>
+    /// <param name="_estado"></param>
     void setestado(eEstado _estado);
 
 
     void setfecha(cFecha* fecha);
 
-
+    /// <summary>
+    /// Este metodo devuelve el valor de aviones en toda la ejecucio, 
+    /// por lo que devuelve el valor de una variable estatica
+    /// </summary>
+    /// <returns></returns>
     static ush getnAviones();
-
 
     eEstado pedirPermiso();
 
-
+    /// <summary>
+    /// Se obtiene la identificacion unica del avion
+    /// </summary>
+    /// <returns></returns>
     string getid();
 
-
+    /// <summary>
+    /// Se obtiene la lista de pasajeros
+    /// </summary>
+    /// <returns></returns>
     cListaPasajero* getListaPasajero();
 
-
+    /// <summary>
+    /// Se obtiene la cantidad de pasajeros
+    /// </summary>
+    /// <returns></returns>
     int getcantpasajeros();
 
-
+    /// <summary>
+    /// Se obtiene el estado del avion
+    /// </summary>
+    /// <returns></returns>
     eEstado getestado();
 
-
+    /// <summary>
+    /// Se obtiene la fecha en la que sale el avion
+    /// </summary>
+    /// <returns></returns>
     cFecha* getfecha();
 
 
