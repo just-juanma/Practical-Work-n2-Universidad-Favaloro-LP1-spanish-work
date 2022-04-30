@@ -80,7 +80,7 @@ public:
     /// </summary> 
     /// Al ser desde la clase cAeropuerto no es dar es recibir permiso
     /// 
-    void recibirPermiso(cFecha* fecha);
+    void recibirPermiso(cFecha* llegada, cFecha* partida);
 
     /// <summary>
     /// setea el estado del avion, meciando un enum
@@ -89,7 +89,7 @@ public:
     void setestado(eEstado _estado);
 
 
-    void setfecha(cFecha* fecha);
+    void setfecha(cFecha* llegada,cFecha* partida);
 
     /// <summary>
     /// Este metodo devuelve el valor de aviones en toda la ejecucio, 
@@ -149,7 +149,7 @@ private:
     // interno clases
     cListaPasajero* Listapasajeros;
     cFecha* partida;
-
+    cFecha* llegada; 
     // iterno
     unsigned int totalPasajeros;
     unsigned int nPasajeros;

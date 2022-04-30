@@ -37,6 +37,7 @@ bool cAeropuerto::darPermiso(cAvion* avion) {
 			catch (const char* msg)
 			{
 				cout << msg << endl;
+				return false;
 			}
 
 			return true;
