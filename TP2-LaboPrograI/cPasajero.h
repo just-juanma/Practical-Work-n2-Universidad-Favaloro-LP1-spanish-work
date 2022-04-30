@@ -103,7 +103,7 @@ public:
             return NULL;
     }
 
-    static ush getCantPasajeros() { return cantActual; }
+    ush getCantPasajeros() { return cantActual; }
 
     #pragma endregion
 
