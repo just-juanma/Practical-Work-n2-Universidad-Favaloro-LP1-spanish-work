@@ -103,17 +103,11 @@ public:
             return NULL;
     }
 
-    ush getCantPasajeros() { return cantActual; }
-
     #pragma endregion
 
 private:
 
     #pragma region Atributos
-    
-    // static
-    static ush cantActual;
-    static sh cantTotal;
     
     // interno clases
     cListaValija* equipaje;

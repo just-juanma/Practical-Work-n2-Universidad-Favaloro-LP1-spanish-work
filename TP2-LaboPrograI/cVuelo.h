@@ -101,7 +101,7 @@ public:
 	/// <returns>El pasajero en caso de encontrarlo, NULL en caso contrario</returns>
 	cPasajero* filtrar(string* _DNI) {
 		if (_DNI) 
-			for (ush i = 0; i < cPasajero::cantActual; i++) 
+			for (ush i = 0; i < claselistaPasajero->cantActual; i++) 
 				if (*_DNI == claselistaPasajero->listaPasajero[i]->DNI)
 					return claselistaPasajero->listaPasajero[i];
 		return NULL;
@@ -139,7 +139,7 @@ public:
 	/// <returns>Cantidad de pasajeros</returns>
 	ush cantPasajerosDia(cFecha* fecha) {
 		ush cont = 0;
-		for (ush i = 0; i < cPasajero::cantActual; i++) 
+		for (ush i = 0; i < this->claselistaPasajero->cantActual; i++) 
 			if (claselistaPasajero->listaPasajero[i]->fecha->dia == fecha->dia &&
 				claselistaPasajero->listaPasajero[i]->fecha->mes == fecha-> mes)
 				cont++;

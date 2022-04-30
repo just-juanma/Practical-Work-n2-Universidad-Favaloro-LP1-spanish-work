@@ -6,6 +6,6 @@
 /// <summary>
 /// Posibles destinos
 /// </summary>
-enum ePosiblesDestinos { sinDestino, Jerusalen, TelAviv, Beerseva, Eilat};
+enum ePosiblesDestinos { sinDestino, Jerusalen, TelAviv, Haifa, Eilat};
 
 #endif // _EPOSIBLESDESTINOS_H

@@ -12,22 +12,6 @@ void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion
 
 int main() {
 
-	/* PRUEBA PASAJERO Y VALIJA */
-
-	cPasajero* pasajero1 = new cPasajero("Bautista", "448594595", 1, 0);
-
-	cListaValija* valijasPasajero1 = new cListaValija(2, true);
-
-	pasajero1->setLista(valijasPasajero1);
-
-	cValija* valija1 = new cValija(2);
-	*pasajero1 + *valija1;
-
-	cValija* valija2 = new cValija(4);
-	*pasajero1 + *valija2;
-
-	
-
 		 /*PRUEBA AVION*/
 
 	cPasajero* pasajero2 = new cPasajero("juan", "43444444", 123, 12);
@@ -47,6 +31,7 @@ int main() {
 	/*Seteo fecha vuelo*/
 
 	/*INICIALIZACION DE AEROPARQUE*/
+
 	aviones->Agregar(avion1);
 	aviones->Agregar(avion2);
 	cAeropuerto* aeropuerto1 = new cAeropuerto("11", 10, "aeroparque");
@@ -55,6 +40,28 @@ int main() {
 	Vuelos->agregar(vuelo1);
 	aeropuerto1->setListaVuelos(Vuelos);
 	aeropuerto1->setAvionesAeropuerto(aviones);
+
+	/* INICIALIZACION DE PASAJEROS */
+	
+	cListaPasajero* pasajerosVuelo1 = new cListaPasajero(4, true);
+
+	// El unico que va a ingresar es Adriel, el resto son invalidos
+	cPasajero* pasajeroA = new cPasajero("Adriel", "448594595", 1, 1);
+	cPasajero* pasajeroB = new cPasajero("Cindy", "436982517", 2, 5); // no existe este vuelo!
+	cPasajero* pasajeroC = new cPasajero("Juan", "448594595", 1, 3); // ya existe ese DNI
+	cPasajero* pasajeroD = new cPasajero("Bautista", "43521985", 1, 1); // ya hay alguien en ese asiento del vuelo
+
+	/* AGREGAR PASAJERO */
+
+
+
+
+
+	vuelo1->setListaPasajero(pasajerosVuelo1);
+
+	vuelo1->agregarPasajero(pasajeroA);
+
+
 
 	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
 	SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
@@ -66,7 +73,7 @@ int main() {
 
 	delete fecha1; delete fecha2;
 	delete avion1; delete avion2;
-	delete pasajero1; delete pasajero2; delete pasajero3;
+	delete pasajero2; delete pasajero3;
 	delete vuelo1;
 	delete aeropuerto1;
 	//delete[] aviones; delete[] Vuelos; estas dos lineas de codigo, rompen el destructor de las clases, porque 
