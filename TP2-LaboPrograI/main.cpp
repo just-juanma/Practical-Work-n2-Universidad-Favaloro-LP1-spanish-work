@@ -95,7 +95,7 @@ int main() {
 
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
-	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto);
+	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto,llegada,salida);
 	aviones->Listar();
 
 	delete salida; delete llegada;
