@@ -92,7 +92,7 @@ void cAvion::aterrizar() {
 #pragma region setters
 void cAvion::setListaPasajero(cListaPasajero* _pasajeros, int _nPasajeros) {
 	//this->nPasajeros = this->Listapasajeros->cantidad; // que me devuelva la cantidad de pasajeros agregados en la lista
-	if (this->Listapasajeros==NULL) {
+	if (_pasajeros ==NULL) {
 		throw "La lista de pasajeros es nula";
 	}
 	else {

@@ -10,6 +10,7 @@ class cPasajero {
     
     friend class cListaPasajero;
     friend class cVuelo;
+    friend class cListaVuelo;
 
     #pragma endregion
 
@@ -77,7 +78,7 @@ public:
     /// Sobrecarga del operador + para poder ir cargando el equipaje del pasajero
     /// </summary>
     /// <param name="_equipaje">: Equipaje a agregar</param>
-    /// <returns></returns>
+    /// <returns>Pasajero con el equipaje agregado</returns>
     cPasajero* operator+(cValija& _equipaje) {
         try {
             if (getPesoTotalEquipaje() + _equipaje.peso < 25) {
@@ -96,9 +97,8 @@ public:
     }
 
     cPasajero* operator-(cValija& _equipaje) {
-        if (equipaje->eliminar(&_equipaje)) {
+        if (equipaje->eliminar(&_equipaje)) 
             return this;
-        }
         else 
             return NULL;
     }

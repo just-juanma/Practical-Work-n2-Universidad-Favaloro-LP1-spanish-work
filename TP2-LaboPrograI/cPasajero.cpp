@@ -19,15 +19,17 @@ string cPasajero::to_string()const {
 	stc << "Nombre: " << this->nombre << endl;
 	stc << "DNI: " << this->DNI << endl;
 	stc << "Fecha: ";
-	stc << this->fecha->dia << "/";
-	stc << this->fecha->mes << "/";
-	stc << this->fecha->anio << endl;
-	stc << "Hora: " << this->fecha->hora << endl;
+	if (fecha) {
+		stc << this->fecha->dia << "/";
+		stc << this->fecha->mes << "/";
+		stc << this->fecha->anio << endl;
+		stc << "Hora: " << this->fecha->hora << endl;
+	}
 	stc << "Numero de vuelo: " << this->numeroVuelo << endl;
 	stc << "Asiento: " << this->asiento << endl;
 	stc << "Equipaje del pasajero: " << endl;
 	stc << this->equipaje->to_string();
-	stc << "Peso total: " << getPesoTotalEquipaje();
+	stc << endl;
 	return stc.str();
 }
 

@@ -8,6 +8,7 @@ class cListaPasajero
 	#pragma region Friend classes
 
 	friend class cVuelo;
+	friend class cListaVuelo;
 	
 	#pragma endregion
 
@@ -80,7 +81,7 @@ public:
 	/// <returns>El elemento de la lista en caso de que se pueda obtener, NULL en caso contrario</returns>
 	cPasajero* operator[](sh pos) {
 		try {
-			if (pos >= 0 && pos < cantActual) 
+			if (pos >= 0 && pos < cantActual && listaPasajero[pos])
 					return this->listaPasajero[pos];	
 			else
 				throw "Error: Posicion invalida al sobrecargar el operador [] de la lista de los pasajeros";

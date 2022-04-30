@@ -1,13 +1,4 @@
 #pragma once
-/*
-Comentarios del Trabajo Practico:
-	1. El Bubble Sort recomendado de Geeks For Geeks utilizado en las listas se encuentra aqui: 
-	   https://www.geeksforgeeks.org/bubble-sort/?ref=gcse
-	2.
-
-
-
-*/
 
 #pragma region Standard
 

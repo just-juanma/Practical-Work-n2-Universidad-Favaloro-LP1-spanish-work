@@ -63,6 +63,21 @@ public:
 	/// </summary>
 	void imprimir()const { cout << to_string() << endl; }
 
+	/// <summary>
+	/// Obtiene la cantidad de pasajeros de un determinado dia
+	/// </summary>
+	/// <param name="fecha">: Fecha a buscar coinicidencia</param>
+	/// <returns>Cantidad de pasajeros</returns>
+	ush cantPasajerosDia(cFecha* fecha) {
+		ush cont = 0;
+		for (ush i = 0; i < cVuelo::numero; i++)
+			for(ush j = 0; j < listaVuelo[i]->claselistaPasajero->cantActual; j++)
+			if (this->listaVuelo[i]->claselistaPasajero->listaPasajero[j]->fecha->dia == fecha->dia &&
+				this->listaVuelo[i]->claselistaPasajero->listaPasajero[j]->fecha->mes == fecha->mes)
+				cont++;
+		return cont;
+	}
+
 	cVuelo* operator[](int posic_i);
 
 	#pragma endregion

@@ -6,12 +6,13 @@ cListaVuelo::cListaVuelo(sh size, bool _checkEliminar) {
 	this->checkEliminar = _checkEliminar;
 	this->listaVuelo = new cVuelo * [size];
 	cVuelo::cantTotal = size;
-	for (ush i = 0; i < cVuelo::numero; i++)
-		this->listaVuelo[i] = NULL;
+	if(this->listaVuelo)
+		for (ush i = 0; i < cVuelo::cantTotal; i++)
+			this->listaVuelo[i] = NULL;
 }
 
 cListaVuelo::~cListaVuelo() {
-	if (checkEliminar)
+	if (this->checkEliminar)
 		for (ush i = 0; i < cVuelo::cantTotal; i++)
 			if (this->listaVuelo[i])
 				delete listaVuelo[i];
@@ -54,15 +55,10 @@ bool cListaVuelo::eliminar(sh pos) {
 }
 
 void cListaVuelo::ordenar() {
-	for (ush i = 0; i < cVuelo::numero - 1; i++) {
-		bool checkSwap = false;
-		for (ush j = 0; j < cVuelo::numero - i - 1; j++) {
-			swap(this->listaVuelo[j], this->listaVuelo[j + 1]);
-			checkSwap = true;
-		}
-		if (!checkSwap)
-			break;
-	}
+	for (ush i = 0; i < cVuelo::numero; i++)
+		for (ush j = i; j < cVuelo::numero - 1; j++)
+			if (!this->listaVuelo[i])
+				swap(this->listaVuelo[j], this->listaVuelo[j + 1]);
 }
 
 string cListaVuelo::to_string()const {

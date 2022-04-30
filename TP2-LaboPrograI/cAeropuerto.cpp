@@ -108,19 +108,15 @@ ush cAeropuerto::cantDespegados(cFecha* fecha)
 	}
 }
 
-//float porcentajeHorarioPartida()
-//{
-//	ush cont = 0;
-//	for(ush i=0; i < cVuelo::numero; i++)
-//}
+
 
 string cAeropuerto::to_string() {
 	stringstream stc;
-	stc << "ID:" << ID << endl;
-	stc << "Nombre:" << nombre << endl;
-	stc << "Capacidad:" << capacidadAeropuerto << endl;
-	stc << "Numero de aviones:" <<  cAvion::getnAviones << endl;
-	stc << "Vuelos disponibles:" << cVuelo::numero << endl;
+	stc << "ID: " << ID << endl;
+	stc << "Nombre: " << nombre << endl;
+	stc << "Capacidad: " << capacidadAeropuerto << endl;
+	stc << "Numero de aviones: " <<  cAvion::getnAviones << endl;
+	stc << "Vuelos disponibles: " << cVuelo::numero << endl;
 	stc << endl;
 	return stc.str();
 }

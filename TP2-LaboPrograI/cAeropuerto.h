@@ -46,7 +46,6 @@ public:
     void setListaVuelos(cListaVuelo* Lista) { this->listaVuelos = Lista; }
     void setAvionesAeropuerto(cListaAvion* Lista) { this->listaAvionesAeropuerto = Lista; }
     ush CantAvionesAeropuerto();
-   // float porcentajeHorarioPartida();
 
     #pragma endregion
 

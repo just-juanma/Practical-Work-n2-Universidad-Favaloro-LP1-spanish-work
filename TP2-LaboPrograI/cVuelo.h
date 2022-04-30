@@ -50,7 +50,8 @@ public:
 					return true;
 				return false;
 			}
-			else throw "Error: El numero de vuelo del pasajero que se intenta agregar no coincide con el del vuelo";
+			else 
+				throw "Error: El numero de vuelo del pasajero que se intenta agregar no coincide con el del vuelo";
 		}
 		catch (const char* msg) {
 			cout << msg << endl;
@@ -113,6 +114,8 @@ public:
 	/// <returns>String concatenado</returns>
 	string to_string() const;
 
+	void imprimir() const { cout << to_string(); }
+
 	/// <summary>
 	/// Setea las fechas del vuelo
 	/// </summary>
@@ -132,23 +135,6 @@ public:
 
 		// la lista de pasajeros del avion la comparte el vuelo, junto a su cantidad actual
 		this->avion->setListaPasajero(this->claselistaPasajero, this->claselistaPasajero->cantActual);
-	}
-
-	// consultar bato 
-	void setEstadoVuelo() {	/*estado = avion->getEstado();*/ }
-
-	/// <summary>
-	/// Obtiene la cantidad de pasajeros de un determinado dia
-	/// </summary>
-	/// <param name="fecha">: Fecha a buscar coinicidencia</param>
-	/// <returns>Cantidad de pasajeros</returns>
-	ush cantPasajerosDia(cFecha* fecha) {
-		ush cont = 0;
-		for (ush i = 0; i < this->claselistaPasajero->cantActual; i++) 
-			if (claselistaPasajero->listaPasajero[i]->fecha->dia == fecha->dia &&
-				claselistaPasajero->listaPasajero[i]->fecha->mes == fecha-> mes)
-				cont++;
-		return cont;
 	}
 
 	/// <summary>
@@ -209,7 +195,7 @@ private:
 /// <param name="out">: Flujo de salida</param>
 /// <param name="_vuelo">: Impresion del vuelo indicado</param>
 /// <returns>Nuevo flujo de salida</returns>
-ostream& operator << (ostream& out, const cVuelo& _vuelo);
+ostream& operator << (ostream& out, cVuelo* _vuelo);
 
 #pragma endregion
 

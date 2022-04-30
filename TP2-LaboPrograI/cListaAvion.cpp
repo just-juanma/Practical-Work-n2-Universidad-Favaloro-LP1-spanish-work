@@ -98,18 +98,11 @@ int cListaAvion::Buscar(string _id) {
 	return -1;
 }          
 
-
-
 void cListaAvion::ordenar() {
-	for (ush i = 0; i < this->ocupados - 1; i++) {
-		bool checkSwap = false;
-		for (ush j = 0; j < this->ocupados - i - 1; j++) {
-			swap(this->ListaAviones[j], this->ListaAviones[j + 1]);
-			checkSwap = true;
-		}
-		if (!checkSwap)
-			break;
-	}
+	for (ush i = 0; i < this->ocupados; i++)
+		for (ush j = i; j < this->ocupados - 1; j++)
+			if (!this->ListaAviones[i])
+				swap(this->ListaAviones[j], this->ListaAviones[j + 1]);
 }
 
 void cListaAvion::Listar() {

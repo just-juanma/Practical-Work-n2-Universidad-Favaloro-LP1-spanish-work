@@ -14,8 +14,9 @@ cListaValija::cListaValija(sh size, bool _checkEliminar) {
 		abort();
 	}
 	this->cantTotal = size;
-	for (ush i = 0; i < this->cantTotal; i++)
-		this->listaValija[i] = NULL;
+	if (listaValija) 
+		for (ush i = 0; i < this->cantTotal; i++)
+			this->listaValija[i] = NULL;
 }
 
 cListaValija::~cListaValija() {
@@ -39,9 +40,10 @@ bool cListaValija::agregar(cValija* valija) {
 	try {
 		if (this->cantActual > this->cantTotal)
 			throw "Error: la cantidad actual de valijas supera a la total permitida";
-		if (!listaValija[this->cantActual]) {
-			this->listaValija[this->cantActual] = valija;
-			this->cantActual++;
+		else if (!valija)
+			throw "Error: la valija ingresada no existe";
+		else if (!this->listaValija[this->cantActual]) {
+			this->listaValija[this->cantActual++] = valija;
 			return true;
 		}
 		else
@@ -54,27 +56,23 @@ bool cListaValija::agregar(cValija* valija) {
 }
 
 bool cListaValija::eliminar(cValija* valija) {
-	for (ush i = 0; i < this->cantActual; i++)
-		if (this->listaValija[i] && this->listaValija[i] == valija) {
-			delete this->listaValija[i];
-			this->listaValija[i] = NULL;
-			ordenar();
-			this->cantActual--;
-			return true;
-		}
+	if (valija) 
+		for (ush i = 0; i < this->cantActual; i++)
+			if (this->listaValija[i] && this->listaValija[i] == valija) {
+				delete this->listaValija[i];
+				this->listaValija[i] = NULL;
+				ordenar();
+				this->cantActual--;
+				return true;
+			}
 	return false;
 }
 
 void cListaValija::ordenar() {
-	for (ush i = 0; i < this->cantActual; i++) {
-		bool checkSwap = false;
-		for (ush j = 0; j < this->cantActual - i - 1; j++) {
-			swap(this->listaValija[j], this->listaValija[j + 1]);
-			checkSwap = true;
-		}
-		if (!checkSwap)
-			break;
-	}
+	for (ush i = 0; i < this->cantActual; i++) 
+		for (ush j = i; j < this->cantActual - 1; j++) 
+			if (!this->listaValija[i]) 
+				swap(this->listaValija[j], this->listaValija[j + 1]);		
 }
 
 string cListaValija::to_string() const {

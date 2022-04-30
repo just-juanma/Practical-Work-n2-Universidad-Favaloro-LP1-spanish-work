@@ -14,16 +14,18 @@ cListaPasajero::cListaPasajero(sh size, bool _checkEliminar) {
 		abort();
 	}
 	this->cantTotal = size;
-	for (ush i = 0; i < this->cantTotal; i++)
-		this->listaPasajero[i] = NULL;
+	if (this->listaPasajero) 
+		for (ush i = 0; i < this->cantTotal; i++)
+			this->listaPasajero[i] = NULL;
+	
 }
 
 cListaPasajero::~cListaPasajero() {
 	try {
-		if (checkEliminar) {
+		if (this->checkEliminar) {
 			for (ush i = 0; i < this->cantActual; i++)
 				if (this->listaPasajero[i])
-					delete listaPasajero[i];
+					delete this->listaPasajero[i];
 			delete[] this->listaPasajero;
 		}
 		else
@@ -43,9 +45,10 @@ bool cListaPasajero::agregar(cPasajero* pasajero) {
 			throw "Error: ese DNI ya esta registrado";
 		else if (!isValidAsiento(pasajero->asiento))
 			throw "Error: ese asiento ya esta ocupado";
+		else if (!pasajero)
+			throw "Error: no existe el pasajero ingresado";
 		if (!listaPasajero[this->cantActual]) {
-			this->listaPasajero[this->cantActual] = pasajero;
-			cantActual++;
+			this->listaPasajero[this->cantActual++] = pasajero;
 			return true;
 		}
 		else
@@ -59,7 +62,8 @@ bool cListaPasajero::agregar(cPasajero* pasajero) {
 
 bool cListaPasajero::modificar(sh pos, cPasajero* nuevoPasajero) {
 	try {
-		if (pos >= 0 && pos < this->cantActual && this->listaPasajero[pos]) {
+		if (pos >= 0 && pos < this->cantActual &&			// posicion valida?
+			this->listaPasajero[pos] && nuevoPasajero) {	// pasajero valido?
 			cPasajero* aux = this->listaPasajero[pos];
 			this->listaPasajero[pos] = nuevoPasajero;
 			delete aux;
@@ -80,7 +84,7 @@ bool cListaPasajero::eliminar(sh pos) {
 			delete this->listaPasajero[pos];
 			this->listaPasajero[pos] = NULL;
 			ordenar();
-			cantActual--;
+			this->cantActual--;
 			return true;
 		} else
 			throw "Error: No se puede eliminar una posicion que no existe en la lista de pasajero";
@@ -92,29 +96,24 @@ bool cListaPasajero::eliminar(sh pos) {
 }
 
 void cListaPasajero::ordenar() {
-	for (ush i = 0; i < this->cantActual - 1; i++) {
-		bool checkSwap = false;
-		for (ush j = 0; j < this->cantActual - i - 1; j++) {
-			swap(this->listaPasajero[j], this->listaPasajero[j + 1]);
-			checkSwap = true;
-		}
-		if (!checkSwap)
-			break;
-	}
+	for (ush i = 0; i < this->cantActual; i++)
+		for (ush j = i; j < this->cantActual - 1; j++)
+			if (!this->listaPasajero[i])
+				swap(this->listaPasajero[j], this->listaPasajero[j + 1]);
 }
 
 string cListaPasajero::to_string()const {
 	stringstream stc;
-	stc << "Checkeo de eliminar (true / si) (false / no): " << checkEliminar << endl;
+	stc << "Checkeo de eliminar (true / si) (false / no): " << this->checkEliminar << endl;
 	for (ush i = 0; i < this->cantActual; i++)
-		if(listaPasajero[i])
-			stc << "DNI pasajero [" << i << "]: " << listaPasajero[i]->nombre << endl;
+		if(this->listaPasajero[i])
+			stc << "DNI pasajero [" << i << "]: " << this->listaPasajero[i]->nombre << endl;
 	return stc.str();
 }
 
 bool cListaPasajero::isValidDNI(string DNI) {
 	for (ush i = 0; i < this->cantActual; i++) {
-		if (DNI == listaPasajero[i]->DNI)
+		if (DNI == this->listaPasajero[i]->DNI)
 			return false;
 	}
 	return true;
@@ -122,7 +121,7 @@ bool cListaPasajero::isValidDNI(string DNI) {
 
 bool cListaPasajero::isValidAsiento(sh num) {
 	for (ush i = 0; i < this->cantActual; i++) {
-		if (num == listaPasajero[i]->asiento)
+		if (num == this->listaPasajero[i]->asiento)
 			return false;
 	}
 	return true;

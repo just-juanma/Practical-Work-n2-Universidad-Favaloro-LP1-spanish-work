@@ -17,9 +17,10 @@ int main() {
 	cAeropuerto* aeropuerto = new cAeropuerto("11", 10, "aeroparque");
 	aeropuerto->setcapacidadAeropuerto(2);
 
+
 	/* INICIALIZACION VUELOS */
 
-	cListaVuelo* Vuelos = new cListaVuelo(aeropuerto->getcapacidadAeropuerto(), true);
+	cListaVuelo* vuelos = new cListaVuelo(aeropuerto->getcapacidadAeropuerto(), true);
 
 	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
 
@@ -55,27 +56,36 @@ int main() {
 	cListaPasajero* pasajerosVuelo1 = new cListaPasajero(4, true);
 
 	cPasajero* pasajeroA = new cPasajero("Vicenta", "37549682", 1, 1);
+	pasajeroA->setFecha(salida);
 	cPasajero* pasajeroB = new cPasajero("Teodoro", "42589147", 1, 2);
+	pasajeroB->setFecha(salida);
 	cPasajero* pasajeroC = new cPasajero("Carmen", "41365214", 1, 3);
+	pasajeroC->setFecha(salida);
 	cPasajero* pasajeroD = new cPasajero("Carlos", "44985257", 1, 4);
+	pasajeroD->setFecha(salida);
 
 	/* AGREGAR VALIJAS A CADA PASAJERO */
 
 	pasajeroA->setLista(valijasA);
 	*pasajeroA + *valija1A;
 	*pasajeroA + *valija2A;
+	valijasA->imprimir();
 
 	pasajeroB->setLista(valijasB);
 	*pasajeroB + *valija1B;
+	valijasB->imprimir();
 
 	pasajeroC->setLista(valijasC);
 	*pasajeroC + *valija1C;
 	*pasajeroC + *valija2C;
 	*pasajeroC + *valija3C;
+	*pasajeroC - *valija2C;
+	valijasC->imprimir();
 
 	pasajeroD->setLista(valijasD);
 	*pasajeroD + *valija1D;
 	*pasajeroD + *valija2D;
+	valijasD->imprimir();
 	
 
 	/* AGREGAR PASAJEROS AL VUELO */
@@ -87,12 +97,13 @@ int main() {
 	vuelo1->agregarPasajero(pasajeroC);
 	vuelo1->agregarPasajero(pasajeroD);
 
+
 	/* INICIALIZACION AVIONES */
 
 	cListaAvion* aviones = new cListaAvion(3);
 
 	cAvion* avion1 = new cAvion(10, 2000, 0, "wrandom");
-	cAvion* avion2 = new cAvion(3, 2000, 0, "def");
+	cAvion* avion2 = new cAvion(4, 2000, 0, "def");
 
 	avion1->setestado(aterrizado);
 	avion2->setestado(volando);
@@ -107,23 +118,28 @@ int main() {
 	vuelo1->setAvion(avion2);
 	vuelo1->setID("def");
 
+	cout << vuelo1;
+
 	/* ASIGNACION DE VUELOS A LA LISTA */
 
-	Vuelos->agregar(vuelo1);
-
+	vuelos->agregar(vuelo1);
+	
+	cout << "La cantidad de pasajeros que volaron en el dia fueron: " << vuelos->cantPasajerosDia(salida) << endl;
 	/* ASGINACION DE VUELOS Y AVIONES AL AEROPUERTO */
 
-	aeropuerto->setListaVuelos(Vuelos);
+	aeropuerto->setListaVuelos(vuelos);
 	aeropuerto->setAvionesAeropuerto(aviones);
 
 	/* SISTEMA DE SETEO DEL AVION AL VUELO */
 
-	SeteoAvionAVuelo(Vuelos, aeropuerto, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
+	SeteoAvionAVuelo(vuelos, aeropuerto, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
 
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
 	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto, llegada, salida);
 	aviones->Listar();
+
+	cout << "La cantidad de vuelos que despegaron y aterrizaron en el dia fueron: " << aeropuerto->cantAterrizadosDia(salida) << endl;
 
 	delete salida; delete llegada;
 	delete avion1; delete avion2;
@@ -131,7 +147,7 @@ int main() {
 	delete aeropuerto;
 	delete valija1A, delete valija2A;
 	delete valija1B;
-	delete valija1C; delete valija2C; delete valija3C;
+	delete valija1C; delete valija3C;
 	delete valija1D; delete valija2D;
 	delete pasajeroA; delete pasajeroB; delete pasajeroC; delete pasajeroD;
 
