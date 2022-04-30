@@ -42,7 +42,7 @@ public:
     /// <returns>Peso total de la suma de todo el equipaje del pasajero</returns>
     float getPesoTotalEquipaje()const { 
         float suma = 0;
-        for (ush i = 0; i < cValija::cantActual; i++) 
+        for (ush i = 0; i < equipaje->cantActual; i++) 
             if(this->equipaje->listaValija[i])
                 suma += this->equipaje->listaValija[i]->peso;
         return suma;

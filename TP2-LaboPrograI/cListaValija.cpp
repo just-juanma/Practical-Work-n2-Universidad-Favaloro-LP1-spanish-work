@@ -25,8 +25,6 @@ cListaValija::~cListaValija() {
 				if (this->listaValija[i])
 					delete listaValija[i];
 			delete[] this->listaValija;
-			cValija::cantTotal = 0;
-
 		}
 		else
 			throw "Error: No se puede destruir el objeto de la lista de valijas si no se le da el permiso para eliminarlo. El programa se termina";
@@ -39,7 +37,7 @@ cListaValija::~cListaValija() {
 
 bool cListaValija::agregar(cValija* valija) {
 	try {
-		if (this->cantActual <= this->cantTotal)
+		if (this->cantActual > this->cantTotal)
 			throw "Error: la cantidad actual de valijas supera a la total permitida";
 		if (!listaValija[this->cantActual]) {
 			this->listaValija[this->cantActual] = valija;

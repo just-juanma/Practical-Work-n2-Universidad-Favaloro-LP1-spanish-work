@@ -37,7 +37,7 @@ cListaPasajero::~cListaPasajero() {
 
 bool cListaPasajero::agregar(cPasajero* pasajero) {
 	try {
-		if (this->cantActual >= this->cantTotal)
+		if (this->cantActual > this->cantTotal)
 			throw "Error: la cantidad actual de pasajeros supera a la total permitida";
 		else if (!isValidDNI(pasajero->DNI))
 			throw "Error: ese DNI ya esta registrado";

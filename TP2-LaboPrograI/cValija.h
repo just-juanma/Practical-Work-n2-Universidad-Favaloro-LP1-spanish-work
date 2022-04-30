@@ -48,10 +48,6 @@ private:
 
 	#pragma region Atributos
 
-	// static
-	static ush cantActual;
-	static sh cantTotal;
-
 	// interno
 	float peso;
 

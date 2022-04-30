@@ -26,8 +26,8 @@ Comentarios del Trabajo Practico:
 
 #pragma region Typedef 
 
-typedef short sh;
-typedef unsigned short ush;
+typedef short int sh;
+typedef unsigned short int ush;
 
 #pragma endregion
 
