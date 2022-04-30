@@ -2,10 +2,8 @@
 #include "cPasajero.h"
 
 // implementacion cPasajero
-ush cPasajero::cantActual = 0;
-sh cPasajero::cantTotal = 0;
+
 cPasajero::cPasajero(string _nombre, string _DNI, sh _numeroVuelo, sh _asiento) : nombre(_nombre), DNI(_DNI) {
-	cantActual++;
 	this->numeroVuelo = _numeroVuelo;
 	this->asiento = _asiento;
 	this->equipaje = NULL;
@@ -13,13 +11,11 @@ cPasajero::cPasajero(string _nombre, string _DNI, sh _numeroVuelo, sh _asiento) 
 }
 
 cPasajero::~cPasajero() {
-	cantActual--;
+	// no tengo algo que eliminar
 }
 
 string cPasajero::to_string()const {
 	stringstream stc;
-	stc << "Cantidad total: " << cantTotal << endl;
-	stc << "Cantidad actual: " << cantActual << endl;
 	stc << "Nombre: " << this->nombre << endl;
 	stc << "DNI: " << this->DNI << endl;
 	stc << "Fecha: ";
