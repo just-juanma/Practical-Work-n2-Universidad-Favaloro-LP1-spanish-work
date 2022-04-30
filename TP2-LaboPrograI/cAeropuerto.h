@@ -41,9 +41,10 @@ public:
     ush cantAterrizadosDia(cFecha* fecha);
     ush cantDespegados(cFecha* fecha);
     ush getcapacidadAeropuerto() { return this->capacidadAeropuerto; };
+    cListaAvion* getListaAvionesAeropuerto() { return this->listaAvionesAeropuerto; };
     void setcapacidadAeropuerto(int _capacidad) { this->capacidadAeropuerto = _capacidad; }
     void setListaVuelos(cListaVuelo* Lista) { this->listaVuelos = Lista; }
-    void setHangar(cListaAvion* Lista) { this->listaAvionesAeropuerto = Lista; }
+    void setAvionesAeropuerto(cListaAvion* Lista) { this->listaAvionesAeropuerto = Lista; }
     ush CantAvionesAeropuerto();
    // float porcentajeHorarioPartida();
 

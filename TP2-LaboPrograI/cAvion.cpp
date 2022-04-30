@@ -67,6 +67,7 @@ eEstado cAvion::pedirPermiso() { //Debido a que el "pedir permiso" se ejecuta "a
 void cAvion::despegar() {
 	//this->pedirPermiso(); //ver finalmente como es el tema de cambiar el estado quiza es reiterativo 
 	this->estado = volando;
+
 }
 
 void cAvion::aterrizar() {
