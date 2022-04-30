@@ -91,9 +91,14 @@ public:
 		}
 	}
 
-	#pragma endregion
 
 private:
+
+	bool isValidDNI(string DNI);
+
+	bool isValidAsiento(sh num);
+
+	#pragma endregion
 
 	#pragma region Atributos
 

@@ -65,7 +65,7 @@ bool cListaValija::eliminar(cValija* valija) {
 }
 
 void cListaValija::ordenar() {
-	for (ush i = 0; i < cValija::cantActual - 1; i++) {
+	for (ush i = 0; i < cValija::cantActual; i++) {
 		bool checkSwap = false;
 		for (ush j = 0; j < cValija::cantActual - i - 1; j++) {
 			swap(this->listaValija[j], this->listaValija[j + 1]);
@@ -78,7 +78,7 @@ void cListaValija::ordenar() {
 
 string cListaValija::to_string() const {
 	stringstream stc;
-	stc << "Checkeo de eliminar (true / si) (false / no)" << this->checkEliminar << endl;
+	stc << "Checkeo de eliminar la lista (1 / si) (0 / no): " << this->checkEliminar << endl;
 	for (ush i = 0; i < cValija::cantActual; i++)
 		stc << "Peso Valija [" << i << "]: " << this->listaValija[i]->peso << endl;
 	return stc.str();

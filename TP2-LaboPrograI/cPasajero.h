@@ -40,7 +40,13 @@ public:
     /// Permite obtener el peso de todo el equipaje
     /// </summary>
     /// <returns>Peso total de la suma de todo el equipaje del pasajero</returns>
-    float getPesoTotalEquipaje()const { return pesoTotalEquipaje->peso; }
+    float getPesoTotalEquipaje()const { 
+        float suma = 0;
+        for (ush i = 0; i < cValija::cantActual; i++) 
+            if(this->equipaje->listaValija[i])
+                suma += this->equipaje->listaValija[i]->peso;
+        return suma;
+    }
 
     /// <summary>
     /// Concatena a un solo string los atributos pertinentes
@@ -59,6 +65,10 @@ public:
     /// <returns>Fecha del pasajero</returns>
     cFecha* getFecha()const { return this->fecha; }
 
+    void setFecha(cFecha* _fecha) { this->fecha = _fecha; }
+
+    void setLista(cListaValija* lista) { equipaje = lista; }
+
     #pragma endregion
 
     #pragma region Sobrecarga 
@@ -66,16 +76,13 @@ public:
     /// <summary>
     /// Sobrecarga del operador + para poder ir cargando el equipaje del pasajero
     /// </summary>
-    /// <param name="_equipaje">Equipaje a agregas</param>
+    /// <param name="_equipaje">: Equipaje a agregar</param>
     /// <returns></returns>
     cPasajero* operator+(cValija& _equipaje) {
-        float peso = 0;
         try {
-            if (peso < 25) {
-                if (this->equipaje->agregar(&_equipaje)) {
-                    peso += _equipaje.peso;
+            if (getPesoTotalEquipaje() + _equipaje.peso < 25) {
+                if (this->equipaje->agregar(&_equipaje)) 
                     return this;
-                }
                 else 
                     return NULL;
             }
@@ -88,15 +95,15 @@ public:
         }
     }
 
-    cValija* operator-(cValija* _equipaje) {
-        if (equipaje->eliminar(_equipaje)) {
-            return _equipaje;
+    cPasajero* operator-(cValija& _equipaje) {
+        if (equipaje->eliminar(&_equipaje)) {
+            return this;
         }
         else 
             return NULL;
     }
 
-    void setLista(cListaValija* lista) { equipaje = lista; }
+    static ush getCantPasajeros() { return cantActual; }
 
     #pragma endregion
 
@@ -109,7 +116,6 @@ private:
     static sh cantTotal;
     
     // interno clases
-    cValija* pesoTotalEquipaje;
     cListaValija* equipaje;
     cFecha* fecha;
 

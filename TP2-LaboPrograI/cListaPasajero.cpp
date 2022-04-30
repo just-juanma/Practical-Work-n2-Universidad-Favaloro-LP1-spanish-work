@@ -39,6 +39,10 @@ bool cListaPasajero::agregar(cPasajero* pasajero) {
 	try {
 		if (cPasajero::cantActual >= cPasajero::cantTotal)
 			throw "Error: la cantidad actual de pasajeros supera a la total permitida";
+		else if (!isValidDNI(pasajero->DNI))
+			throw "Error: ese DNI ya esta registrado";
+		else if (!isValidAsiento(pasajero->asiento))
+			throw "Error: ese asiento ya esta ocupado";
 		if (!listaPasajero[cPasajero::cantActual]) {
 			this->listaPasajero[cPasajero::cantActual - 1] = pasajero;
 			return true;
@@ -106,4 +110,18 @@ string cListaPasajero::to_string()const {
 	return stc.str();
 }
 
+bool cListaPasajero::isValidDNI(string DNI) {
+	for (ush i = 0; i < cPasajero::cantActual; i++) {
+		if (DNI == listaPasajero[i]->DNI)
+			return false;
+	}
+	return true;
+}
 
+bool cListaPasajero::isValidAsiento(sh num) {
+	for (ush i = 0; i < cPasajero::cantActual; i++) {
+		if (num == listaPasajero[i]->asiento)
+			return false;
+	}
+	return true;
+}

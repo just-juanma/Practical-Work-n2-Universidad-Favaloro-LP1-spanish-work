@@ -44,9 +44,18 @@ public:
 	/// <returns>True en caso de poder agregar el pasajero, false en caso contrario</returns>
 	bool agregarPasajero(cPasajero* pasajeroAdd) { 
 		// el control de errores se realiza en agregar
-		if (claselistaPasajero->agregar(pasajeroAdd))
-			return true;
-		return false;
+		try {
+			if (pasajeroAdd->numeroVuelo == this->numero) {
+				if (claselistaPasajero->agregar(pasajeroAdd))
+					return true;
+				return false;
+			}
+			else throw "Error: El numero de vuelo del pasajero que se intenta agregar no coincide con el del vuelo";
+		}
+		catch (const char* msg) {
+			cout << msg << endl;
+			return false;
+		}
 	}
 
 	/// <summary>
@@ -57,9 +66,20 @@ public:
 	/// <returns>True en caso de poder modificar el pasajero, false en caso contrario</returns>
 	bool modificarPasajero(sh pos, cPasajero* nuevoPasajero) { 
 		// el control de errores se realiza en modificar
-		if (claselistaPasajero->modificar(pos, nuevoPasajero))
-			return true;
-		return false;
+		try {
+			if (nuevoPasajero->numeroVuelo == this->numero) {
+				if (claselistaPasajero->modificar(pos, nuevoPasajero))
+					return true;
+				return false;
+
+			}
+			else
+				throw "Error: El numero de vuelo del pasajero que se intenta modificar no coincide con el del vuelo";
+		}
+		catch (const char* msg) {
+			cout << msg << endl;
+			return false;
+		}
 	}
 
 	/// <summary>
