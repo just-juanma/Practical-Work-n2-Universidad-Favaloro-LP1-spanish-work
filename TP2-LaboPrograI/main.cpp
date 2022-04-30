@@ -32,33 +32,60 @@ int main() {
 
 	// equipaje de Vicenta 
 	cListaValija* valijasA = new cListaValija(2, true);
-	cValija* valija1A = new cValija(10);
-	cValija* valija2A = new cValija(12);
+	cValija* valija1A = new cValija(10.7);
+	cValija* valija2A = new cValija(12.32);
 
 	// equipaje de Teodoro
+	cListaValija* valijasB = new cListaValija(1, true);
+	cValija* valija1B = new cValija(5);
 
 	// equipaje de Carmen 
+	cListaValija* valijasC = new cListaValija(3, true);
+	cValija* valija1C = new cValija(0.13);
+	cValija* valija2C = new cValija(6);
+	cValija* valija3C = new cValija(8.2);
 
 	// equipaje de Carlos 
+	cListaValija* valijasD = new cListaValija(2, true);
+	cValija* valija1D = new cValija(9.02);
+	cValija* valija2D = new cValija(3.5);
 
 	/* INICIALIZACION DE PASAJEROS */
 	
-	cListaPasajero* pasajerosVuelo1 = new cListaPasajero(1, true);
+	cListaPasajero* pasajerosVuelo1 = new cListaPasajero(4, true);
 
-	cPasajero* pasajeroA = new cPasajero("Vicenta", "448594595", 1, 1);
+	cPasajero* pasajeroA = new cPasajero("Vicenta", "37549682", 1, 1);
+	cPasajero* pasajeroB = new cPasajero("Teodoro", "42589147", 1, 2);
+	cPasajero* pasajeroC = new cPasajero("Carmen", "41365214", 1, 3);
+	cPasajero* pasajeroD = new cPasajero("Carlos", "44985257", 1, 4);
 
 	/* AGREGAR VALIJAS A CADA PASAJERO */
 
 	pasajeroA->setLista(valijasA);
-
 	*pasajeroA + *valija1A;
 	*pasajeroA + *valija2A;
+
+	pasajeroB->setLista(valijasB);
+	*pasajeroB + *valija1B;
+
+	pasajeroC->setLista(valijasC);
+	*pasajeroC + *valija1C;
+	*pasajeroC + *valija2C;
+	*pasajeroC + *valija3C;
+
+	pasajeroD->setLista(valijasD);
+	*pasajeroD + *valija1D;
+	*pasajeroD + *valija2D;
+	
 
 	/* AGREGAR PASAJEROS AL VUELO */
 
 	vuelo1->setListaPasajero(pasajerosVuelo1);
 
 	vuelo1->agregarPasajero(pasajeroA);
+	vuelo1->agregarPasajero(pasajeroB);
+	vuelo1->agregarPasajero(pasajeroC);
+	vuelo1->agregarPasajero(pasajeroD);
 
 	/* INICIALIZACION AVIONES */
 
@@ -102,6 +129,14 @@ int main() {
 	delete avion1; delete avion2;
 	delete vuelo1;
 	delete aeropuerto;
+	delete valija1A, delete valija2A;
+	delete valija1B;
+	delete valija1C; delete valija2C; delete valija3C;
+	delete valija1D; delete valija2D;
+	delete pasajeroA; delete pasajeroB; delete pasajeroC; delete pasajeroD;
+
+
+
 	//delete[] aviones; delete[] Vuelos; estas dos lineas de codigo, rompen el destructor de las clases, porque 
 	//liberan memoria que se va a comprobar que se use
 

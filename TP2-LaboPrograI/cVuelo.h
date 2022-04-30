@@ -127,7 +127,12 @@ public:
 	/// Setea el avion asociado al vuelo
 	/// </summary>
 	/// <param name="_avion">: Avion a setear</param>
-	void setAvion(cAvion* _avion) { this->avion = _avion; }
+	void setAvion(cAvion* _avion) { 
+		this->avion = _avion; 
+
+		// la lista de pasajeros del avion la comparte el vuelo, junto a su cantidad actual
+		this->avion->setListaPasajero(this->claselistaPasajero, this->claselistaPasajero->cantActual);
+	}
 
 	// consultar bato 
 	void setEstadoVuelo() {	/*estado = avion->getEstado();*/ }
