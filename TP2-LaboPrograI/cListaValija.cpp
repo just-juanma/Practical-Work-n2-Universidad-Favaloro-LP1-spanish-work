@@ -5,23 +5,23 @@
 cListaValija::cListaValija(sh size, bool _checkEliminar) {
 	// inicializacion de los atributos
 	this->checkEliminar = _checkEliminar;
+	this->cantActual = 0;
 	try {
 		this->listaValija = new cValija * [size];
-		this->capacidad = size;
-		this->ocupados = 0;
 	}
 	catch (bad_alloc&) {
 		cout << "Error: Fallo en la asignacion de memoria dinamica de la lista de valijas. El programa se termina";
 		abort();
 	}
-	for (ush i = 0; i < size; i++)
+	this->cantTotal = size;
+	for (ush i = 0; i < this->cantTotal; i++)
 		this->listaValija[i] = NULL;
 }
 
 cListaValija::~cListaValija() {
 	try {
 		if (checkEliminar) {
-			for (ush i = 0; i < this->ocupados; i++)
+			for (ush i = 0; i < this->cantActual; i++)
 				if (this->listaValija[i])
 					delete listaValija[i];
 			delete[] this->listaValija;
@@ -39,11 +39,11 @@ cListaValija::~cListaValija() {
 
 bool cListaValija::agregar(cValija* valija) {
 	try {
-		if (this->ocupados <= this->capacidad)
+		if (this->cantActual <= this->cantTotal)
 			throw "Error: la cantidad actual de valijas supera a la total permitida";
-		if (!listaValija[ocupados]) {
-			this->listaValija[ocupados] = valija;
-			this->ocupados++;
+		if (!listaValija[this->cantActual]) {
+			this->listaValija[this->cantActual] = valija;
+			this->cantActual++;
 			return true;
 		}
 		else
@@ -56,21 +56,21 @@ bool cListaValija::agregar(cValija* valija) {
 }
 
 bool cListaValija::eliminar(cValija* valija) {
-	for (ush i = 0; i < this->capacidad; i++)
+	for (ush i = 0; i < this->cantActual; i++)
 		if (this->listaValija[i] && this->listaValija[i] == valija) {
 			delete this->listaValija[i];
 			this->listaValija[i] = NULL;
-			this->ocupados--;
 			ordenar();
+			this->cantActual--;
 			return true;
 		}
 	return false;
 }
 
 void cListaValija::ordenar() {
-	for (ush i = 0; i < this->ocupados; i++) {
+	for (ush i = 0; i < this->cantActual; i++) {
 		bool checkSwap = false;
-		for (ush j = 0; j < this->ocupados - i - 1; j++) {
+		for (ush j = 0; j < this->cantActual - i - 1; j++) {
 			swap(this->listaValija[j], this->listaValija[j + 1]);
 			checkSwap = true;
 		}
@@ -82,7 +82,7 @@ void cListaValija::ordenar() {
 string cListaValija::to_string() const {
 	stringstream stc;
 	stc << "Checkeo de eliminar la lista (1 / si) (0 / no): " << this->checkEliminar << endl;
-	for (ush i = 0; i < this->ocupados; i++)
+	for (ush i = 0; i < this->cantActual; i++)
 		stc << "Peso Valija [" << i << "]: " << this->listaValija[i]->peso << endl;
 	return stc.str();
 }

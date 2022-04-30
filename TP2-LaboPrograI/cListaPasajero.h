@@ -106,7 +106,7 @@ private:
 	cPasajero** listaPasajero;
 
 	// interno
-	ush cantActual;
+	sh cantActual;
 	sh cantTotal;
 	bool checkEliminar;
 

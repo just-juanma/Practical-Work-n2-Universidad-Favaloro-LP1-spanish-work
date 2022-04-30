@@ -31,6 +31,7 @@ int main() {
 	/*Seteo fecha vuelo*/
 
 	/*INICIALIZACION DE AEROPARQUE*/
+
 	aviones->Agregar(avion1);
 	aviones->Agregar(avion2);
 	cAeropuerto* aeropuerto1 = new cAeropuerto("11", 10, "aeroparque");
@@ -44,10 +45,17 @@ int main() {
 	
 	cListaPasajero* pasajerosVuelo1 = new cListaPasajero(4, true);
 
-	cPasajero* pasajeroA = new cPasajero("Bautista", "448594595", 1, 0);
-	cPasajero* pasajeroB = new cPasajero("Cindy", "436982517", 1, 5);
-	cPasajero* pasajeroC = new cPasajero("Juan", "41365980", 1, 3);
-	cPasajero* pasajeroD = new cPasajero("Adriel", "43521985", 1, 4);
+	// El unico que va a ingresar es Adriel, el resto son invalidos
+	cPasajero* pasajeroA = new cPasajero("Adriel", "448594595", 1, 1);
+	cPasajero* pasajeroB = new cPasajero("Cindy", "436982517", 2, 5); // no existe este vuelo!
+	cPasajero* pasajeroC = new cPasajero("Juan", "448594595", 1, 3); // ya existe ese DNI
+	cPasajero* pasajeroD = new cPasajero("Bautista", "43521985", 1, 1); // ya hay alguien en ese asiento del vuelo
+
+	/* AGREGAR PASAJERO */
+
+
+
+
 
 	vuelo1->setListaPasajero(pasajerosVuelo1);
 
