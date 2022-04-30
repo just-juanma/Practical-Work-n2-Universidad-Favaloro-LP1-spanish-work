@@ -6,7 +6,7 @@
 #include "cPasajero.h"
 #include "cAeropuerto.h"
 
-void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1);
+void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1, cFecha* llegada, cFecha* partida);
 void setearvuelos(cListaVuelo* vuelos, cAeropuerto* aeropuerto1);
 void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones, ush nvuelos);
 
@@ -122,7 +122,7 @@ int main() {
 
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
-	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto,llegada,salida);
+	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto, llegada, salida);
 	aviones->Listar();
 
 	delete salida; delete llegada;
@@ -148,7 +148,7 @@ int main() {
 
 
 
-void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si esta sinestado el avion? OJO
+void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1, cFecha* llegada, cFecha* partida) {//que sucede si esta sinestado el avion? OJO
 	try
 	{
 		if (avion1 == NULL || aeropuerto1 == NULL) throw "AVION_O_AEROPUERTO_NULL";
