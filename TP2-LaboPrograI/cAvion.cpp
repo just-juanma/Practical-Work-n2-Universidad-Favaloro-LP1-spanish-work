@@ -6,13 +6,12 @@
 int cAvion::nAviones = 0;
 
 #pragma region Constructor y destructor + variables estaticas
-cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID) {
+cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID): ID(_ID) {
 	// inicializacion de los atributos
 	this->totalPasajeros = _totalPasajeros; 
 	this->pesoMaximo = _pesoMaximo; 
 	this->nPasajeros = _nPasajeros; // remplazar por 0, ya que no hay nadie en el avion caundo se termine de construir este
 	this->permiso = -1;
-	this->ID = _ID; 
 	this->Listapasajeros = NULL;
 	nAviones++;
 }
@@ -30,28 +29,50 @@ cAvion::~cAvion() {
 #pragma region funcionalidad propia de la clase
 
 
-void cAvion::recibirPermiso(cFecha* fecha) { //cambiar los dos 10 por el numero de aviones en aeropuerto
-	this->chequearCargaMaxima();
-	this->setfecha(fecha);
-	this->despegar();
+void cAvion::recibirPermiso(cFecha* llegada,cFecha* partida) { //cambiar los dos 10 por el numero de aviones en aeropuerto
+	try {
+		if (llegada != NULL && partida != NULL) {
+			this->chequearCargaMaxima();
+			this->setfecha(llegada, partida);
+			this->despegar();
+		}
+		else {
+			throw "ERROR: Ingrese fechas del vuelo";
+		}
+	}
+	catch(const char* msg) {
+		cout << msg << endl;
+	}
+	
 }
 
 bool cAvion::chequearCargaMaxima() {
-		float pesotot = (float)this->nPasajeros * 75 + (float)(4 * 75);
-		for (ush i = 0; i < this->nPasajeros; i++) {
-			pesotot += this->Listapasajeros[0][i]->getPesoTotalEquipaje();
-		}
-		if (pesotot < this->pesoMaximo) {
-			return true;
+	try {
+		if (this->Listapasajeros != NULL) {
+
+			float pesotot = (float)this->nPasajeros * 75 + (float)(4 * 75);
+			for (ush i = 0; i < this->nPasajeros; i++) {
+				pesotot += this->Listapasajeros[0][i]->getPesoTotalEquipaje();
+			}
+			if (pesotot < this->pesoMaximo) {
+				return true;
+			}
+			else {
+				throw "Peso mayo al debido";
+			}
+			return false;
 		}
 		else {
-			throw "Peso mayo al debido";
+			throw "ERROR: LISTA DE PASAJEROS NULA,HACER QUE LOS PASAJEROS ABORDEN";
 		}
-	return false;
+	}
+	catch (const char* msg) {
+		cout << msg << endl;
+		return false;
+	}
 }
 
 eEstado cAvion::pedirPermiso() { //Debido a que el "pedir permiso" se ejecuta "automaticamente" en el main 
-								 //
 	return this->estado;
 }
 
@@ -89,8 +110,9 @@ void cAvion::setestado(eEstado _estado) {
 	this->estado = _estado;
 }
 
-void cAvion::setfecha(cFecha* _fecha) {
-	this->partida = _fecha;
+void cAvion::setfecha(cFecha* _llegada, cFecha* _partida) {
+	this->partida = _partida;
+	this->llegada = _llegada;
 }
 #pragma endregion
 

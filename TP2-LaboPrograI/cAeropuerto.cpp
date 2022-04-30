@@ -10,7 +10,7 @@ cAeropuerto::cAeropuerto(string _ID, ush _capacidadAeropuerto, string _nombre) :
 }
 
 cAeropuerto::~cAeropuerto() {
-	// no tengo algo que eliminar
+
 }
 
 bool cAeropuerto::darPermiso(cAvion* avion) {
@@ -18,6 +18,7 @@ bool cAeropuerto::darPermiso(cAvion* avion) {
 	sh i=0;
 	try
 	{
+		if (avion == NULL) throw "AVION_NULL";
 		if (this->CantAvionesAeropuerto() < capacidadAeropuerto)
 		{
 			try
@@ -32,11 +33,12 @@ bool cAeropuerto::darPermiso(cAvion* avion) {
 						break;
 					}
 				}
-				if (i > cVuelo::numero) throw "AVION_NO_REGISTRADO";
+				if (i > cVuelo::numero) throw "ERROR_AVION_SIN_VUELO";
 			}
 			catch (const char* msg)
 			{
 				cout << msg << endl;
+				return false;
 			}
 
 			return true;
@@ -62,29 +64,48 @@ ush cAeropuerto::CantAvionesAeropuerto() {
 }
 
 ush cAeropuerto::cantAterrizadosDia(cFecha* fecha)
-{
-	ush cont = 0;
-	for (ush i = 0; i < cVuelo::numero  ; i++)
+{	
+	try
 	{
-		if (listaVuelos->listaVuelo[i]->estado == eEstado::aterrizado &&
-			listaVuelos->listaVuelo[i]->arribo->dia == fecha->dia &&
-			listaVuelos->listaVuelo[i]->arribo->mes == fecha->mes)
-			cont++;
+		if (fecha == NULL) throw "FECHA_NULL";
+		ush cont = 0;
+		for (ush i = 0; i < cVuelo::numero; i++)
+		{
+			if (listaVuelos->listaVuelo[i]->estado == eEstado::aterrizado &&
+				listaVuelos->listaVuelo[i]->arribo->dia == fecha->dia &&
+				listaVuelos->listaVuelo[i]->arribo->mes == fecha->mes)
+				cont++;
+		}
+		return cont;
 	}
-	return cont;
+	catch (const char* msg)
+	{
+		cout << msg << endl;
+		return 0;
+	}
+	
 }
 
 ush cAeropuerto::cantDespegados(cFecha* fecha)
 {
-	ush cont = 0;
-	for (ush i = 0; i < cVuelo::numero; i++)
+	try
 	{
-		if (listaVuelos->listaVuelo[i]->estado == eEstado::volando &&
-			listaVuelos->listaVuelo[i]->arribo->dia == fecha->dia &&
-			listaVuelos->listaVuelo[i]->arribo->mes == fecha->mes)
-			cont++;
+		if (fecha == NULL) throw "FECHA_NULL";
+		ush cont = 0;
+		for (ush i = 0; i < cVuelo::numero; i++)
+		{
+			if (listaVuelos->listaVuelo[i]->estado == eEstado::volando &&
+				listaVuelos->listaVuelo[i]->arribo->dia == fecha->dia &&
+				listaVuelos->listaVuelo[i]->arribo->mes == fecha->mes)
+				cont++;
+		}
+		return cont;
 	}
-	return cont;
+	catch (const char* msg)
+	{
+		cout << msg << endl;
+		return 0;
+	}
 }
 
 //float porcentajeHorarioPartida()

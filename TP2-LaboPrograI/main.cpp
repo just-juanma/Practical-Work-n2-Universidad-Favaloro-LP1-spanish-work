@@ -114,16 +114,13 @@ int main() {
 void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si esta sinestado el avion? OJO
 	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
 	if (estadoActual == volando) {
-
-		cFecha* aux = new cFecha(19, 11, 2022, 11); //remplazar por una funcion que retorna el tiempo del proximo vuelo
 		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
 		if (permiso == true)
-			avion1->recibirPermiso(aux); //esto setea al avion una vez que tiene el ok
+			avion1->recibirPermiso(llegada,partida); //esto setea al avion una vez que tiene el ok
 
 	}else if (estadoActual == aterrizado){
-		cFecha* partida = new cFecha(19, 11, 2022, 11);
 		try {
-			avion1->recibirPermiso(partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
+			avion1->recibirPermiso(llegada,partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
 										// pesoMaximo no fue superado, entonces despega
 		}
 		catch (const char* msg) {
@@ -142,7 +139,6 @@ void setearvuelos(cListaVuelo* vuelos,cAeropuerto* aeropuerto1) {
 }
 
 void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones,ush nvuelos) {
-	
 	for (int i = 0; i < nvuelos;i++) {
 		for (int j = 0; j < cAvion::getnAviones(); j++) {
 			if (vuelos[0][i]->getID() == aviones[0][i]->getid()) {
