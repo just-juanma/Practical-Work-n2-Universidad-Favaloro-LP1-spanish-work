@@ -153,11 +153,11 @@ private:
     // iterno
     unsigned int totalPasajeros;
     unsigned int nPasajeros;
-    string ID;
+
+    const string ID;
     unsigned int pesoMaximo;
     eEstado estado; 
     int permiso;
-
     #pragma endregion
 
 };

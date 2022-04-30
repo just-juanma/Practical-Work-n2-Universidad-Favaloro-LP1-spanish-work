@@ -6,13 +6,12 @@
 int cAvion::nAviones = 0;
 
 #pragma region Constructor y destructor + variables estaticas
-cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID) {
+cAvion::cAvion(unsigned int _totalPasajeros, unsigned int _pesoMaximo, unsigned int _nPasajeros,string _ID): ID(_ID) {
 	// inicializacion de los atributos
 	this->totalPasajeros = _totalPasajeros; 
 	this->pesoMaximo = _pesoMaximo; 
 	this->nPasajeros = _nPasajeros; // remplazar por 0, ya que no hay nadie en el avion caundo se termine de construir este
 	this->permiso = -1;
-	this->ID = _ID; 
 	this->Listapasajeros = NULL;
 	nAviones++;
 }
