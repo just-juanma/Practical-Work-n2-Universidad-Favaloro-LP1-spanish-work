@@ -54,17 +54,22 @@ int main() {
 	cListaVuelo* Vuelos = new cListaVuelo(aeropuerto1->getcapacidadAeropuerto(), true);
 	Vuelos->agregar(vuelo1);
 	aeropuerto1->setListaVuelos(Vuelos);
-	aeropuerto1->setHangar(aviones);
+	aeropuerto1->setAvionesAeropuerto(aviones);
 
 	/*SISTEMA DE SETEO DEL AVION AL VUELO*/
 	SeteoAvionAVuelo(Vuelos, aeropuerto1, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
 
-   /*SISTEMA DE PERMISOS*/
-
+    /*SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS*/
 	sistemaPermisos(avion2, aeropuerto1);
-	aviones->Eliminar(0);
-	
 	system("pause");
+
+	delete fecha1; delete fecha2;
+	delete avion1; delete avion2;
+	delete pasajero1; delete pasajero2; delete pasajero3;
+	delete vuelo1;
+	delete aeropuerto1;
+	delete[] aviones; delete[] Vuelos;
+
 	return 0;
 }
 
@@ -77,15 +82,17 @@ void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si e
 		cFecha* aux = new cFecha(19, 11, 2022, 11); //remplazar por una funcion que retorna el tiempo del proximo vuelo
 		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
 		if (permiso == true)
-			avion1->recibirPermiso(aux);	//esto setea al avion una vez que tiene el ok
+			avion1->recibirPermiso(aux); //esto setea al avion una vez que tiene el ok
+
 	}else if (estadoActual == aterrizado){
 		cFecha* partida = new cFecha(19, 11, 2022, 11);
 		avion1->recibirPermiso(partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
-											   // pesoMaximo no fue superado, entonces despega
+										// pesoMaximo no fue superado, entonces despega
 
 	}
 	else if (estadoActual == sinEstado){
-	cout << "nuevito" << endl;
+	cout << "Este avion no deberia estar volando... Por favor verifique sus parametros elementales!" << endl;
+	abort();
 	}
 }
  
