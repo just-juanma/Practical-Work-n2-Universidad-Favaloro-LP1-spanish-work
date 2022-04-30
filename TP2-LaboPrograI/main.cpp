@@ -122,7 +122,7 @@ int main() {
 
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
-	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto);
+	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto,llegada,salida);
 	aviones->Listar();
 
 	delete salida; delete llegada;
@@ -146,40 +146,70 @@ int main() {
 
 
 
-void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si esta sinestado el avion? OJO
-	eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
-	if (estadoActual == volando) {
-		bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
-		if (permiso == true)
-			avion1->recibirPermiso(llegada,partida); //esto setea al avion una vez que tiene el ok
 
-	}else if (estadoActual == aterrizado){
-		try {
-			avion1->recibirPermiso(llegada,partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
-										// pesoMaximo no fue superado, entonces despega
+
+void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si esta sinestado el avion? OJO
+	try
+	{
+		if (avion1 == NULL || aeropuerto1 == NULL) throw "AVION_O_AEROPUERTO_NULL";
+		eEstado estadoActual = avion1->pedirPermiso(); //esto solo devuelve el estado actual del avion
+		if (estadoActual == volando) {
+			bool permiso = aeropuerto1->darPermiso(avion1);  //aca se da el permiso y se setea el vuelo
+			if (permiso == true)
+				avion1->recibirPermiso(llegada, partida); //esto setea al avion una vez que tiene el ok
+
 		}
-		catch (const char* msg) {
-			cout << msg << endl;
-			cout << "Este avion no puede volar... Por favor verifique sus pasajeros!" << endl;
+		else if (estadoActual == aterrizado) {
+			try {
+				avion1->recibirPermiso(llegada, partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
+											// pesoMaximo no fue superado, entonces despega
+			}
+			catch (const char* msg) {
+				cout << msg << endl;
+				cout << "Este avion no puede volar... Por favor verifique sus pasajeros!" << endl;
+			}
+		}
+		else if (estadoActual == sinEstado) {
+			cout << "Este avion no deberia estar volando... Por favor verifique sus parametros elementales!" << endl;
+			abort();
 		}
 	}
-	else if (estadoActual == sinEstado){
-	cout << "Este avion no deberia estar volando... Por favor verifique sus parametros elementales!" << endl;
-	abort();
+	catch (const char& msg)
+	{
+		cout << msg << endl;
 	}
+	
 }
  
 void setearvuelos(cListaVuelo* vuelos,cAeropuerto* aeropuerto1) {
-	aeropuerto1->setListaVuelos(vuelos);
+	try
+	{
+		if (vuelos == NULL || aeropuerto1 == NULL) throw "VUELOS_O_AEROPUERTO_NULL";
+		aeropuerto1->setListaVuelos(vuelos);
+	}
+	catch (const char& msg)
+	{
+		cout << msg << endl;
+	}
+	
+
 }
 
 void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones,ush nvuelos) {
-	for (int i = 0; i < nvuelos;i++) {
-		for (int j = 0; j < cAvion::getnAviones(); j++) {
-			if (vuelos[0][i]->getID() == aviones[0][i]->getid()) {
-				vuelos[0][i]->setAvion(aviones[0][j]);
+	try
+	{
+		if (vuelos == NULL || aeropuerto1 == NULL || aviones == NULL) throw "VUELOS_O_AEROPUERTO_O_AVIONES_NULL";
+		for (int i = 0; i < nvuelos; i++) {
+			for (int j = 0; j < cAvion::getnAviones(); j++) {
+				if (vuelos[0][i]->getID() == aviones[0][i]->getid()) {
+					vuelos[0][i]->setAvion(aviones[0][j]);
+				}
 			}
 		}
+	}
+	catch (const char& msg)
+	{
+		cout << msg << endl;
 	}
 
 }
