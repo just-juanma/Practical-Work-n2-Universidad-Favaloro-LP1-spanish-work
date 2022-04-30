@@ -68,12 +68,13 @@ public:
     /// </summary>
     /// <param name="_equipaje">Equipaje a agregas</param>
     /// <returns></returns>
-    cValija* operator+(cValija* _equipaje) {
+    cPasajero* operator+(cValija& _equipaje) {
+        float peso = 0;
         try {
-            if (this->pesoTotalEquipaje->peso < 25) {
-                if (equipaje->agregar(_equipaje)) {
-                    this->pesoTotalEquipaje->peso += _equipaje->peso;
-                   return pesoTotalEquipaje; // retorno el peso total del equipaje del pasajero
+            if (peso < 25) {
+                if (this->equipaje->agregar(&_equipaje)) {
+                    peso += _equipaje.peso;
+                    return this;
                 }
                 else 
                     return NULL;
@@ -87,14 +88,15 @@ public:
         }
     }
 
-    cValija* operator-(cValija& _equipaje) {
-        if (equipaje->eliminar(&_equipaje)) {
-            this->pesoTotalEquipaje->peso -= _equipaje.peso;
-            return pesoTotalEquipaje;
+    cValija* operator-(cValija* _equipaje) {
+        if (equipaje->eliminar(_equipaje)) {
+            return _equipaje;
         }
         else 
             return NULL;
     }
+
+    void setLista(cListaValija* lista) { equipaje = lista; }
 
     #pragma endregion
 

@@ -11,11 +11,22 @@ void setearvuelos(cListaVuelo* vuelos, cAeropuerto* aeropuerto1);
 void SeteoAvionAVuelo(cListaVuelo* vuelos, cAeropuerto* aeropuerto1, cListaAvion* aviones, ush nvuelos);
 
 int main() {
-		/* PRUEBA PASAJERO Y VALIJA */
-	cPasajero* pasajero1 = new cPasajero("Bautista", "448594595", 1, 0);
-	cValija* valija1 = new cValija(2);
-	cValija* valija2 = new cValija(4);
 
+	/* PRUEBA PASAJERO Y VALIJA */
+
+	cPasajero* pasajero1 = new cPasajero("Bautista", "448594595", 1, 0);
+
+	cListaValija* valijasPasajero1 = new cListaValija(2, true);
+
+	pasajero1->setLista(valijasPasajero1);
+
+	cValija* valija1 = new cValija(2);
+	*pasajero1 + *valija1;
+
+	cValija* valija2 = new cValija(4);
+	*pasajero1 + *valija2;
+
+	
 
 		 /*PRUEBA AVION*/
 

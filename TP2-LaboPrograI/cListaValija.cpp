@@ -13,7 +13,7 @@ cListaValija::cListaValija(sh size, bool _checkEliminar) {
 		abort();
 	}
 	cValija::cantTotal = size;
-	for (ush i = 0; i < cValija::cantActual; i++)
+	for (ush i = 0; i < cValija::cantTotal; i++)
 		this->listaValija[i] = NULL;
 }
 
@@ -38,10 +38,10 @@ cListaValija::~cListaValija() {
 
 bool cListaValija::agregar(cValija* valija) {
 	try {
-		if (cValija::cantActual >= cValija::cantTotal)
+		if (cValija::cantActual > cValija::cantTotal)
 			throw "Error: la cantidad actual de valijas supera a la total permitida";
 		if (!listaValija[cValija::cantActual - 1]) {
-			this->listaValija[cValija::cantActual] = valija;
+			this->listaValija[cValija::cantActual - 1] = valija;
 			return true;
 		}
 		else
