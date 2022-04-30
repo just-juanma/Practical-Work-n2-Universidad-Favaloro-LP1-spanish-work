@@ -61,6 +61,7 @@ int main() {
 
     /*SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS*/
 	sistemaPermisos(avion2, aeropuerto1);
+	aviones->Listar();
 	system("pause");
 
 	delete fecha1; delete fecha2;
@@ -68,7 +69,8 @@ int main() {
 	delete pasajero1; delete pasajero2; delete pasajero3;
 	delete vuelo1;
 	delete aeropuerto1;
-	delete[] aviones; delete[] Vuelos;
+	//delete[] aviones; delete[] Vuelos; estas dos lineas de codigo, rompen el destructor de las clases, porque 
+	//liberan memoria que se va a comprobar que se use
 
 	return 0;
 }
@@ -86,9 +88,14 @@ void sistemaPermisos(cAvion* avion1,cAeropuerto* aeropuerto1) {//que sucede si e
 
 	}else if (estadoActual == aterrizado){
 		cFecha* partida = new cFecha(19, 11, 2022, 11);
-		avion1->recibirPermiso(partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
+		try {
+			avion1->recibirPermiso(partida);//Ya que el aeropuerto recibe el permiso, el avion chequea por su cuenta si el 
 										// pesoMaximo no fue superado, entonces despega
-
+		}
+		catch (const char* msg) {
+			cout << msg << endl;
+			cout << "Este avion no puede volar... Por favor verifique sus pasajeros!" << endl;
+		}
 	}
 	else if (estadoActual == sinEstado){
 	cout << "Este avion no deberia estar volando... Por favor verifique sus parametros elementales!" << endl;

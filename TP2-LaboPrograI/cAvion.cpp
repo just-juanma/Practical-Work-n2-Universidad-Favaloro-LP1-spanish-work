@@ -37,9 +37,8 @@ void cAvion::recibirPermiso(cFecha* fecha) { //cambiar los dos 10 por el numero 
 }
 
 bool cAvion::chequearCargaMaxima() {
-	try {
 		float pesotot = (float)this->nPasajeros * 75 + (float)(4 * 75);
-		for (int i = 0; i < this->nPasajeros; i++) {
+		for (ush i = 0; i < this->nPasajeros; i++) {
 			pesotot += this->Listapasajeros[0][i]->getPesoTotalEquipaje();
 		}
 		if (pesotot < this->pesoMaximo) {
@@ -48,14 +47,7 @@ bool cAvion::chequearCargaMaxima() {
 		else {
 			throw "Peso mayo al debido";
 		}
-		
-	}
-	catch (const char* msg) {
-		cout << msg << endl;
-
-	}
-	
-
+	return false;
 }
 
 eEstado cAvion::pedirPermiso() { //Debido a que el "pedir permiso" se ejecuta "automaticamente" en el main 
@@ -79,8 +71,18 @@ void cAvion::aterrizar() {
 #pragma region setters
 void cAvion::setListaPasajero(cListaPasajero* _pasajeros, int _nPasajeros) {
 	//this->nPasajeros = this->Listapasajeros->cantidad; // que me devuelva la cantidad de pasajeros agregados en la lista
-	this->Listapasajeros = _pasajeros;
-	this->nPasajeros = _nPasajeros;
+	if (this->Listapasajeros==NULL) {
+		throw "La lista de pasajeros es nula";
+	}
+	else {
+		this->Listapasajeros = _pasajeros;
+	}
+	if (_nPasajeros <= this->totalPasajeros) {
+		this->nPasajeros = _nPasajeros;
+	}
+	else {
+		throw "Se solicita asignar una cantidad de pasajeros mayor a la permitida";
+	}
 }
 
 void cAvion::setestado(eEstado _estado) {
@@ -122,7 +124,7 @@ string cAvion::to_string() {
 	stc << "nPasajeros: " << this->nPasajeros << endl;
 	stc << "estado: " << this->estado << endl;
 	return stc.str();
-	for (int i = 0; i < this->nPasajeros; i++) {
+	for (ush i = 0; i < this->nPasajeros; i++) {
 		this->Listapasajeros[0][i]->imprimir();
 	}
 	

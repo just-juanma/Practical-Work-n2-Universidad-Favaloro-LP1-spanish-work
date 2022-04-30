@@ -73,8 +73,7 @@ private:
 
 	// interno
 	bool checkEliminar;
-	ush ocupados;
-	ush capacidad;
+
 	#pragma endregion
 };
 

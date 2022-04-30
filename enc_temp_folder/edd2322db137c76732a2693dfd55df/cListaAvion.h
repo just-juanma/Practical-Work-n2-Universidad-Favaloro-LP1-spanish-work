@@ -54,5 +54,4 @@ private:
 	cAvion** ListaAviones;
 	unsigned int ocupados;
 	unsigned int capacidad;
-
 };
