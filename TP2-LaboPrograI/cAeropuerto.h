@@ -46,7 +46,26 @@ public:
     void setListaVuelos(cListaVuelo* Lista) { this->listaVuelos = Lista; }
     void setAvionesAeropuerto(cListaAvion* Lista) { this->listaAvionesAeropuerto = Lista; }
     ush CantAvionesAeropuerto();
-
+    float porcentajeHorarioPartida() {
+        ush cont = 0;
+        float res = 0;
+        for (ush i = 0; i < cVuelo::numero; i++) 
+            for(ush j = 0; j < listaAvionesAeropuerto->ocupados; j++)
+                if (this->listaVuelos->listaVuelo[i]->vuelo == this->listaAvionesAeropuerto->ListaAviones[j]->getfecha() &&
+                    this->listaAvionesAeropuerto->ListaAviones[j]->getestado() == eEstado::aterrizado);
+            cont++;
+        try {
+            if (cVuelo::numero)
+                return (float)(cont * 100) / cVuelo::numero;
+            else
+                throw "Error: no se puede dividir por cero (0)";
+        }
+        catch (const char msg) {
+            cout << msg << endl;
+            return 0;
+        }
+      
+    }
     #pragma endregion
 
 private: 

@@ -97,6 +97,8 @@ int main() {
 	vuelo1->agregarPasajero(pasajeroC);
 	vuelo1->agregarPasajero(pasajeroD);
 
+	pasajerosVuelo1[0][0]->imprimir();
+
 
 	/* INICIALIZACION AVIONES */
 
@@ -140,6 +142,8 @@ int main() {
 	aviones->Listar();
 
 	cout << "La cantidad de vuelos que despegaron y aterrizaron en el dia fueron: " << aeropuerto->cantAterrizadosDia(salida) << endl;
+
+	cout << "El porcentaje de vuelos que despegaron y aterrizaron en horario fueron: " << aeropuerto->porcentajeHorarioPartida() << "%" << endl;
 
 	delete salida; delete llegada;
 	delete avion1; delete avion2;

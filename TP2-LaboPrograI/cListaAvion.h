@@ -4,6 +4,7 @@
 class cListaAvion
 {
 	friend class cAvion;
+	friend class cAeropuerto;
 public:
 
 	cListaAvion();
@@ -49,6 +50,8 @@ public:
 	/// imprime en pantalla toda la lista
 	/// </summary>
 	void Listar();			//imprime la lista en pantalla
+
+
 
 private:
 	cAvion** ListaAviones;

@@ -78,6 +78,7 @@ public:
 		return cont;
 	}
 
+
 	cVuelo* operator[](int posic_i);
 
 	#pragma endregion
