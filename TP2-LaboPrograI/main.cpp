@@ -177,15 +177,16 @@ int main() {
 
 	cout << "El porcentaje de vuelos que despegaron y aterrizaron en horario fueron: " << aeropuerto->porcentajeHorarioPartida() << "%" << endl;
 
-	delete salida1; delete llegada1;
-	delete avion1; delete avion2;
-	delete vuelo1;
+	delete salida1; delete llegada1; delete salida2; delete llegada2;
+	delete avion1; delete avion2; delete avion3;
+	delete vuelo1; delete vuelo2;
 	delete aeropuerto;
-	delete valija1A, delete valija2A;
+	delete valija1A, delete valija2A; 
 	delete valija1B;
 	delete valija1C; delete valija3C;
 	delete valija1D; delete valija2D;
-	delete pasajeroA; delete pasajeroB; delete pasajeroC; delete pasajeroD;
+	delete valija1E;
+	delete pasajeroA; delete pasajeroB; delete pasajeroC; delete pasajeroD; delete pasajeroE;
 
 	system("pause");
 	return 0;
