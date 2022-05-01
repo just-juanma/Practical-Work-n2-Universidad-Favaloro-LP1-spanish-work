@@ -28,8 +28,13 @@ int main() {
 
 	cFecha* salida1 = new cFecha(1, 1, 2022, 1);
 	cFecha* llegada1 = new cFecha(1, 1, 2022, 2);
+	
+	cFecha* salida2 = new cFecha(2, 1, 2022, 1);
+	cFecha* llegada2 = new cFecha(2, 1, 2022, 2);
 
 	vuelo1->setFecha(salida1, llegada1);
+
+	vuelo2->setFecha(salida2, llegada2);
 
 
 	/* INICIALIZACION VALIJAS */
