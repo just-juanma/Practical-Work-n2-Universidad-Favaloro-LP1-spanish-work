@@ -32,9 +32,14 @@ cAvion::~cAvion() {
 void cAvion::recibirPermiso(cFecha* llegada,cFecha* partida) { //cambiar los dos 10 por el numero de aviones en aeropuerto
 	try {
 		if (llegada != NULL && partida != NULL) {
+			if (this->estado == aterrizado) {
 			this->chequearCargaMaxima();
-			this->setfecha(llegada, partida);
+			this->setfecha(llegada, partida);			
 			this->despegar();
+			}
+			else {
+				this->aterrizar();
+			}
 		}
 		else {
 			throw "ERROR: Ingrese fechas del vuelo";
@@ -145,11 +150,11 @@ string cAvion::to_string() {
 	stc << "Total pasajeros: " << this->totalPasajeros << endl;
 	stc << "nPasajeros: " << this->nPasajeros << endl;
 	stc << "estado: " << this->estado << endl;
-	
+	cout << stc.str() << endl;
 	for (ush i = 0; i < this->nPasajeros; i++) {
 		this->Listapasajeros[0][i]->imprimir();
 	}
-	return stc.str();
+	return "\nSiguiente avion:\n" ;
 }
 
 ush cAvion::getnAviones()
