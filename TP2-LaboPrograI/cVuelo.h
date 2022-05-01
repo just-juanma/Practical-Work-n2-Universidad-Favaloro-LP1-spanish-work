@@ -45,7 +45,7 @@ public:
 	bool agregarPasajero(cPasajero* pasajeroAdd) { 
 		// el control de errores se realiza en agregar
 		try {
-			if (pasajeroAdd->numeroVuelo == this->numero) {
+			if (pasajeroAdd->numeroVuelo <= this->numero) {
 				if (claselistaPasajero->agregar(pasajeroAdd))
 					return true;
 				return false;

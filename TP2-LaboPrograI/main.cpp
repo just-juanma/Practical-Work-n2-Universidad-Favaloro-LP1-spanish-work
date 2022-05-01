@@ -60,7 +60,8 @@ int main() {
 	cValija* valija2D = new cValija(3.5);
 
 	// equipaje de Mauricio
-	cListaValija* valijasE = new cListaValija(2, true);
+	cListaValija* valijasE = new cListaValija(1, true);
+
 
 	/* INICIALIZACION DE PASAJEROS */
 	
