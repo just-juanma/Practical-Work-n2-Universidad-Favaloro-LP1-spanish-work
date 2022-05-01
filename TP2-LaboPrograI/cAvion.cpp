@@ -154,7 +154,7 @@ string cAvion::to_string() {
 	for (ush i = 0; i < this->nPasajeros; i++) {
 		this->Listapasajeros[0][i]->imprimir();
 	}
-	return "\nSiguiente avion:\n" ;
+	return "\n \n" ;
 }
 
 ush cAvion::getnAviones()
