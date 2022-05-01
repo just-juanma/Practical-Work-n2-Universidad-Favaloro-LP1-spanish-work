@@ -124,6 +124,7 @@ int main() {
 
 	pasajerosVuelo1[0][0]->imprimir();
 
+	pasajerosVuelo2[0][0]->imprimir();
 
 	/* INICIALIZACION AVIONES */
 
@@ -138,6 +139,7 @@ int main() {
 	avion3->setestado(volando);
 
 	/* ASIGNACION DE AVIONES A LA LISTA */
+
 	//La lista de aviones recibe todos los aviones, quienes estan volando y quienes estan aterrizados
 	aviones->Agregar(avion1);
 	aviones->Agregar(avion2);
