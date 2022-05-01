@@ -23,8 +23,10 @@ int main() {
 	cListaVuelo* vuelos = new cListaVuelo(aeropuerto->getCapacidadAeropuerto(), true);
 
 	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
+	vuelos->agregar(vuelo1);
 
 	cVuelo* vuelo2 = new cVuelo(false, aterrizado, Haifa);
+	vuelos->agregar(vuelo2);
 
 	cFecha* salida1 = new cFecha(1, 1, 2022, 1);
 	cFecha* llegada1 = new cFecha(1, 1, 2022, 2);
@@ -61,11 +63,13 @@ int main() {
 
 	// equipaje de Mauricio
 	cListaValija* valijasE = new cListaValija(1, true);
+	cValija* valija1E = new cValija(2.5);
 
 
 	/* INICIALIZACION DE PASAJEROS */
 	
 	cListaPasajero* pasajerosVuelo1 = new cListaPasajero(4, true);
+	cListaPasajero* pasajerosVuelo2 = new cListaPasajero(1, true);
 
 	cPasajero* pasajeroA = new cPasajero("Vicenta", "37549682", 1, 1);
 	pasajeroA->setFecha(salida1);
@@ -75,6 +79,8 @@ int main() {
 	pasajeroC->setFecha(salida1);
 	cPasajero* pasajeroD = new cPasajero("Carlos", "44985257", 1, 4);
 	pasajeroD->setFecha(salida1);
+	cPasajero* pasajeroE = new cPasajero("Mauricio", "41258971", 2, 1);
+	pasajeroE->setFecha(salida2);
 
 	/* AGREGAR VALIJAS A CADA PASAJERO */
 
@@ -98,6 +104,10 @@ int main() {
 	*pasajeroD + *valija1D;
 	*pasajeroD + *valija2D;
 	valijasD->imprimir();
+
+	pasajeroE->setLista(valijasE);
+	*pasajeroE + *valija1E;
+	valijasD->imprimir();
 	
 
 	/* AGREGAR PASAJEROS AL VUELO */
@@ -108,6 +118,9 @@ int main() {
 	vuelo1->agregarPasajero(pasajeroB);
 	vuelo1->agregarPasajero(pasajeroC);
 	vuelo1->agregarPasajero(pasajeroD);
+
+	vuelo2->setListaPasajero(pasajerosVuelo2);
+	vuelo2->agregarPasajero(pasajeroE);
 
 	pasajerosVuelo1[0][0]->imprimir();
 
@@ -134,13 +147,13 @@ int main() {
 	vuelo1->setAvion(avion2);
 	vuelo1->setID("def");
 
+	vuelo2->setAvion(avion3);
+	vuelo2->setID("El Macho");
+
 	cout << vuelo1;
 
-	/* ASIGNACION DE VUELOS A LA LISTA */
-
-	vuelos->agregar(vuelo1);
-	
 	cout << "La cantidad de pasajeros que volaron en el dia fueron: " << vuelos->cantPasajerosDia(salida1) << endl;
+
 	/* ASGINACION DE VUELOS Y AVIONES AL AEROPUERTO */
 
 	aeropuerto->setListaVuelos(vuelos);
@@ -148,11 +161,14 @@ int main() {
 
 	/* SISTEMA DE SETEO DEL AVION AL VUELO */
 
-	SeteoAvionAVuelo(vuelos, aeropuerto, aviones, vuelo1->getCantActual());//remplazar el 1 por el getter de la cantidad de vuelos
+	SeteoAvionAVuelo(vuelos, aeropuerto, aviones, vuelo1->getCantActual());
 
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
 	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto, llegada1, salida1);
+
+	sistemaOficialDePermisosComunitariosFederales(avion3, aeropuerto, llegada2, salida2);
+
 	aviones->Listar();
 
 	cout << "La cantidad de vuelos que despegaron y aterrizaron en el dia fueron: " << aeropuerto->cantAterrizadosDia(salida1) << endl;
