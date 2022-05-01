@@ -20,14 +20,17 @@ int main() {
 
 	/* INICIALIZACION VUELOS */
 
-	cListaVuelo* vuelos = new cListaVuelo(aeropuerto->getcapacidadAeropuerto(), true);
+	cListaVuelo* vuelos = new cListaVuelo(aeropuerto->getCapacidadAeropuerto(), true);
 
 	cVuelo* vuelo1 = new cVuelo(false, aterrizado, Jerusalen);
 
-	cFecha* salida = new cFecha(1, 1, 2022, 1);
-	cFecha* llegada = new cFecha(1, 1, 2022, 2);
+	cVuelo* vuelo2 = new cVuelo(false, aterrizado, Haifa);
 
-	vuelo1->setFecha(salida, llegada);
+	cFecha* salida1 = new cFecha(1, 1, 2022, 1);
+	cFecha* llegada1 = new cFecha(1, 1, 2022, 2);
+
+	vuelo1->setFecha(salida1, llegada1);
+
 
 	/* INICIALIZACION VALIJAS */
 
@@ -56,13 +59,13 @@ int main() {
 	cListaPasajero* pasajerosVuelo1 = new cListaPasajero(4, true);
 
 	cPasajero* pasajeroA = new cPasajero("Vicenta", "37549682", 1, 1);
-	pasajeroA->setFecha(salida);
+	pasajeroA->setFecha(salida1);
 	cPasajero* pasajeroB = new cPasajero("Teodoro", "42589147", 1, 2);
-	pasajeroB->setFecha(salida);
+	pasajeroB->setFecha(salida1);
 	cPasajero* pasajeroC = new cPasajero("Carmen", "41365214", 1, 3);
-	pasajeroC->setFecha(salida);
+	pasajeroC->setFecha(salida1);
 	cPasajero* pasajeroD = new cPasajero("Carlos", "44985257", 1, 4);
-	pasajeroD->setFecha(salida);
+	pasajeroD->setFecha(salida1);
 
 	/* AGREGAR VALIJAS A CADA PASAJERO */
 
@@ -126,7 +129,7 @@ int main() {
 
 	vuelos->agregar(vuelo1);
 	
-	cout << "La cantidad de pasajeros que volaron en el dia fueron: " << vuelos->cantPasajerosDia(salida) << endl;
+	cout << "La cantidad de pasajeros que volaron en el dia fueron: " << vuelos->cantPasajerosDia(salida1) << endl;
 	/* ASGINACION DE VUELOS Y AVIONES AL AEROPUERTO */
 
 	aeropuerto->setListaVuelos(vuelos);
@@ -138,14 +141,14 @@ int main() {
 
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
-	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto, llegada, salida);
+	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto, llegada1, salida1);
 	aviones->Listar();
 
-	cout << "La cantidad de vuelos que despegaron y aterrizaron en el dia fueron: " << aeropuerto->cantAterrizadosDia(salida) << endl;
+	cout << "La cantidad de vuelos que despegaron y aterrizaron en el dia fueron: " << aeropuerto->cantAterrizadosDia(salida1) << endl;
 
 	cout << "El porcentaje de vuelos que despegaron y aterrizaron en horario fueron: " << aeropuerto->porcentajeHorarioPartida() << "%" << endl;
 
-	delete salida; delete llegada;
+	delete salida1; delete llegada1;
 	delete avion1; delete avion2;
 	delete vuelo1;
 	delete aeropuerto;
@@ -155,18 +158,9 @@ int main() {
 	delete valija1D; delete valija2D;
 	delete pasajeroA; delete pasajeroB; delete pasajeroC; delete pasajeroD;
 
-
-
-	//delete[] aviones; delete[] Vuelos; estas dos lineas de codigo, rompen el destructor de las clases, porque 
-	//liberan memoria que se va a comprobar que se use
-
 	system("pause");
 	return 0;
 }
-
-
-
-
 
 void sistemaOficialDePermisosComunitariosFederales(cAvion* avion1,cAeropuerto* aeropuerto1, cFecha* llegada, cFecha* partida) {//que sucede si esta sinestado el avion? OJO
 	try

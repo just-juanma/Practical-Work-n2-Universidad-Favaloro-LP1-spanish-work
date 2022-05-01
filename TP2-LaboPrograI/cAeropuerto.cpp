@@ -14,8 +14,7 @@ cAeropuerto::~cAeropuerto() {
 }
 
 bool cAeropuerto::darPermiso(cAvion* avion) {
-	//verifico que sea posible agregar un nuevo avion al aeropuerto sin sobrepasar su capacidad maxima, de no ser asi lanzo una excepcion
-	sh i=0;
+	sh i = 0;
 	try
 	{
 		if (avion == NULL) throw "AVION_NULL";
@@ -85,30 +84,6 @@ ush cAeropuerto::cantAterrizadosDia(cFecha* fecha)
 	}
 	
 }
-
-ush cAeropuerto::cantDespegados(cFecha* fecha)
-{
-	try
-	{
-		if (fecha == NULL) throw "FECHA_NULL";
-		ush cont = 0;
-		for (ush i = 0; i < cVuelo::numero; i++)
-		{
-			if (listaVuelos->listaVuelo[i]->estado == eEstado::volando &&
-				listaVuelos->listaVuelo[i]->arribo->dia == fecha->dia &&
-				listaVuelos->listaVuelo[i]->arribo->mes == fecha->mes)
-				cont++;
-		}
-		return cont;
-	}
-	catch (const char* msg)
-	{
-		cout << msg << endl;
-		return 0;
-	}
-}
-
-
 
 string cAeropuerto::to_string() {
 	stringstream stc;
