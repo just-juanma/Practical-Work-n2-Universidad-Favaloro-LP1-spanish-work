@@ -50,7 +50,7 @@ public:
         ush cont = 0;
         float res = 0;
         for (ush i = 0; i < cVuelo::numero; i++) 
-            for(ush j = 0; j < listaAvionesAeropuerto->ocupados; j++)
+            for(ush j = 0; j < listaAvionesAeropuerto->MetidosEnLista; j++)
                 if (this->listaVuelos->listaVuelo[i]->vuelo == this->listaAvionesAeropuerto->ListaAviones[j]->getfecha() &&
                     this->listaAvionesAeropuerto->ListaAviones[j]->getestado() == eEstado::aterrizado);
             cont++;

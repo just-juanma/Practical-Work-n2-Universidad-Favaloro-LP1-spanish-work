@@ -141,7 +141,6 @@ int main() {
     /* SISTEMA INTERNACIONAL OFICIAL DE PERMISOS AEROPORTUARIOS COMUNITARIOS FEDERALES */
 
 	sistemaOficialDePermisosComunitariosFederales(avion2, aeropuerto, llegada, salida);
-	sistemaOficialDePermisosComunitariosFederales(avion3, aeropuerto, llegada, salida);
 	aviones->Listar();
 
 	cout << "La cantidad de vuelos que despegaron y aterrizaron en el dia fueron: " << aeropuerto->cantAterrizadosDia(salida) << endl;

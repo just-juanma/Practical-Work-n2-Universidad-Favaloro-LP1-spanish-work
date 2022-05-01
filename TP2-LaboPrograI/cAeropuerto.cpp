@@ -29,7 +29,6 @@ bool cAeropuerto::darPermiso(cAvion* avion) {
 					if ( intento == avion->getid())
 					{
 						this->listaVuelos->listaVuelo[i]->estado = aterrizado; 
-						this->listaAvionesAeropuerto->Agregar(avion);
 						break;
 					}
 				}
