@@ -55,13 +55,13 @@ public:
     /// Obtiene la cantidad de aviones que admite el aeropuerto
     /// </summary>
     /// <returns>Cantidad de aviones admitidos</returns>
-    ush getCapacidadAeropuerto()const { return this->capacidadAeropuerto; }
+    ush getCapacidadAeropuerto() { return this->capacidadAeropuerto; }
 
     /// <summary>
     /// Obtiene la lista de aviones
     /// </summary>
     /// <returns></returns>
-    cListaAvion* getListaAvionesAeropuerto()const { return this->listaAvionesAeropuerto; }
+    cListaAvion* getListaAvionesAeropuerto() { return this->listaAvionesAeropuerto; }
 
     /// <summary>
     /// Asigna la capacidad del aeropuerto
