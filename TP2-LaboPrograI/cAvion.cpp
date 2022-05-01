@@ -145,11 +145,11 @@ string cAvion::to_string() {
 	stc << "Total pasajeros: " << this->totalPasajeros << endl;
 	stc << "nPasajeros: " << this->nPasajeros << endl;
 	stc << "estado: " << this->estado << endl;
-	return stc.str();
+	
 	for (ush i = 0; i < this->nPasajeros; i++) {
 		this->Listapasajeros[0][i]->imprimir();
 	}
-	
+	return stc.str();
 }
 
 ush cAvion::getnAviones()
@@ -159,6 +159,7 @@ ush cAvion::getnAviones()
 
 void cAvion::imprimir() {
 	cout << to_string();
+
 }
 
 
